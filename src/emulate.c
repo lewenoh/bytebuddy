@@ -8,7 +8,7 @@
 int main(int argc, char **argv) {
   //populating the processor, p
   struct processor p = {{0x0}, 0x0, {false, true, false, false}, {0x0}};
-  int ir = p.memory[p.pc];
+  uint32_t ir = p.memory[p.pc];
   //get instruction lines from bin file TODO
 
   //emulator loop:
