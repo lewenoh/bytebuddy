@@ -1,10 +1,11 @@
 #include <stdlib.h>
+#include <stdint.h>
 #include <stdbool.h>
 
 //processor struct
 struct processor{
-          int genregs[31];
-          int pc;
+          uint64_t genregs[31];
+          uint64_t pc;
           bool pstate[4];
-          int memory[524288];
+          uint32_t memory[524288];
   };

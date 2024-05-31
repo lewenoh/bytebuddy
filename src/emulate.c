@@ -8,13 +8,13 @@
 int main(int argc, char **argv) {
   //populating the processor, p
   struct processor p = {{0x0}, 0x0, {false, true, false, false}, {0x0}};
-  int ir = p.memory[p.pc] + (p.memory[p.pc+1] << 8) + (p.memory[p.pc+2]<<16) + (p.memory[p.pc+3]<<24);
+  int ir = p.memory[p.pc];
   //get instruction lines from bin file TODO
 
   //emulator loop:
   while (ir != HALTINSTRUCTION){
         //fetch:
-      ir = p.memory[p.pc] + (p.memory[p.pc+1] << 8) + (p.memory[p.pc+2]<<16) + (p.memory[p.pc+3]<<24);
+      ir = p.memory[p.pc];
       p.pc += 4;
         //decode and execute: TODO
   }
