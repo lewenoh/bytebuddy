@@ -19,8 +19,6 @@ void dpiImm( struct processor p, uint32_t ir ) {
 	uint64_t opc = ir >> 29 & 0x3;
 	uint64_t sf = ir >> 31;
 
-	uint64_t result = 0;
-
 	if (sf == 0) {
 		int regsize = 32;
 		uint32_t regmask = 0xffffffff;
@@ -95,25 +93,27 @@ void dpiImm( struct processor p, uint32_t ir ) {
 	}
 
 	if (checkBits(opi, 0x5, opimask)) {
-		int imm16 = operand & 0xffff;
-		int hw = operand >> 16 & 0x3;
-		int opvalue = imm16 << (hw * 0x10);
+		uint64_t imm16 = operand & 0xffff;
+		uint64_t hw = operand >> 16 & 0x3;
+		uint64_t opvalue = imm16 << (hw * 0x10);
 
 		switch (opc) {
 			case 0x0:
-				int opvalue |= (imm16 << (hw * 16));
-				processor.GenReg[rd] = ~opvalue;
+				uint64_t opvalue |= (imm16 << (hw * 16));
+				p.genregs[rd] = ~opvalue;
 				break;
 			case 0x2:
-				processor.GenReg[rd] = opvalue;
+				p.genregs[rd] = opvalue;
 				break;
 			case 0x3:
-				int mask |= opvalue;
-				processor.GenReg[rd] = mask;
+				uint64_t mask |= opvalue;
+				p.genregs[rd] = mask;
 				break;
 			default:
 				break;
 		}
+
+	return;
 	}
 
 }
