@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "decoder.h"
-#include "ProcessorDef.h"
+#include "processor_def.h"
 
 //enum type for instruction type
 

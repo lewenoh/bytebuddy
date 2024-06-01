@@ -9,12 +9,12 @@ CFLAGS  ?= -std=c17 -g\
 
 all: assemble emulate
 
-sdt.o: sdt.c sdt.h ProcessorDef.h
-dpiReg.o: dpiReg.c dpiReg.h ProcessorDef.h
-dpiImm.o: dpiImm.c dpiImm.h ProcessorDef.h
-decoder.o: decoder.c decoder.h ProcessorDef.h
-branch.o: branch.c branch.h ProcessorDef.h
-emulate.o: ProcessorDef.h emulate.c
+sdt.o: sdt.c sdt.h processor_def.h
+dpiReg.o: dpiReg.c dpiReg.h processor_def.h
+dpiImm.o: dpiImm.c dpiImm.h processor_def.h
+decoder.o: decoder.c decoder.h processor_def.h
+branch.o: branch.c branch.h processor_def.h
+emulate.o: processor_def.h emulate.c
 
 assemble: assemble.o
 emulate: emulate.o

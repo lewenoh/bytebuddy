@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdint.h>
 #include "dpiImm.h"
-#include "ProcessorDef.h"
+#include "processor_def.h"
 
 void dpiImm( uint64_t ir, p processor ) {
 	int rd = ir & 0x1f;
