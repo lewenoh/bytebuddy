@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <stdio.h>
-#include "ProcessorDef.h"
+#include "processor_def.h"
 #define ZEROREG 0x0
 #define HALTINSTRUCTION 2315255808
 
