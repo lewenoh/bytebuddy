@@ -1,6 +1,9 @@
-#ifndef dpiImm
-#define dpiImm
+#ifndef DPIIMM_H
+#define DPIIMM_H
 
-void dpiImm(uint64_t ir, p processor);
+#include <stdint.h>
+#include "processor_def.h"
 
-#endif dpiImm
+void dpiImm( uint64_t ir, processor p );
+
+#endif
