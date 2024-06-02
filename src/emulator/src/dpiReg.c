@@ -71,15 +71,19 @@ void dpireg(struct processor p, uint32_t ir){
             			else {
                 			p.pstate[1] = 0;
            			}
-
-	//FIXXXXXXX
-				if ((result & regmask) == result){
-					p.pstate[2] = 0;
-				}
-				else {
+				if ((opc == 1) & ((result<op1) || (result<op2))){
 					p.pstate[2] = 1;
 				}
-				if (((op1 & msbmask) == (op2 & msbmask)) && ((result & msbmask) != (op1 & msbmask))){
+				else if ((opc == 3) & (result > op1)){
+					p.pstate[2] = 1;
+				}
+				else {
+					p.pstate[2] = 0;
+				}
+				if ((opc == 1) && ((op1 & msbmask) == (op2 & msbmask)) && ((result & msbmask) != (op1 & msbmask))){
+					p.pstate[3] = 1;
+				}
+				else if ((opc == 3) && ((op1 & msbmask) != (op2 & msbmask)) && ((result & msbmask) == (op2 & msbmask))){
 					p.pstate[3] = 1;
 				}
 				else {
