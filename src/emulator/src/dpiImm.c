@@ -56,7 +56,7 @@ void dpiImm( struct processor *p, uint32_t ir ) {
                                 setFlags_arithmetic(p->genregs[rd], regsize, p);
 
                                 // setting C flag
-                                p->pstate[2] = (p->genregs[rd] < p->genregs[rn] || p->genregs[rd] < imm12 );
+                                p->pstate[2] = (p->genregs[rd] < p->genregs[rn]);
 
 				// setting V flag
 				int imm_sign_add = imm12 >> (imm_size - 1);
