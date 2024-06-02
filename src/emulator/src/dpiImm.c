@@ -36,7 +36,7 @@ void dpiImm( struct processor *p, uint32_t ir ) {
 	uint64_t opcmask = 0x3;
 
 	if (checkBits(opi, 0x2, opimask)) {
-		uint64_t rn = operand & 0x3fff;
+		uint64_t rn = operand & 0x1f;
                 uint64_t imm12 = (operand >> 5) & 0xfff;
                 uint64_t sh = operand >> 22;
 		uint64_t imm_size = 12;

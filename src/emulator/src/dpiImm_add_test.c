@@ -5,11 +5,8 @@
 #include <stdlib.h>
 #include "processor_def.h"
 #include "dpiImm.h"
-
-void testcond( bool ok, char *testname)
-{
-	printf( "T %s: %s\n", testname, ok?"OK":"FAIL");
-}
+#include "dpiImm_add_test.h"
+#include "testcond.h"
 
 void init_processor ( struct processor *p) {
 
@@ -31,15 +28,16 @@ void init_processor ( struct processor *p) {
 }
 
 void test1(struct processor *p) {
-	dpiImm( p, 0x11000026);
-	testcond( p->genregs[6] == 7, "Testing 5 + 2 = 7");
+    dpiImm(p, 0x11000826);
+    char test_result[50]; // Buffer to hold the formatted string
+    snprintf(test_result, sizeof(test_result), "Testing 5 + 2 = 7, got:%llu", p->genregs[6]);
+    testcond(p->genregs[6] == 7, test_result);
 }
 
-int main() {
+void dpiImm_add_tests() {
 	struct processor p;
 	init_processor(&p);
 	test1(&p);
-	return 0;
 }
 
 // here should create a sample processor and have regs empty except for two
