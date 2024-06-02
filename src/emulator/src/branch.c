@@ -1,3 +1,6 @@
+#include <sdtint.h>
+#include <stdbool.h>
+#include "processor_def.h"
 #include "branch.h"
 
 void branch(struct processor p, uint32_t ir){
