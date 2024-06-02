@@ -91,10 +91,10 @@ void dpireg(struct processor p, uint32_t ir){
 				}
 
         		}
-        	result = result & regmask;
-    		}
-    		p.genregs[rd] = (p.genregs[rd] & ~regmask) + result;
-	       	else if (opr < 8) {
+        		result = result & regmask;
+    			p.genregs[rd] = (p.genregs[rd] & ~regmask) + result;
+		}
+		else if (opr < 8) {
     			//bit-logic
 	        	switch (opc) {
   	      			case 0:
@@ -120,6 +120,7 @@ void dpireg(struct processor p, uint32_t ir){
                				 break;
 
 			}
+			p.genregs[rd] = (p.genregs[rd] & ~regmask) + result;
     		}
 	}
 	
