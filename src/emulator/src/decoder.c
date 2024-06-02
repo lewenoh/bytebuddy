@@ -20,7 +20,6 @@ i_type decode(uint64_t ir) {
 	snd_bit_1 = 0x1 & ir_copy;
 	ir_copy >>= 4;
 	bit_31_1 = 0x1 & ir_copy;
-
 	if (snd_bit_1==1) {
 		if (fourth_bit_1==1) {return DPREG;} 
 		else {
