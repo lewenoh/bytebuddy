@@ -2,14 +2,20 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include "processor_def.h"
+#include "binary_load.h"
 #define ZEROREG 0x0
 #define HALTINSTRUCTION 2315255808
 
-int main(int argc, char **argv) {
+int main(int argc, char **argv) { 
   //populating the processor, p
   struct processor p = {{0x0}, 0x0, {false, true, false, false}, {0x0}};
   uint32_t ir = p.memory[p.pc/4];
   //get instruction lines from bin file TODO
+  FILE *inputFile = fopen(argv[1], "rb");
+  FILE *outputFile = stdout;
+
+  if (argv[2] == NULL)  // TODO
+
   //emulator loop:
   while (ir != HALTINSTRUCTION){
         //fetch:
