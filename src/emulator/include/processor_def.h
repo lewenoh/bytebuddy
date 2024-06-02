@@ -3,6 +3,7 @@
 #include <stdbool.h>
 
 //processor struct
+//PSTATE: N,Z,C,V
 struct processor{
           uint64_t genregs[31];
           uint64_t pc;
