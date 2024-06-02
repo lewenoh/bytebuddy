@@ -1,15 +1,17 @@
 #include <stdint.h>
 #include <stdbool.h>
-#include "processor_def.h"
 #include "branch.h"
 
 void branch(struct processor p, uint32_t ir){
 	unsigned int branchtype = (ir >> 30) & 0x3;
+	unsigned int msboffset;
+	uint64_t offset;
 	switch (branchtype) {
 		case 0:
 			//unconditional
-			unsigned int msboffset = ir & 0x2000000;
-			uint64_t offset = (ir & 0x03ffffff) * 4;
+			printf("I am here at 0!");
+			msboffset = ir & 0x2000000;
+			offset = (ir & 0x03ffffff) * 4;
 			if (msboffset > 0){
 				offset = offset + 0xfffffffff0000000;//instead of 0xfffffffc0000000 bc *4 shifts twice
 			}
@@ -17,13 +19,15 @@ void branch(struct processor p, uint32_t ir){
 			break;
 		case 1:
 			//register
+			printf("I am here at 1!");
 			unsigned int xn = (ir >> 5) & 0x1f;
 			p.pc = p.genregs[xn];
 			break;
 		case 2: 
-			//consitional
-			unsigned int msboffset = ir & 0x800000;
-			uint64_t offset = ((ir >> 5) & 0x7ffff) * 4;
+			//conditional
+			printf("I am here at 2");
+			msboffset = ir & 0x800000;
+			offset = ((ir >> 5) & 0x7ffff) * 4;
 			if (msboffset > 0){
 				offset = offset + 0xffffffffffe00000;
 			}
