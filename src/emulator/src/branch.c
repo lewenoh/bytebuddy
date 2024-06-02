@@ -1,4 +1,4 @@
-#include <sdtint.h>
+#include <stdint.h>
 #include <stdbool.h>
 #include "processor_def.h"
 #include "branch.h"
