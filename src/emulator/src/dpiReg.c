@@ -15,6 +15,8 @@ void dpireg(struct processor p, uint32_t ir){
 	uint64_t regmask = 0xffffffffffffffff;
 	uint64_t msbmask = 0x8000000000000000;
 	int regsize = 64;
+	uint64_t result;
+	uint64_t op1;
 	if (sf == 0) {
 		regmask = 0xffffffff;
 		msbmask = 0x80000000;
@@ -51,7 +53,7 @@ void dpireg(struct processor p, uint32_t ir){
 		}
 		if ((opr & 0x1) == 1) {
     			// negate
-        		op2 = (~op2) & regmask
+        		op2 = (~op2) & regmask;
    		 }
 
 		uint64_t op1 = p.genregs[rn] & regmask;
@@ -59,11 +61,11 @@ void dpireg(struct processor p, uint32_t ir){
     			//arithmetic
         		if ((opc & 0x2) == 0){
                 		//add
-            			uint64_t result = op1 + op2;
+            			result = op1 + op2;
         		}
         		else {
                 		//sub
-            			uint64_t result = op1 - op2;
+            			result = op1 - op2;
         		}
         		if ((opc & 0x1) == 1){
                 		//set flags from result
@@ -101,16 +103,16 @@ void dpireg(struct processor p, uint32_t ir){
     			//bit-logic
 	        	switch (opc) {
   	      			case 0:
-        	        		uint64_t result = op1 & op2;
+        	        		result = op1 & op2;
                 			break;
             			case 1:
-                			uint64_t result = op1 | op2;
+                			result = op1 | op2;
                 			break;
             			case 2:
-                			uint64_t result = op1 ^ op2;
+                			result = op1 ^ op2;
                 			break;
             			case 3:
-                			uint64_t result = op1 & op2;
+                			result = op1 & op2;
                 			p.pstate[0] = (result & msbmask) >> (regsize-1);
                 			if (result == 0) {
                     				p.pstate[1] = 1;
@@ -132,10 +134,10 @@ void dpireg(struct processor p, uint32_t ir){
     		unsigned int ra = operand & 0x1f;
     		unsigned int x = operand >> 5;
     		if (ra == 31){
-        		uint64_t op1 = ZEROREG;
+        		op1 = ZEROREG;
     		}
     		else {
-        		uint64_t op1 = p.genregs[ra] & regmask;
+        		op1 = p.genregs[ra] & regmask;
    		}
     		uint64_t op2 = (p.genregs[rn] & regmask) * (p.genregs[rm] & regmask);
     		if (x == 0) {
