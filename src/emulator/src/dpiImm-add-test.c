@@ -4,7 +4,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "processor_def.h"
-#include "dpiImm.c"
+#include "dpiImm.h"
 
 void testcond( bool ok, char *testname)
 {
@@ -18,21 +18,28 @@ void init_processor ( struct processor *p) {
 	p->genregs[2] = -4;
 	p->genregs[3] = -10; // initialising our sample registers
 
-	for (int i = 4; i < 31, 1 ++) {
+	for (int i = 4; i < 31; i++) {
 		p->genregs[i] = i; // initialising the rest of the registers			
 	}    
 	p->pc = 0;
-	p->pstate = {false, false, false, false};
+	p->pstate[0] = false;
+	p->pstate[1] = false;
+	p->pstate[2] = false;
+	p->pstate[3] = false;
+
 	memset(p->memory, 0, sizeof(p->memory)); // sets all values of memory to 0 because we do not need memory
 }
 
-void test1() {
-	dpiImm( 0x11000026, p);
-	testcond( p.genregs[6] == 7, "Testing 5 + 2 = 7");
+void test1(struct processor *p) {
+	dpiImm( p, 0x11000026);
+	testcond( p->genregs[6] == 7, "Testing 5 + 2 = 7");
 }
 
-void main() {
-	test1();
+int main() {
+	struct processor p;
+	init_processor(&p);
+	test1(&p);
+	return 0;
 }
 
 // here should create a sample processor and have regs empty except for two

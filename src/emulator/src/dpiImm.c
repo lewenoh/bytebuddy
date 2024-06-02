@@ -4,29 +4,28 @@
 #include "processor_def.h"
 #define checkBits(value, bits, mask) ((value & mask) == bits)
 
-void setFlags_arithmetic(uint64_t result, int regsize) {
+void setFlags_arithmetic(uint64_t result, int regsize, struct processor *p) {
 	// set N flag
-	p.pstate[0] = (result >> (regsize - 1));
+	p->pstate[0] = (result >> (regsize - 1));
 
 	// set Z flag
-	p.pstate[1] = result == 0;
+	p->pstate[1] = result == 0;
 }
 
-void dpiImm( struct processor p, uint32_t ir ) {
+void dpiImm( struct processor *p, uint32_t ir ) {
 	uint64_t rd = ir & 0x1f;
 	uint64_t operand = ir >> 5 & 0x3fff;
 	uint64_t opi = ir >> 23 & 0x7;
 	uint64_t opc = ir >> 29 & 0x3;
 	uint64_t sf = ir >> 31;
+	int regsize = 64;
+	uint64_t regmask = 0xffffffffffffffff;
+	uint64_t msbmask = 0x8000000000000000;
 
 	if (sf == 0) {
 		int regsize = 32;
 		uint32_t regmask = 0xffffffff;
 		uint32_t msbmask = 0x80000000;
-	} else {
-		int regsize = 64;
-		uint64_t regmask = 0xffffffffffffffff;
-		uint64_t msbmask = 0x8000000000000000;
 	}
 
 	if (rd == 0x1f) {
@@ -49,40 +48,40 @@ void dpiImm( struct processor p, uint32_t ir ) {
 
 		switch (opc) {
                         case 0x0:
-                                p.genregs[rd] = p.genregs[rn] + imm12;
+                                p->genregs[rd] = p->genregs[rn] + imm12;
                                 break;
 
                         case 0x1:
-                                p.genregs[rd] = p.genregs[rn] + imm12;
-                                setFlags_arithmetic(p.genregs[rd], regsize);
+                                p->genregs[rd] = p->genregs[rn] + imm12;
+                                setFlags_arithmetic(p->genregs[rd], regsize, p);
 
                                 // setting C flag
-                                p.pstate[2] = (p.genregs[rd] < p.genregs[rn] || p.genregs[rd] < imm12 );
+                                p->pstate[2] = (p->genregs[rd] < p->genregs[rn] || p->genregs[rd] < imm12 );
 
 				// setting V flag
-				int imm_sign = imm12 >> (imm_size - 1);
-				int rn_sign = p.genregs[rn] >> (regsize - 1);
-				int rd_sign = p.genregs[rd] >> (regsize - 1);
-				p.pstate[3] = (imm_sign == rn_sign && rd_sign != rn_sign); 
+				int imm_sign_add = imm12 >> (imm_size - 1);
+				int rn_sign_add = p->genregs[rn] >> (regsize - 1);
+				int rd_sign_add = p->genregs[rd] >> (regsize - 1);
+				p->pstate[3] = (imm_sign_add == rn_sign_add && rd_sign_add != rn_sign_add); 
 
                                 break;
 	
                         case 0x2:
-                                p.genregs[rd] = processor.GenReg[rn] - imm12;
+                                p->genregs[rd] = p->genregs[rn] - imm12;
                                 break;
 
                         case 0x3:
-                                p.genregs[rd] = processor.GenReg[rn] - imm12;
-                                setFlags_arithmetic(p.genregs[rd], regsize);
+                                p->genregs[rd] = p->genregs[rn] - imm12;
+                                setFlags_arithmetic(p->genregs[rd], regsize, p);
 
 				// setting C flag
-				p.pstate[2] = (p.genregs[rd] > p.genregs[rn] || p.genregs[rd] > imm12);
+				p->pstate[2] = (p->genregs[rd] > p->genregs[rn] || p->genregs[rd] > imm12);
 
 				// setting V flag
-				int imm_sign = imm12 >> (imm_size - 1);
-                                int rn_sign = p.genregs[rn] >> (regsize - 1);
-                                int rd_sign = p.genregs[rd] >> (regsize - 1);
-				p.pstate[3] = (imm_sign == rn_sign && rd_sign != rn_sign);
+				int imm_sign_sub = imm12 >> (imm_size - 1);
+                                int rn_sign_sub = p->genregs[rn] >> (regsize - 1);
+                                int rd_sign_sub = p->genregs[rd] >> (regsize - 1);
+				p->pstate[3] = (imm_sign_sub == rn_sign_sub && rd_sign_sub != rn_sign_sub);
 
                                 break;
                       
@@ -99,15 +98,14 @@ void dpiImm( struct processor p, uint32_t ir ) {
 
 		switch (opc) {
 			case 0x0:
-				uint64_t opvalue |= (imm16 << (hw * 16));
-				p.genregs[rd] = ~opvalue;
+				opvalue |= (imm16 << (hw * 16));
+				p->genregs[rd] = ~opvalue;
 				break;
 			case 0x2:
-				p.genregs[rd] = opvalue;
+				p->genregs[rd] = opvalue;
 				break;
 			case 0x3:
-				uint64_t mask |= opvalue;
-				p.genregs[rd] = mask;
+				p->genregs[rd] |= opvalue;
 				break;
 			default:
 				break;
