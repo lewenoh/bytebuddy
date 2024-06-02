@@ -1,3 +1,5 @@
+#ifndef PROCESSOR_DEF_H
+#define PROCESSOR_DEF_H
 #include <stdlib.h>
 #include <stdint.h>
 #include <stdbool.h>
@@ -9,3 +11,5 @@ struct processor{
           bool pstate[4];
           uint32_t memory[524288];
   };
+
+#endif

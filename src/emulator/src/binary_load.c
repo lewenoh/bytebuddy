@@ -24,13 +24,13 @@ int binary_load(struct processor p, FILE *inputFile, FILE *outputFile) {
 		fclose(inputFile);
 		fprintf(stderr, "Error reading from file.\n");
 
-		for (int i = 0, i < MEMORY_SIZE, i++) {
+		for (int i = 0; i < MEMORY_SIZE; i++) {
 			p.memory[i] = 0x0; // setting memory to 0 if there was an error.
 		}
 
 		return 1;
 	} else { // successful read
-		for (int i = 0, i < MEMORY_SIZE, i++) {
+		for (int i = 0; i < MEMORY_SIZE; i++) {
 			p.memory[i] = binaryToHex(p.memory[i]); // covert raw binary 32 bits into hex at each memory location
 		}
 	}
