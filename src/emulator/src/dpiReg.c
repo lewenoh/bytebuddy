@@ -1,3 +1,6 @@
+#include <stdint.h>
+#include <stdbool.h>
+#include "processor_def.h"
 #include "dpiReg.h"
 
 void dpireg(struct processor p, uint32_t ir){
