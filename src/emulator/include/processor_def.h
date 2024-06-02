@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include <stdbool.h>
+#define ZEROREG 0x0
 
 //processor struct
 struct processor{
