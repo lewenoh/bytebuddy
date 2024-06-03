@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include "processor_def.h"
 #include "binary_load.h"
+#include "binary_output.h"
 #define ZEROREG 0x0
 #define HALTINSTRUCTION 2315255808
 
@@ -18,25 +19,11 @@ int main(int argc, char **argv) {
 	exit(1);
  }
 
-  FILE *outputFile = stdout;
-
-  if (argc == 3) { // if output file is provided
-  	outputFile = fopen(argv[2], "wb");
-  }
-
-  if (outputFile == NULL) {
-	fprintf(stderr, "Error writing to output file.\n");
-	exit(1);
-  }
-
-  binary_loader(p, inputFile, outputFile); // delegates loading to binary_loader
+  binary_loader(p, inputFile); // delegates loading to binary_loader
 
   fclose(inputFile);
   
-  if (outputFile != stdout) {
-	fclose(outputFile);
-  }
-
+  
   //emulator loop:
   while (ir != HALTINSTRUCTION){
         //fetch:
@@ -44,6 +31,24 @@ int main(int argc, char **argv) {
       p.pc += 4;
         //decode and execute: TODO
   }
-  //format output TODO
+  //format output
+
+  FILE *outputFile = stdout;
+
+  if (argc == 3) { // if output file is provided
+  	outputFile = fopen(argv[2], "wb");
+  }
+
+  if (outputFile == NULL) {
+  	fprintf(stderr, "Error writing to output file.\n");
+  	exit(1);
+  }
+
+  binary_output(p, outputFile); // delegates to binary_output
+
+  if (outputFile != stdout) {
+  	fclose(outputFile);
+  }
+
   return EXIT_SUCCESS;
 }

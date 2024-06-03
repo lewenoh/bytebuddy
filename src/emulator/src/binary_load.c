@@ -5,7 +5,7 @@
 #include "binary_to_hex.h"
 #define MEMORY_SIZE 524288
 
-int binary_load(struct processor p, FILE *inputFile, FILE *outputFile) {
+int binary_load(struct processor p, FILE *inputFile) {
 
 	if (fseek(inputFile, 0, SEEK_END) == -1) {
 		fclose(inputFile);
