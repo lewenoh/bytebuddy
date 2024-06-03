@@ -2,14 +2,11 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include "processor_def.h"
-<<<<<<< HEAD
 #include "branch_test.h"
-=======
 #include "binary_load.h"
 #include "binary_output.h"
 #include "binary_load_test.h"
 #include "binary_output_test.h"
->>>>>>> binary_file_loader
 #define ZEROREG 0x0
 #define HALTINSTRUCTION 2315255808
 #include "dpiReg_test.h"
@@ -31,11 +28,13 @@ int main(int argc, char **argv) {
 
   fclose(inputFile);
 
+  //get instruction lines from bin file TODO
   //emulator loop:
   //while (ir != HALTINSTRUCTION){
         //fetch:
       //ir = p.memory[p.pc/4];
       //p.pc += 4;
+    //  p.pc += 4;
         //decode and execute: TODO
   //}
   //format output TODO
