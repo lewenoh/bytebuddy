@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include "branch.h"
+#include "testcond.h"
 // Jump forward by 2 addresses
 // 0001 0100 0000 0000 0000 0000 0000 0010
 #define BRANCH_UNCONDITIONAL1 0x14000002
@@ -23,9 +24,6 @@
 // 01010100 11111111111111111000 1011
 #define BRANCH_COND3  0x54FFFF8B
 
-void testcond(bool ok, char *testname) {
-	printf("T %s: %s\n", testname, ok?"OK":"FAIL");
-}
 
 void testbranch() {
 	struct processor p = {{0x0}, 0x0, {false, true, false, false}, {0x0}};
