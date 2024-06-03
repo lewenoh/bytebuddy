@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include "processor_def.h"
 #define HALTINSTRUCTION 2315255808
+#include "dpiReg_test.h"
 
 int main(int argc, char **argv) {
   //populating the processor, p
@@ -16,7 +17,9 @@ int main(int argc, char **argv) {
       //p.pc += 4;
         //decode and execute: TODO
 	
-  }
+  //}
+	dpiReg_test();
+	
   //format output TODO
   return EXIT_SUCCESS;
 }
