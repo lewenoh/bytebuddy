@@ -73,10 +73,10 @@
 // 1 11 100 010 0 000000000101 00001 01111 = 0xF100142F
 #define SUBS_TEST5 0xF100142F
 
-// 64B SUBS V
-// 64 bit, sub, dpiImm, arithmetic, shift_amt = 1, imm = 0xFFF, rn = 3, rd = 16
-// 1 11 100 010 1 111111111111 00011 10000 = 0xF17FFC70
-#define SUBS_TEST6 0xF17FFC70
+// 32B SUBS V
+// 32 bit, sub, dpiImm, arithmetic, shift_amt = 1, imm = 0xFFF, rn = 3, rd = 16
+// 0 11 100 010 1 111111111111 00011 10000 = 0x717FFC70
+#define SUBS_TEST6 0x717FFC70
 
 // 64B SUBS C V
 
@@ -166,10 +166,14 @@ void dpiImm_add_tests() {
 	testcond( (p.genregs[15] == 2 && p.pstate[0] == 0 && p.pstate[1] == 0 && p.pstate[2] == 1 && p.pstate[3] == 0), "SUBS with only C flag set");
 
 	//SUBS_TEST6
-	p.genregs[3] = 0x8000000000000001;
+	p.genregs[3] = 0x80000001;
 	dpiImm(&p, SUBS_TEST6);
-	printf("%lx", p.genregs[16]);
-	testcond ((p.genregs[16] == 0x7FFFFFFFFF001000 && p.pstate[0] == 0 && p.pstate[1] == 0 && p.pstate[2] == 0 && p.pstate[3] == 1), "SUBS with only V flag set");
+	testcond ((p.genregs[16] == 0x7F001001 && p.pstate[0] == 0 && p.pstate[1] == 0 && p.pstate[2] == 1 && p.pstate[3] == 0), "SUBS with only C flag set");
+
+	// SUBS_TEST7
+        p.genregs[3] = 0xFFFFFFFF;
+        dpiImm(&p, SUBS_TEST6);
+        testcond ((p.genregs[16] == 0xFF000FFF && p.pstate[0] == 1 && p.pstate[1] == 0 && p.pstate[2] == 1 && p.pstate[3] == 1), "SUBS with only N C V flag set");
 
 	//movn32
 	//0x1b << 16 = 0x1b0000;

@@ -7,13 +7,9 @@
 void setFlags_arithmetic(uint64_t result, int regsize, struct processor *p) {
 	// set N flag
 	p->pstate[0] = (result >> (regsize - 1)) & 0x1;
+	
 	// set Z flag
-	if (result == 0) {
-		p->pstate[1] = 1;
-	} else {
-		p->pstate[1] = 0;
-	}
-	//p->pstate[1] = (result == 0);
+	p->pstate[1] = (result == 0);
 }
 
 void dpiImm( struct processor *p, uint32_t ir ) {
@@ -22,7 +18,6 @@ void dpiImm( struct processor *p, uint32_t ir ) {
 	uint64_t opi = (ir >> 23) & 0x7; // bits [25:23]
 	uint64_t opc = (ir >> 29) & 0x3; // bits [30:29]
 	uint64_t sf = ir >> 31; // bit 31
-//	uint64_t msbmask = 0x8000000000000000 >> (sf * 32);
 
 	int regsize = (sf == 1) ? 64 : 32;
 	uint64_t regmask = (sf == 1) ? 0xFFFFFFFFFFFFFFFF : 0xFFFFFFFF;
@@ -32,7 +27,6 @@ void dpiImm( struct processor *p, uint32_t ir ) {
 	}
 
 	uint64_t opimask = 0x7;
-//	uint64_t opcmask = 0x3;
 
 	if (checkBits(opi, 0x2, opimask)) {
 		uint64_t rn = operand & 0x1f; // bits [5:0] of operand
@@ -84,20 +78,6 @@ void dpiImm( struct processor *p, uint32_t ir ) {
                 
 				break;
 
-                            //    p->genregs[rd] = (p->genregs[rn] - imm12) & regmask;
-                            //    setFlags_arithmetic(p->genregs[rd], regsize, p);
-
-				// setting C flag
-		//		p->pstate[2] = (p->genregs[rn] >= imm12);
-
-				// setting V flag
-//				int imm_sign_sub = imm12 >> (imm_size - 1);
-//                              int rn_sign_sub = p->genregs[rn] >> (regsize - 1);
-//                                int rd_sign_sub = p->genregs[rd] >> (regsize - 1);
-//				p->pstate[3] = (imm_sign_sub != rn_sign_sub && rn_sign_sub == rd_sign_sub);
-
-//                                break;
-                      
 		      	default:
                                 break;
                 }
@@ -108,8 +88,6 @@ void dpiImm( struct processor *p, uint32_t ir ) {
 		uint64_t imm16 = operand & 0xffff;
 		uint64_t hw = (operand >> 16) & 0x3;
 		uint64_t opvalue = imm16 << (hw * 16);
-//		uint64_t regmask64 = 0xFFFFFFFFFFFFFFFF;
-
 		uint64_t result = 0;
 
 	switch (opc) {
