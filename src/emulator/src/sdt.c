@@ -24,7 +24,7 @@ void sdt(struct processor *p, uint32_t ir){
 		if ((offset & 0x800) > 0){
 			//register offset
 			unsigned int xm = (offset >> 6) & 0x1f;
-			address = (*p).genregs[xn] + (*p).genregs[xm]		
+			address = (*p).genregs[xn] + (*p).genregs[xm];		
 		}
 		else {
 			//pre/post index
@@ -49,7 +49,8 @@ void sdt(struct processor *p, uint32_t ir){
 	uint64_t value;
 	if (l > 0) {
 		//load
-		value = ((*p).memory[address/4] + ((*p).memory[(address/4)+ 1] << 32)) & regmask;
+		value = (*p).memory[(address/4) + 1];
+		value = ((*p).memory[address/4] + (value << 32)) & regmask;
 		(*p).genregs[rt] = ((*p).genregs[rt] & ~regmask) + value;
 	}
 	else {
