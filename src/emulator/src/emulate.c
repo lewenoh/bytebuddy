@@ -1,4 +1,4 @@
-#include <stdlib.h>	
+#include <stdlib.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include "processor_def.h"
@@ -15,17 +15,17 @@ int main(int argc, char **argv) {
 //  uint32_t ir = p.memory[p.pc/4];
 //  //get instruction lines from bin file
 //  FILE *inputFile = fopen(argv[1], "rb");
-//  
-//  if (inputFile == NULL) {
+//
+//  if (inputFile == NULL || ferror(inputFile)) {
 //  	fprintf(stderr, "Error opening input file.\n");
 //	exit(1);
+// } else {
+//  	binary_load(&p, inputFile); // delegates loading to binary_load
 // }
-//
-//  binary_load(&p, inputFile); // delegates loading to binary_load
-//
+
 //  fclose(inputFile);
-//  
-//  
+//
+//
 //  //emulator loop:
 //  while (ir != HALTINSTRUCTION){
 //        //fetch:
@@ -41,13 +41,13 @@ int main(int argc, char **argv) {
 //  	outputFile = fopen(argv[2], "wb");
 //  }
 //
-//  if (outputFile == NULL) {
+//  if (outputFile == NULL || ferror(outputFile)) {
 //  	fprintf(stderr, "Error writing to output file.\n");
 //  	exit(1);
+//  } else {
+//  	binary_output(&p, outputFile); // delegates to binary_output
 //  }
-//
-//  binary_output(&p, outputFile); // delegates to binary_output
-//
+
 //  if (outputFile != stdout) {
 //  	fclose(outputFile);
 //  }

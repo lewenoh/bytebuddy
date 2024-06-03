@@ -3,6 +3,12 @@
 #include "binary_output.h"
 #include "processor_def.h"
 
+void clearBuffer(char buffer[], size_t size) {
+	for (int x = 0; x < size; x++) {
+		buffer[x] = '\0'; // clearing printBuffer
+	}
+}
+
 int binary_output(struct processor *p, FILE *outputFile) {
 
 // processor struct (uint64_t genregs[31]; uint64_t pc; bool pstate[4]; uint32_t memory[524288];)
@@ -11,10 +17,8 @@ int binary_output(struct processor *p, FILE *outputFile) {
 	// writing genreg values
 
 	snprintf(printBuffer, sizeof(printBuffer), "Registers: \n"); // printing header
-        fwrite(printBuffer, sizeof(char), 13, outputFile); // including null terminator and \n
-        for (int x = 0; x < 100; x++) {
-                        printBuffer[x] = '\0'; // clearing printBuffer
-                }
+        fwrite(printBuffer, sizeof(char), 12, outputFile); // including \n
+        clearBuffer(printBuffer, 100);
 
 	for (int i = 0; i < 31; i++) {
 		int charsWritten = snprintf(printBuffer, sizeof(printBuffer), "X%02d = %016lx\n", i, (*p).genregs[i]);
@@ -24,9 +28,7 @@ int binary_output(struct processor *p, FILE *outputFile) {
 		}
 		fwrite(printBuffer, sizeof(char), charsWritten, outputFile); // write formatted string from pB into output file
 
-		for (int x = 0; x < 100; x++) {
-			printBuffer[x] = '\0'; // clearing printBuffer after every iteration
-		}
+		clearBuffer(printBuffer, 100);
 	}
 
 	//////////////////////////////////
@@ -40,9 +42,7 @@ int binary_output(struct processor *p, FILE *outputFile) {
 
 		fwrite(printBuffer, sizeof(char), charsWrittenPC, outputFile); // writing PC value
 
-		for (int x = 0; x < 100; x++) {
-                        printBuffer[x] = '\0'; // clearing printBuffer
-                }
+		clearBuffer(printBuffer, 100);
 
 	////////////////////////////////////////////////////////////
 
@@ -64,19 +64,15 @@ int binary_output(struct processor *p, FILE *outputFile) {
                 }
                 fwrite(printBuffer, sizeof(char), charsWrittenPSTATE, outputFile); // writing PSTATE                                                                                                                                         fwrite(printBuffer, sizeof(char), chardWrittenPC, outputFile); // writing PC value
 
-        for (int x = 0; x < 100; x++) {
-                        printBuffer[x] = '\0'; // clearing printBuffer
-                }
+        clearBuffer(printBuffer, 100);
 
 	/////////////////////////////////////////////////
 
 	// writing non-zero memory
 
 	snprintf(printBuffer, sizeof(printBuffer), "Non-zero memory: \n"); // printing header
-	fwrite(printBuffer, sizeof(char), 20, outputFile); // including null terminator and \n
-	for (int x = 0; x < 100; x++) {
-                        printBuffer[x] = '\0'; // clearing printBuffer
-                }
+	fwrite(printBuffer, sizeof(char), 18, outputFile); // including \n
+	clearBuffer(printBuffer, 100);
 
 	int index = 0;
 
@@ -94,9 +90,7 @@ int binary_output(struct processor *p, FILE *outputFile) {
 
 			fwrite(printBuffer, sizeof(char), charsWrittenMem, outputFile); // write formatted string from pB into output file
 
-			for (int x = 0; x < 100; x++) {
-				printBuffer[x] = '\0'; // clearing printBuffer after every iteration
-			}
+			clearBuffer(printBuffer, 100);
 		}
 
 		index++;

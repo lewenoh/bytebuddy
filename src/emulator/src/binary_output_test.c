@@ -9,7 +9,7 @@ void binary_output_test() {
 
 	struct processor p = {{0x0}, 0x0, {false, true, false, false}, {0x0}}; // initialise processor
 
-        FILE *outputFile = stdout;
+        FILE *outputFile = fopen("testoutput.out", "w");
 
 	for (int i = 0; i < 31; i++) {
 		p.genregs[i] = i;
@@ -25,5 +25,7 @@ void binary_output_test() {
 	p.memory[5] = 6;
 
 	binary_output(&p, outputFile);
+
+	fclose(outputFile);
 
 }
