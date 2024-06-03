@@ -16,7 +16,9 @@ void ll(struct processor *p, uint32_t ir){
 	if (msboffset > 0){
 		simm19 = simm19 + 0xffffffffffe00000;
 	}
-
-	uint64_t value = ((*p).memory[((*p).pc + simm19)/4] + ((*p).memory[(((*p).pc + simm19)/4) + 1] << 32)) & regmask;
+	
+	uint64_t address = (*p).pc + simm19;
+	uint64_t value = (*p).memory[(address/4) + 1];
+	value = ((value<<32) + (*p).memory[address/4]) & regmask;
 	(*p).genregs[rt] = ((*p).genregs[rt] & ~regmask) + value;	
 }
