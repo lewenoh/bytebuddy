@@ -11,10 +11,10 @@
 #include <decoder.h>
 #define HALTINSTRUCTION 2315255808
 #include "dpiReg_test.h"
+#include "dpiImm_add_test.h"
 
-int main(int argc, char **argv) { 
+int main(int argc, char **argv) {
   //populating the processor, p
-  //get instruction lines from bin file TODO
   struct processor p = {{0x0}, 0x0, {false, true, false, false}, {0x0}};
   uint32_t ir = p.memory[p.pc/4];
   //get instruction lines from bin file
@@ -29,16 +29,9 @@ int main(int argc, char **argv) {
 
   fclose(inputFile);
 
-  //get instruction lines from bin file TODO
   //emulator loop:
-  //while (ir != HALTINSTRUCTION){
+  while (ir != HALTINSTRUCTION){
         //fetch:
-      //ir = p.memory[p.pc/4];
-      //p.pc += 4;
-    //  p.pc += 4;
-        //decode and execute: TODO
-  //}
-  //format output TODO
       ir = p.memory[p.pc/4];
         //decode and execute:
 
@@ -92,11 +85,6 @@ int main(int argc, char **argv) {
   if (outputFile != stdout) {
   	fclose(outputFile);
   }
-  //    ir = p.memory[p.pc/4];
-  //    p.pc += 4;
-        //decode and execute: TODO
-  //}
-  //format output TODO
   return EXIT_SUCCESS;
 }
 
