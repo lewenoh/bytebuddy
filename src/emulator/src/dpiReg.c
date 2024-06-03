@@ -53,9 +53,8 @@ void dpireg(struct processor *p, uint32_t ir){
 		}
 		if ((opr & 0x1) == 1) {
     			// negate
-        		op2 = (~op2) & regmask;
+        		op2 = (~op2)&regmask;
    		 }
-
 		uint64_t op1 = (*p).genregs[rn] & regmask;
     		if (opr >= 8) {
     			//arithmetic
@@ -69,13 +68,16 @@ void dpireg(struct processor *p, uint32_t ir){
         		}
         		if ((opc & 0x1) == 1){
                 		//set flags from result
+				// set N
             			(*p).pstate[0] = (result & msbmask) >> (regsize-1);
+				// set Z
             			if (result == 0) {
                 			(*p).pstate[1] = 1;
             			}
             			else {
                 			(*p).pstate[1] = 0;
            			}
+				// set C
 				if ((opc == 1) & ((result<op1) || (result<op2))){
 					(*p).pstate[2] = 1;
 				}
@@ -85,6 +87,7 @@ void dpireg(struct processor *p, uint32_t ir){
 				else {
 					(*p).pstate[2] = 0;
 				}
+				// set V
 				if ((opc == 1) && ((op1 & msbmask) == (op2 & msbmask)) && ((result & msbmask) != (op1 & msbmask))){
 					(*p).pstate[3] = 1;
 				}
@@ -141,11 +144,15 @@ void dpireg(struct processor *p, uint32_t ir){
    		}
     		uint64_t op2 = ((*p).genregs[rn] & regmask) * ((*p).genregs[rm] & regmask);
     		if (x == 0) {
-       			 uint64_t result = op1 + op2;
+			printf("op1: %lu, op2: %lu\n", op1, op2);
+       			uint64_t result = op1 + op2;
     		}
     		else {
+			printf("op1: %lu, op2: %lu\n", op1, op2);
         		uint64_t result = op1 - op2;
    		}
+		printf("This is the result: %lu\n", result);
     		(*p).genregs[rd] = ((*p).genregs[rd] & ~regmask) + result;
+		printf("this is the value saved: %lu\n", (*p).genregs[rd]);  
 	}
 }
