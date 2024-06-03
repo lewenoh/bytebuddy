@@ -30,8 +30,40 @@ int main(int argc, char **argv) {
 //  while (ir != HALTINSTRUCTION){
 //        //fetch:
 //      ir = p.memory[p.pc/4];
-//      p.pc += 4;
+//      p.pc += 4; // should this not be at the end of the loop? 
 //        //decode and execute: TODO
+//
+//	i_type instrType = decode(ir);
+//
+//	switch (instrType) {
+//
+//	case DPIMM:
+//		dpiImm(&p, ir);
+//		break;
+//
+//	case DPREG:
+//		dpiReg(&p, ir);
+//		break;
+//
+//	case SDT:
+//		sdt(&p, ir);
+//		break;
+//
+//	case LL:
+//		ll(&p, ir);
+//		break;
+//
+//	case BRANCH:
+//		branch(&p, ir);
+//		break; 
+//
+//	default:
+//            fprintf(stderr, "No matching instruction type.\n");
+//
+//	}
+
+//	p.pc += 4 (?) TODO
+
 //  }
 //  //format output
 //
@@ -57,3 +89,4 @@ int main(int argc, char **argv) {
 
   return EXIT_SUCCESS;
 }
+
