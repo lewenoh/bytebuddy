@@ -8,6 +8,7 @@
 #include "binary_load_test.h"
 #include "binary_output_test.h"
 #define ZEROREG 0x0
+#include <decoder.h>
 #define HALTINSTRUCTION 2315255808
 #include "dpiReg_test.h"
 
@@ -91,6 +92,11 @@ int main(int argc, char **argv) {
   if (outputFile != stdout) {
   	fclose(outputFile);
   }
+  //    ir = p.memory[p.pc/4];
+  //    p.pc += 4;
+        //decode and execute: TODO
+  //}
+  //format output TODO
   return EXIT_SUCCESS;
 }
 

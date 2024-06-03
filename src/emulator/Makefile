@@ -1,6 +1,6 @@
 CC = gcc
 
-CFLAGS = -Wall -Iinclude
+CFLAGS = -Wall -g  -Iinclude
 LDFLAGS = -Llib
 LDLIBS  = -lm
 
