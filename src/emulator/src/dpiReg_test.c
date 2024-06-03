@@ -105,8 +105,8 @@ void dpiReg_test() {
 	dpireg(&p,SUBS_NO_SHIFT);
 	testcond(p.pstate[0]==true && p.pstate[2]==true, "SUBS C and N flags are set.");
 	
-	p.genregs[10] = 0x8;
-	p.genregs[11] = 0x7;
+	p.genregs[10] = 0x80000000;
+	p.genregs[11] = 0x70000000;
 	dpireg(&p, SUBS_NO_SHIFT);
 	testcond(p.pstate[3]==true, "SUBS V set");
 
@@ -178,10 +178,10 @@ void dpiReg_test() {
 
 	//result = 14 * 32 = 448 = 1c0 
 	dpireg(&p, MADD); 
-	printf("rd: %lu\n", p.genregs[1]);
 	testcond(p.genregs[1] == 0x1c0, "madd");
 
-	//msubp.genregs[24] = 0x1f4;
+	//msub
+	p.genregs[24] = 0x1f4;
 	//result = 500 - 448 = 52 = 0x34
 	dpireg(&p, MSUB);
  	testcond(p.genregs[1] == 0x34, "msub");

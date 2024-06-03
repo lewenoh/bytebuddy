@@ -135,7 +135,8 @@ void dpireg(struct processor *p, uint32_t ir){
 	else if ((m == 1) && (opr == 8) && (opc == 0)){
 		//multiply
     		unsigned int ra = operand & 0x1f;
-    		unsigned int x = operand >> 5;
+
+		unsigned int x = operand >> 5;
     		if (ra == 31){
         		op1 = ZEROREG;
     		}
@@ -144,15 +145,11 @@ void dpireg(struct processor *p, uint32_t ir){
    		}
     		uint64_t op2 = ((*p).genregs[rn] & regmask) * ((*p).genregs[rm] & regmask);
     		if (x == 0) {
-			printf("op1: %lu, op2: %lu\n", op1, op2);
-       			uint64_t result = op1 + op2;
+       			result = op1 + op2;
     		}
     		else {
-			printf("op1: %lu, op2: %lu\n", op1, op2);
-        		uint64_t result = op1 - op2;
+        		result = op1 - op2;
    		}
-		printf("This is the result: %lu\n", result);
     		(*p).genregs[rd] = ((*p).genregs[rd] & ~regmask) + result;
-		printf("this is the value saved: %lu\n", (*p).genregs[rd]);  
 	}
 }
