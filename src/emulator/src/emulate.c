@@ -5,6 +5,7 @@
 #include "branch_test.h"
 #define ZEROREG 0x0
 #define HALTINSTRUCTION 2315255808
+#include "dpiReg_test.h"
 
 int main(int argc, char **argv) {
   //populating the processor, p
@@ -19,8 +20,6 @@ int main(int argc, char **argv) {
       //p.pc += 4;
         //decode and execute: TODO
   //}
-	
-
   //format output TODO
   return EXIT_SUCCESS;
 }

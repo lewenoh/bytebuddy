@@ -3,4 +3,3 @@
 #include <stdbool.h>
 void testcond(bool ok, char *testname); 
 #endif
-
