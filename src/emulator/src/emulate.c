@@ -7,6 +7,9 @@
 #include "binary_output.h"
 #include "binary_load_test.h"
 #include "binary_output_test.h"
+#include "dpiReg.h"
+#include "sdt.h"
+#include "ll.h"
 #define ZEROREG 0x0
 #include <decoder.h>
 #define HALTINSTRUCTION 2315255808
@@ -17,6 +20,7 @@ int main(int argc, char **argv) {
   //populating the processor, p
   struct processor p = {{0x0}, 0x0, {false, true, false, false}, {0x0}};
   uint32_t ir = p.memory[p.pc/4];
+
   //get instruction lines from bin file
   FILE *inputFile = fopen(argv[1], "rb");
 
@@ -32,9 +36,9 @@ int main(int argc, char **argv) {
   //emulator loop:
   while (ir != HALTINSTRUCTION){
         //fetch:
-      ir = p.memory[p.pc/4];
+	 ir = p.memory[p.pc/4];
         //decode and execute:
-
+	
 	i_type instrType = decode(ir);
 
 	switch (instrType) {
@@ -44,7 +48,7 @@ int main(int argc, char **argv) {
 		break;
 
 	case DPREG:
-		dpiReg(&p, ir);
+		dpireg(&p, ir);
 		break;
 
 	case SDT:

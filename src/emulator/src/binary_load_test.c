@@ -3,11 +3,7 @@
 #include <stdlib.h>
 #include "binary_load.h"
 #include "processor_def.h"
-
-void testcond(bool ok, char *testname ) {
-	printf("T %s: %s\n", testname, ok?"OK":"FAIL");
-}
-
+#include "testcond.h"
 
 void binary_load_test() {
 	struct processor p = {{0x0}, 0x0, {false, true, false, false}, {0x0}}; // initialise processor

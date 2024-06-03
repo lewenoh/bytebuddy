@@ -1,7 +1,6 @@
 CC = gcc
 
 CFLAGS = -Wall -g -Iinclude
->>>>>>> data-processing-immediate-2
 LDFLAGS = -Llib
 LDLIBS  = -lm
 

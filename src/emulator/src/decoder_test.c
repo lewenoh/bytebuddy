@@ -12,10 +12,6 @@
 #define LL 0xC000000
 #define BRANCH 0x14000000
 
-void testcond(bool ok, char *testname ) {
-	printf("T %s: %s\n", testname, ok?"OK":"FAIL");
-}
-
 void test_decoder() {
         testcond(decode(IMMEDIATE1)==0, "Decode Immediates");
         testcond(decode(IMMEDIATE2)==0, "Decode Immediates");
