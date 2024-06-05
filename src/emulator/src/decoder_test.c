@@ -14,6 +14,8 @@
 #define LL 0xC000000
 #define BRANCH 0x14000000
 
+
+// 0,1,2,3,4 represent each instruction defined in the i_type enum type.
 void test_decoder() {
         testcond(decode(IMMEDIATE1)==0, "Decode Immediates");
         testcond(decode(IMMEDIATE2)==0, "Decode Immediates");

@@ -36,8 +36,8 @@ int main(int argc, char **argv) {
 	while (ir != HALTINSTRUCTION){
 	//fetch:
 	ir = p.memory[p.pc/4];
-	//decode and execute:
 
+	//decode and execute:
 	i_type instrType = decode(ir);
 
 	switch (instrType) {
@@ -77,7 +77,7 @@ int main(int argc, char **argv) {
 	if (argc == 3) { // if output file is provided
 	outputFile = fopen(argv[2], "wb");
 	}
-
+	
 	if (outputFile == NULL || ferror(outputFile)) {
 	fprintf(stderr, "Error writing to output file.\n");
 	exit(1);

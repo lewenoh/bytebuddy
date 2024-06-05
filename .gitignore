@@ -1,5 +1,8 @@
 #This the the canonical lab .gitignore file
 
+#ignore individual vs_code settings
+*.vscode
+
 #ignore temp files
 *~
 
