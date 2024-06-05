@@ -1,4 +1,6 @@
+#include "decoder_test.h"
 #include "decoder.h"
+#include "testcond.h"
 #include <stdio.h>
 #include <stdbool.h>
 #define IMMEDIATE1 0x1000000
