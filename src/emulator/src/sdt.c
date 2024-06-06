@@ -46,20 +46,33 @@ void sdt(struct processor *p, uint32_t ir){
 		}
 	}
 
-	uint64_t value;
+	uint64_t value = 0x0;
+	unsigned int remainder;
+	uint64_t byte = 0xff;
 	if (l > 0) {
 		//load
-		value = (*p).memory[(address/4) + 1];
-		value = ((*p).memory[address/4] + (value << 32)) & regmask;
+		address += 7;
+		for (int x = 0; x < 8; x++){
+			remainder = address % 4;
+			value = (value << 8) + (((*p).memory[address/4] >> remainder * 8) & byte);
+			address -= 1;
+		}
+		value = value & regmask;
 		(*p).genregs[rt] = ((*p).genregs[rt] & ~regmask) + value;
 	}
 	else {
 		//store
 		value = (*p).genregs[rt] & regmask;
-		(*p).memory[address/4] = value;
-		if (sf > 0) {
-			(*p).memory[(address/4) + 1] = value >> 32;
-		}	
+		for (;uomul > 0; uomul--){
+			remainder = address % 4;
+			(*p).memory[address/4] = ((*p).memory[address/4] & ~(byte << (remainder * 8))) + ((value & byte) << (remainder * 8));
+			value = value >> 8;
+			address += 1;
+		}
+		//(*p).memory[address/4] = value;
+		//if (sf > 0) {
+		//	(*p).memory[(address/4) + 1] = value >> 32;
+		//}	
 
 	}
 	

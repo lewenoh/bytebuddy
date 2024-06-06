@@ -21,10 +21,9 @@ void dpiImm( struct processor *p, uint32_t ir ) {
 
 	int regsize = (sf == 1) ? 64 : 32;
 	uint64_t regmask = (sf == 1) ? 0xFFFFFFFFFFFFFFFF : 0xFFFFFFFF;
+	uint64_t result;
+	uint64_t mask;
 
-	if (rd == 0x1f) {
-		return;
-	}
 
 	uint64_t opimask = 0x7;
 
@@ -63,11 +62,10 @@ void dpiImm( struct processor *p, uint32_t ir ) {
                                 break;
 
                         case 0x3: // subs
-
-				uint64_t result = p->genregs[rn] - imm12;
+				result = p->genregs[rn] - imm12;
 				p->genregs[rd] = result & regmask;
 			       	setFlags_arithmetic(p->genregs[rd], regsize, p);
-			       	// setting C flag
+				// setting C flag
 				p->pstate[2] = (p->genregs[rn] >= imm12);
                 
 				// setting V flag
@@ -79,7 +77,7 @@ void dpiImm( struct processor *p, uint32_t ir ) {
 				break;
 
 		      	default:
-                                break;
+				break;
                 }
 		return;
 	}
@@ -99,7 +97,7 @@ void dpiImm( struct processor *p, uint32_t ir ) {
 				p->genregs[rd] = opvalue;
 				break;
 			case 0x3:
-				uint64_t mask = 0xffff;
+				mask = 0xffff;
 				mask = ~(mask<<(hw*16));
 				p->genregs[rd] = (p->genregs[rd] & mask) | opvalue;
 				p->genregs[rd] &= regmask;

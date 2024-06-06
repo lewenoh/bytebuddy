@@ -17,6 +17,7 @@ void dpireg(struct processor *p, uint32_t ir){
 	int regsize = 64;
 	uint64_t result;
 	uint64_t op1;
+	unsigned int signbit;
 	if (sf == 0) {
 		regmask = 0xffffffff;
 		msbmask = 0x80000000;
@@ -37,7 +38,7 @@ void dpireg(struct processor *p, uint32_t ir){
                 		break;
             		case 2:
                 		//asr
-                		unsigned int signbit = op2 & msbmask;
+                		signbit = op2 & msbmask;
                 		for (int x = 0; x<operand; x++){
                     			op2 = (op2 >> 1) + signbit;
                 		}
@@ -81,7 +82,7 @@ void dpireg(struct processor *p, uint32_t ir){
 				if ((opc == 1) & ((result<op1) || (result<op2))){
 					(*p).pstate[2] = 1;
 				}
-				else if ((opc == 3) & (result > op1)){
+				else if ((opc == 3) & (op1 >= op2)){
 					(*p).pstate[2] = 1;
 				}
 				else {

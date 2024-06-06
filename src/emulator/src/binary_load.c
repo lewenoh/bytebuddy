@@ -3,6 +3,7 @@
 #include "binary_load.h"
 #include "processor_def.h"
 #define MEMORY_SIZE 524288
+#define INSTR_SIZE 4 // each instruction is 32 bits = 4 bytes
 
 int binary_load(struct processor *p, FILE *inputFile) {
 
@@ -14,10 +15,10 @@ int binary_load(struct processor *p, FILE *inputFile) {
 
 	// now at end of file
 	long fileSize = ftell(inputFile); // in bytes
-	int numInstr = fileSize / 4; // each instruction is 32 bits = 4 bytes
+	int numInstr = fileSize / INSTR_SIZE; 
 	rewind(inputFile); // return to start
 
-	int instrRead = fread(p->memory, 4, numInstr, inputFile);
+	int instrRead = fread(p->memory, INSTR_SIZE, numInstr, inputFile);
 
 	if (instrRead < numInstr) {
 		fclose(inputFile);

@@ -8,9 +8,10 @@
 //processor struct
 //PSTATE: N,Z,C,V
 struct processor{
-          uint64_t genregs[31];
-          uint64_t pc;
-          bool pstate[4];
-          uint32_t memory[524288];
+        //uint64_t pc;  
+	uint64_t genregs[32];
+        uint64_t pc;
+        bool pstate[4];
+        uint32_t memory[524288];
 };
 #endif
