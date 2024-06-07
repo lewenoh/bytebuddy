@@ -69,10 +69,6 @@ void sdt(struct processor *p, uint32_t ir){
 			value = value >> 8;
 			address += 1;
 		}
-		//(*p).memory[address/4] = value;
-		//if (sf > 0) {
-		//	(*p).memory[(address/4) + 1] = value >> 32;
-		//}	
 
 	}
 	
