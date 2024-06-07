@@ -11,13 +11,13 @@ void dpireg(struct processor *p, uint32_t ir){
 	unsigned int opr = (ir >> 21) & 0xf; //determines type of dpi w m, 4 bits
 	unsigned int m = (ir >> 28) & 0x1; //'', 1 bit
 	unsigned int opc = (ir >> 29) & 0x3; //opcode, determines op, 2 bits
-	unsigned int sf = ir >> 31; //1 bit, 0=32 bit regs, 1=64 bit regs
+	unsigned int sf = (ir >> 31); //1 bit, 0=32 bit regs, 1=64 bit regs
 	uint64_t regmask = 0xffffffffffffffff;
 	uint64_t msbmask = 0x8000000000000000;
 	int regsize = 64;
 	uint64_t result;
 	uint64_t op1;
-	unsigned int signbit;
+	uint64_t signbit;
 	if (sf == 0) {
 		regmask = 0xffffffff;
 		msbmask = 0x80000000;
@@ -42,6 +42,7 @@ void dpireg(struct processor *p, uint32_t ir){
                 		for (int x = 0; x<operand; x++){
                     			op2 = (op2 >> 1) + signbit;
                 		}
+				op2 = op2 & regmask;
                 		break;
             		case 3:
                 		if (opr < 8) {
@@ -67,6 +68,7 @@ void dpireg(struct processor *p, uint32_t ir){
                 		//sub
             			result = op1 - op2;
         		}
+			result = result & regmask;
         		if ((opc & 0x1) == 1){
                 		//set flags from result
 				// set N
@@ -100,8 +102,7 @@ void dpireg(struct processor *p, uint32_t ir){
 				}
 
         		}
-        		result = result & regmask;
-    			(*p).genregs[rd] = ((*p).genregs[rd] & ~regmask) + result;
+			(*p).genregs[rd] = result;
 		}
 		else if (opr < 8) {
     			//bit-logic
@@ -129,7 +130,7 @@ void dpireg(struct processor *p, uint32_t ir){
                				 break;
 
 			}
-			(*p).genregs[rd] = ((*p).genregs[rd] & ~regmask) + result;
+			(*p).genregs[rd] = result;
     		}
 	}
 	
@@ -154,6 +155,5 @@ void dpireg(struct processor *p, uint32_t ir){
    		}
 		result = result & regmask;
     		(*p).genregs[rd] = result & regmask;
-		//(*p).genregs[rd] = ((*p).genregs[rd] & ~regmask) + result;
 	}
 }
