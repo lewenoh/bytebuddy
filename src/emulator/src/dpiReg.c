@@ -145,12 +145,15 @@ void dpireg(struct processor *p, uint32_t ir){
         		op1 = (*p).genregs[ra] & regmask;
    		}
     		uint64_t op2 = ((*p).genregs[rn] & regmask) * ((*p).genregs[rm] & regmask);
+		op2 = op2 & regmask;
     		if (x == 0) {
        			result = op1 + op2;
     		}
     		else {
         		result = op1 - op2;
    		}
-    		(*p).genregs[rd] = ((*p).genregs[rd] & ~regmask) + result;
+		result = result & regmask;
+    		(*p).genregs[rd] = result & regmask;
+		//(*p).genregs[rd] = ((*p).genregs[rd] & ~regmask) + result;
 	}
 }
