@@ -31,12 +31,21 @@ int main(int argc, char **argv) {
 	}
 
 	fclose(inputFile);
-
+	
+	unsigned int remainder;
+	uint64_t byte = 0xff;
 	//emulator loop:
 	while (ir != HALTINSTRUCTION){
 	//fetch:
-	ir = p.memory[p.pc/4];
-
+	p.pc += 7;
+	for (int x = 0; x < 8; x++){
+		remainder = p.pc % 4;
+		ir = (ir << 8) + ((p.memory[p.pc/4] >> (remainder * 8)) & byte);
+		p.pc -= 1;
+	}
+	p.pc += 1;
+	
+	
 	//decode and execute:
 	i_type instrType = decode(ir);
 
