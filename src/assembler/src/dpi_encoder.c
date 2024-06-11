@@ -10,7 +10,9 @@
 #define WMOVEBASE 0x12800000 //base for wide move instructions, includes opi = 101
 #define MOVZOPC 0x40000000 //opc for movz = 10
 #define MOVKOPC 0x60000000 //opc for movk = 11
-#define TWOOPBASE 0xa000000 //base for two op instructions
+#define DPIREGBASE 0xa000000 //base for dpi reg two op instructions
+#define DPIIMMBASE 0x11000000 //base for dpi imm two op instructions
+#define DPISH 0x400000 //sh flag set for dpi imm instructions (shift left 12)
 #define ARITHOPR 0x1000000 //opr for arithmetic operations
 #define LSR 0x400000 //shift for lsrs, 01
 #define ASR 0x800000 //shift for asrs, 10
@@ -50,6 +52,21 @@ static uint32_t getreg(char reg[30]){
 	return atoi(reg);
 }
 
+static uint32_t readimm(char imm[30]){
+	memmove(imm, imm+1, 29);
+	uint32_t result;
+	if (imm[1] == 'x'){
+		//hex
+		memmove(imm, imm+2, 27);
+		result = strtol(imm, NULL, 16);
+	}
+	else {
+		//decimal
+		result = atoi(imm);
+	}
+	return result;
+}
+
 uint32_t dpi_encoder(char instruction[6][30]){
 	uint32_t hexi;
 	char opcode[30];
@@ -75,25 +92,42 @@ uint32_t dpi_encoder(char instruction[6][30]){
 	}
 	else if (codeingroup(opcode, twoop, 12)){
 		//2 operand instruction
-		//rd = i[1], rn = i[2], rm = i[3], shift = i[4], amount = i[5]
-		hexi = getsf(instruction[1]) + TWOOPBASE + (getreg(instruction[3]) << 16) + (getreg(instruction[2]) << 5) + getreg(instruction[1]);
-		//M is always 0, so no need to set
-		//opr
-		if (codeingroup(opcode, arith, 4)){
-			//arith instruction
-			hexi = hexi + ARITHOPR;
+		//rd = i[1], rn = i[2], rm/imm = i[3], shift = i[4], amount = i[5]
+		hexi = getsf(instruction[1]) + (getreg(instruction[2]) << 5) + getreg(instruction[1]);
+		
+		if (instruction[3][0] == '#'){
+			//dpi imm
+			hexi = hexi + DPIIMMBASE;
+			if (readimm(instruction[5]) == 12){
+				hexi = hexi + DPISH;
+			}
+			hexi = hexi + (readimm(instruction[3]) << 10);
 		}
-		if (strcmp(instruction[4], "lsr") == 0){
-			//no if needed for lsl, as shift = 00
-			hexi = hexi + LSR;
+		else{
+			//dpi reg
+			hexi = hexi + DPIREGBASE + (getreg(instruction[3]) << 16);	
+			//M is always 0, so no need to set
+			//opr
+			if (codeingroup(opcode, arith, 4)){
+				//arith instruction
+				hexi = hexi + ARITHOPR;
+			}
+			if (instruction[4] != '\0'){
+			
+				if (strcmp(instruction[4], "lsr") == 0){
+					//no if needed for lsl, as shift = 00
+					hexi = hexi + LSR;
+				}
+				else if (strcmp(instruction[4], "asr") == 0){
+					hexi = hexi + ASR;
+				}
+				else if (strcmp(instruction[4], "ror") == 0){
+					hexi = hexi + ROR;
+				}
+				//operand
+				hexi = hexi + (readimm(instruction[5]) << 10);
+			}
 		}
-		else if (strcmp(instruction[4], "asr") == 0){
-			hexi = hexi + ASR;
-		}
-		else if (strcmp(instruction[4], "ror") == 0){
-			hexi = hexi + ROR;
-		}
-
 		//opc (and N), no if needed for and or add, as opc and N are 0
 		if (strcmp(opcode, "adds") == 0) {
 			hexi = hexi + ADDS;
@@ -125,10 +159,6 @@ uint32_t dpi_encoder(char instruction[6][30]){
 		else if (strcmp(opcode, "bics") == 0) {
 			hexi = hexi + BICS;
 		}
-
-		//operand
-		memmove(instruction[5], instruction[5]+1, 29);
-		hexi = hexi + (atoi(instruction[5]) << 10);
 
 	}
 	else if (codeingroup(opcode, oneop, 9)){
