@@ -1,0 +1,5 @@
+Tokenisation for instructions.
+add	x0, x0, #0x1, lsl #12
+Note that optional parameters come last and that all parameters are ', ' separated.
+Optional parameters can be detected by seeing how many total high level parameters have been supplied.
+ldr !
