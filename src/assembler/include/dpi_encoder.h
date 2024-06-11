@@ -4,6 +4,6 @@
 #include <stdint.h>
 #include "table_def.h"
 
-uint32_t dpi_encoder(char instruction[5][30]);
+uint32_t dpi_encoder(char instruction[6][30]);
 
 #endif
