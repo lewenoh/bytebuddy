@@ -17,7 +17,7 @@ int main(int argc, char **argv) {
 		fprintf(stderr, "Error opening output file.\n");
 		exit(1);
 	} else { // once input and output file validated
-        	split_lines(inputFile, lineBuffer); // splits instructions line by line into line buffer.
+        	char **instructionLines = split_lines(inputFile, lineBuffer); // splits instructions line by line into line buffer.
         }
 
 	return EXIT_SUCCESS;
