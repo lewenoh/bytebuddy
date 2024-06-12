@@ -3,27 +3,32 @@
 #include <string.h>
 #include "../include/tokenise.h"
 #include "../include/table_def.h"
+#include "../include/testcond.h"
+
+#define test1 "and x0, x0, x0";
+
+void printarr(token_arr *arr) {
+    for (int s = 0; s < 5; s++) {
+        for (int j = 0; j < 30; j++) {
+            printf("%c", (*arr)[s][j]);
+        }
+        printf("\n");
+    }
+
+}
 
 int main(int argc, char **argv) {
-
-    instruction test_man = "and x0, x0, x0";
-    printf("This is the test: %s\n", test_man);
-
+    int size = 1;
+    char tests[][30] = {"and x0, x0, x0" };
     token_arr *tokenArr;
-    tokenArr = tokenise_instruction(test_man);
 
-  // .s file read -> Instruction table, Symbol Table
-  // For each instruction, classify.
-  // Encode each instruction into binary.
-  // Write binary to .bin file.
-//  char * test_man = "and x0, x0, x0";
-//  token_arr tokenised_test;
-//  memcpy(tokenised_test, tokenise_instruction(test_man), sizeof(token_arr));
-//  for (int i = 0; i < 4; i++) {
-//      printf("Element %d: %s\n", i, tokenised_test[i]);
-//  }
+    for (int i = 0; i < size; i++) {
+        tokenArr = tokenise(tests[i]);
+        printarr(tokenArr);
+    }
 
 
+    free(tokenArr);
 
 
   return EXIT_SUCCESS;

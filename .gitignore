@@ -6,6 +6,9 @@
 #ignore temp files
 *~
 
+#ignore personal notes
+*.txt
+
 #ignore pdf files (just keep source files)
 *.pdf
 
