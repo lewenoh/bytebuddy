@@ -18,12 +18,22 @@ void printarr(token_arr *arr) {
 }
 
 int main(int argc, char **argv) {
-    int size = 4;
-    char tests[][30] = {"and x0, x0, x0",
-                        "add x0, x0, #0x18",
-                        "add x0, x0, #0x1, lsl #12",
-                        "madd x18, x12, x24, x18"
+    int size = 2;
+    /*
+    "and x0, x0, x0",
+    "add x0, x0, #0x18",
+    "add x0, x0, #0x1, lsl #12",
+    "madd x18, x12, x24, x18",
+    "str x2, [x9, #129]!",
+    "str w24, [x13, x9]",
+    "str x25, [x11], #239",
+    "str x16, [x19], #-62",
+    "str x2, [x9, #129]",
+     */
+    char tests[][30] = {
 
+                        "ldr w17, [x15, x4]",
+                        "ldr x1, 0x10",
     };
     token_arr *tokenArr;
 

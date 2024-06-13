@@ -7,6 +7,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <ctype.h>
+#include <stdbool.h>
 
 token_arr *initialise_token_arr() {
 
@@ -22,7 +23,6 @@ token_arr *initialise_token_arr() {
         for (int j = 0; j < MAX_ARG_LENGTH; j++) {
             (*tokenised)[i][j] ='!';
             count += 1;
-//            printf("", tokenised[i][j]);
         }
     }
     return tokenised;
@@ -60,17 +60,27 @@ void skip_space(instruction *p_instr, int *index) {
     // Makes i and c equal to the first non-delimiter character.
 }
 
-void process_args(int num_args, instruction c, int *index, instruction raw_instr, token_arr *tokenArr) {
+void slice_string(int start, int end, int string_no, instruction raw_instr, token_arr *tokenArr) {
+    for (int i = start; start < end; start ++) {
+        (*tokenArr)[string_no][i] = raw_instr[start];
+        i++;
+    }
+}
+
+
+// Gets num_args number of args into c.
+// Skips white space at the end.
+void process_args(int num_args, instruction *pc, int *index, instruction raw_instr, token_arr *tokenArr) {
     int i = 1;
     int init_index;
     while (num_args != 0) {
         init_index = *index;
         // Read word
-        while (*c != ',' && *c != '\0') {
+        while (**pc != ',' && **pc != '\0') {
             // Calculate index.
             (*index)++;
             // Increment pointer.
-            c++;
+            (*pc)++;
         }
         // i points to the first white space character.
 //        int length = index;
@@ -80,12 +90,94 @@ void process_args(int num_args, instruction c, int *index, instruction raw_instr
             j++;
 
         }
-        skip_space(&c, index);
-
+        skip_space(pc, index);
         num_args --;
         i ++;
     }
-    return;
+}
+
+void process_memory_addressing(instruction *pc, int *index, instruction raw_instr, token_arr *tokenArr) {
+    (*pc)++;
+    (*index)++;
+    int i = 2;
+    int init_index = *index;
+    int num_parsed = 0;
+    bool contains_hash = false;
+    while (**pc != ']') {
+        // Calculate index.
+        // Checks for hash.
+        if (**pc == '#') {
+            contains_hash = true;
+        }
+        if (**pc == ',') {
+            // Read into arr, skip space, and increment number of args parsed.
+            int j = 0;
+            for (int start = init_index; start < *index; start ++) {
+                (*tokenArr)[i][j] = raw_instr[start];
+                j++;
+            }
+            skip_space(pc, index);
+            init_index = *index;
+            i++;
+            num_parsed++;
+        } else {
+            (*index)++;
+            (*pc)++;
+        }
+    }
+    // Read last argument before ].
+    int j = 0;
+    for (int start = init_index; start < *index; start ++) {
+        (*tokenArr)[i][j] = raw_instr[start];
+        j++;
+    }
+    skip_space(pc, index);
+    num_parsed++;
+
+    // Calculate index.
+    (*index)++;
+    // Increment pointer.
+    (*pc)++;
+
+    if (num_parsed == 2 && contains_hash && (**pc == '\0')) {
+        // U
+        strcpy((*tokenArr)[4], "U");
+    } else if (num_parsed == 2 && contains_hash) {
+        // Pre
+        strcpy((*tokenArr)[4], "PRE");
+    } else if (num_parsed == 1) {
+        // Post
+        strcpy((*tokenArr)[4], "POST");
+        i++;
+
+        skip_space(pc, index);
+
+        init_index = *index;
+        // Read word
+        while (**pc != '\0') {
+            // Calculate index.
+            (*index)++;
+            // Increment pointer.
+            (*pc)++;
+        }
+        // i points to the first white space character.
+//        int length = index;
+        int j = 0;
+        for (int start = init_index; start < *index; start ++) {
+            (*tokenArr)[i][j] = raw_instr[start];
+            j++;
+        }
+
+    } else {
+        // None of the above.
+        strcpy((*tokenArr)[4], "N");
+    }
+
+
+
+
+
+
 }
 
     token_arr *tokenise(char *raw_instr) {
@@ -93,16 +185,11 @@ void process_args(int num_args, instruction c, int *index, instruction raw_instr
         token_arr *tokenised;
         tokenised = initialise_token_arr();
 
-        // classify and set mand_args.
-        // Assume no whitespace at beginning
-        // Loop through the string and store until hit whitespace or comma.
-        // Store this index. strncopy into buffer by that size.
         // Iterate through the rest and delete the first n bytes.
         // Loop through until hit no whitespace or comma.
-
         int i = 0;
         char *c = raw_instr;
-
+        // Loop through the string and store until hit whitespace.
         while (*c != ' ') {
             // Calculate index.
             i++;
@@ -110,6 +197,7 @@ void process_args(int num_args, instruction c, int *index, instruction raw_instr
             c++;
         }
         // i points to the first white space character.
+        // Store this index. strncopy into buffer by that size.
         // Buffer is needed for classification.
         char *buffer = malloc(sizeof(char)*(i+1));
         if (buffer == NULL) {
@@ -117,10 +205,11 @@ void process_args(int num_args, instruction c, int *index, instruction raw_instr
         }
         strncpy(buffer, raw_instr, i);
         buffer[i] = '\0';
-        printf("Comp Result: %d\n", strcmp(buffer, "madd"));
         strncpy(*tokenised[0], raw_instr, i);
         skip_space(&c, &i);
 
+        // classify and set mand_args.
+        // Assume no whitespace at beginning
         int mand_args;
         if (strcmp(buffer, "cmp") == 0 ||
             strcmp(buffer, "cmn") == 0 ||
@@ -134,7 +223,7 @@ void process_args(int num_args, instruction c, int *index, instruction raw_instr
             strcmp(buffer, "mvn") == 0) {
             // Mand_args 2 case.
             mand_args = 2;
-            process_args(mand_args, c, &i,raw_instr, tokenised);
+            process_args(mand_args, &c, &i,raw_instr, tokenised);
 
 
         } else if (
@@ -142,25 +231,32 @@ void process_args(int num_args, instruction c, int *index, instruction raw_instr
                 strcmp(buffer, "msub") == 0
                 ) {
             mand_args = 4;
-            printf("I got here\n");
-            process_args(mand_args, c, &i,raw_instr, tokenised);
+            process_args(mand_args, &c, &i,raw_instr, tokenised);
 
         } else if (
                 strcmp(buffer, ".int") == 0
                 ) {
             mand_args = 1;
-            process_args(mand_args, c, &i,raw_instr, tokenised);
+            process_args(mand_args, &c, &i,raw_instr, tokenised);
         } else if (strcmp(buffer, "b.cond") == 0 ||
                    strcmp(buffer, "br") == 0) {
             mand_args = 1;
         } else if (strcmp(buffer, "ldr") == 0 ||
         strcmp(buffer, "str")==0){
             // str, ldr case
-            mand_args = 2;
+            mand_args = 1;
+            // Take the first argument.
+            process_args(mand_args, &c, &i, raw_instr, tokenised);
+            if (*c != '[') {
+                // ldr <Rt> <literal>
+                process_args(mand_args, &c, &i, raw_instr, tokenised);
+            } else {
+                process_memory_addressing(&c, &i, raw_instr, tokenised);
+            }
         } else {
             // 3 arg case.
             mand_args = 3;
-            process_args(mand_args, c, &i,raw_instr, tokenised);
+            process_args(mand_args, &c, &i,raw_instr, tokenised);
 
         }
 
