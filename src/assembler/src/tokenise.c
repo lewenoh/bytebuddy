@@ -110,39 +110,51 @@ void process_args(int num_args, instruction c, int *index, instruction raw_instr
             c++;
         }
         // i points to the first white space character.
+        // Buffer is needed for classification.
+        char *buffer = malloc(sizeof(char)*(i+1));
+        if (buffer == NULL) {
+            abort();
+        }
+        strncpy(buffer, raw_instr, i);
+        buffer[i] = '\0';
+        printf("Comp Result: %d\n", strcmp(buffer, "madd"));
         strncpy(*tokenised[0], raw_instr, i);
         skip_space(&c, &i);
 
         int mand_args;
-        if (strcmp(*tokenised[0], "cmp") == 0 ||
-            strcmp(*tokenised[0], "cmn") == 0 ||
-            strcmp(*tokenised[0], "neg") == 0 ||
-            strcmp(*tokenised[0], "negs") == 0 ||
-            strcmp(*tokenised[0], "tst") == 0 ||
-            strcmp(*tokenised[0], "movk") == 0 ||
-            strcmp(*tokenised[0], "movn") == 0 ||
-            strcmp(*tokenised[0], "movz") == 0 ||
-            strcmp(*tokenised[0], "mov") == 0 ||
-            strcmp(*tokenised[0], "mvn") == 0) {
+        if (strcmp(buffer, "cmp") == 0 ||
+            strcmp(buffer, "cmn") == 0 ||
+            strcmp(buffer, "neg") == 0 ||
+            strcmp(buffer, "negs") == 0 ||
+            strcmp(buffer, "tst") == 0 ||
+            strcmp(buffer, "movk") == 0 ||
+            strcmp(buffer, "movn") == 0 ||
+            strcmp(buffer, "movz") == 0 ||
+            strcmp(buffer, "mov") == 0 ||
+            strcmp(buffer, "mvn") == 0) {
             // Mand_args 2 case.
             mand_args = 2;
             process_args(mand_args, c, &i,raw_instr, tokenised);
 
 
         } else if (
-                strcmp(*tokenised[0], "madd") == 0 ||
-                strcmp(*tokenised[0], "msub") == 0
+                strcmp(buffer, "madd") == 0 ||
+                strcmp(buffer, "msub") == 0
                 ) {
             mand_args = 4;
+            printf("I got here\n");
+            process_args(mand_args, c, &i,raw_instr, tokenised);
+
         } else if (
-                strcmp(*tokenised[0], ".int") == 0
+                strcmp(buffer, ".int") == 0
                 ) {
             mand_args = 1;
-        } else if (strcmp(*tokenised[0], "b.cond") == 0 ||
-                   strcmp(*tokenised[0], "br") == 0) {
+            process_args(mand_args, c, &i,raw_instr, tokenised);
+        } else if (strcmp(buffer, "b.cond") == 0 ||
+                   strcmp(buffer, "br") == 0) {
             mand_args = 1;
-        } else if (strcmp(*tokenised[0], "ldr") == 0 ||
-        strcmp(*tokenised[0], "str")==0){
+        } else if (strcmp(buffer, "ldr") == 0 ||
+        strcmp(buffer, "str")==0){
             // str, ldr case
             mand_args = 2;
         } else {
@@ -152,7 +164,7 @@ void process_args(int num_args, instruction c, int *index, instruction raw_instr
 
         }
 
-
+        free(buffer);
         return tokenised;
 
 
