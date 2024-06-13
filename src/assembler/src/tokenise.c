@@ -17,51 +17,27 @@ token_arr *initialise_token_arr() {
         free(tokenised);
         abort();
     }
-    int count = 0;
 
     for (int i = 0; i < MAX_ARGS; i++) {
         for (int j = 0; j < MAX_ARG_LENGTH; j++) {
-            (*tokenised)[i][j] ='!';
-            count += 1;
+            (*tokenised)[i][j] =NULL_CHAR;
         }
     }
     return tokenised;
-
-}
-
-char* read_word(instruction c, index i, instruction raw_instr, char * buffer) {
-    // Calculate index of first white space character
-    while (*c != ' ') {
-        // Calculate index.
-        i++;
-        // Increment pointer.
-        c++;
-    }
-    // i points to the first white space character.
-//    int length = i;
-//    char *buffer = (char*)malloc(sizeof(char)*length);
-
-
-
-//    printf("%d\n", i);
-    strncpy(buffer, raw_instr, i+1);
-    return buffer;
-
 }
 
 void skip_space(instruction *p_instr, int *index) {
-    // Delete whitespace
-//    printf("Before: %d\n", index);
+    // Makes i and c equal to the first non-delimiter character.
     while (isspace(**p_instr) || **p_instr==',') {
         (*index)++;
         ((*p_instr)++);
     }
-//    printf("%d\n", index);
-    // Makes i and c equal to the first non-delimiter character.
+
 }
 
 void slice_string(int start, int end, int string_no, instruction raw_instr, token_arr *tokenArr) {
-    for (int i = start; start < end; start ++) {
+    int i = 0;
+    for (; start < end; start ++) {
         (*tokenArr)[string_no][i] = raw_instr[start];
         i++;
     }
@@ -85,13 +61,7 @@ bool process_args(int num_args, instruction *pc, int *index, char delim,
             (*pc)++;
         }
         // i points to the first white space character.
-//        int length = index;
-        int j = 0;
-        for (int start = init_index; start < *index; start ++) {
-            (*tokenArr)[i][j] = raw_instr[start];
-            j++;
-
-        }
+        slice_string(init_index, *index, i, raw_instr, tokenArr);
         if (num_args == 1 && **pc == ',') {
             optional_args = true;
         }
@@ -118,11 +88,7 @@ void process_memory_addressing(instruction *pc, int *index, instruction raw_inst
         }
         if (**pc == ',') {
             // Read into arr, skip space, and increment number of args parsed.
-            int j = 0;
-            for (int start = init_index; start < *index; start ++) {
-                (*tokenArr)[i][j] = raw_instr[start];
-                j++;
-            }
+            slice_string(init_index, *index, i, raw_instr, tokenArr);
             skip_space(pc, index);
             init_index = *index;
             i++;
@@ -133,11 +99,7 @@ void process_memory_addressing(instruction *pc, int *index, instruction raw_inst
         }
     }
     // Read last argument before ].
-    int j = 0;
-    for (int start = init_index; start < *index; start ++) {
-        (*tokenArr)[i][j] = raw_instr[start];
-        j++;
-    }
+    slice_string(init_index, *index, i, raw_instr, tokenArr);
     skip_space(pc, index);
     num_parsed++;
 
@@ -159,7 +121,6 @@ void process_memory_addressing(instruction *pc, int *index, instruction raw_inst
         i++;
 
         skip_space(pc, index);
-
         init_index = *index;
         // Read word
         while (**pc != '\0') {
@@ -169,23 +130,11 @@ void process_memory_addressing(instruction *pc, int *index, instruction raw_inst
             (*pc)++;
         }
         // i points to the first white space character.
-//        int length = index;
-        int j = 0;
-        for (int start = init_index; start < *index; start ++) {
-            (*tokenArr)[i][j] = raw_instr[start];
-            j++;
-        }
-
+        slice_string(init_index, *index, i, raw_instr, tokenArr);
     } else {
         // None of the above.
         strcpy((*tokenArr)[last_index], "N");
     }
-
-
-
-
-
-
 }
 
 token_arr *tokenise(char *raw_instr) {
@@ -193,19 +142,14 @@ token_arr *tokenise(char *raw_instr) {
         token_arr *tokenised;
         tokenised = initialise_token_arr();
 
-        // Iterate through the rest and delete the first n bytes.
-        // Loop through until hit no whitespace or comma.
         int i = 0;
         char *c = raw_instr;
-        // Loop through the string and store until hit whitespace.
+        // // Find index after instruction identifer.
         while (!isspace(*c)) {
-            // Calculate index.
             i++;
-            // Increment pointer.
             c++;
         }
-        // i points to the first white space character.
-        // Store this index. strncopy into buffer by that size.
+
         // Buffer is needed for classification.
         char *buffer = malloc(sizeof(char)*(i+1));
         if (buffer == NULL) {

@@ -17,6 +17,7 @@ extern char *instruction_table[50];
 
 #define MAX_ARGS 6
 #define MAX_ARG_LENGTH 30
+#define NULL_CHAR '!'
 typedef char token_arr[MAX_ARGS][MAX_ARG_LENGTH];
 typedef char* instruction;
 typedef int index;
