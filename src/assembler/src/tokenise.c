@@ -70,13 +70,15 @@ void slice_string(int start, int end, int string_no, instruction raw_instr, toke
 
 // Gets num_args number of args into c.
 // Skips white space at the end.
-void process_args(int num_args, instruction *pc, int *index, instruction raw_instr, token_arr *tokenArr) {
-    int i = 1;
+bool process_args(int num_args, instruction *pc, int *index, char delim,
+                  instruction raw_instr, token_arr *tokenArr, int arg_index) {
+    bool optional_args = false;
+    int i = arg_index;
     int init_index;
     while (num_args != 0) {
         init_index = *index;
         // Read word
-        while (**pc != ',' && **pc != '\0') {
+        while (**pc != delim && **pc != '\0') {
             // Calculate index.
             (*index)++;
             // Increment pointer.
@@ -90,10 +92,15 @@ void process_args(int num_args, instruction *pc, int *index, instruction raw_ins
             j++;
 
         }
+        if (num_args == 1 && **pc == ',') {
+            optional_args = true;
+        }
+
         skip_space(pc, index);
         num_args --;
         i ++;
     }
+    return optional_args;
 }
 
 void process_memory_addressing(instruction *pc, int *index, instruction raw_instr, token_arr *tokenArr) {
@@ -139,15 +146,16 @@ void process_memory_addressing(instruction *pc, int *index, instruction raw_inst
     // Increment pointer.
     (*pc)++;
 
+    int last_index = MAX_ARGS -1;
     if (num_parsed == 2 && contains_hash && (**pc == '\0')) {
         // U
-        strcpy((*tokenArr)[4], "U");
+        strcpy((*tokenArr)[last_index], "U");
     } else if (num_parsed == 2 && contains_hash) {
         // Pre
-        strcpy((*tokenArr)[4], "PRE");
+        strcpy((*tokenArr)[last_index], "PRE");
     } else if (num_parsed == 1) {
         // Post
-        strcpy((*tokenArr)[4], "POST");
+        strcpy((*tokenArr)[last_index], "POST");
         i++;
 
         skip_space(pc, index);
@@ -170,7 +178,7 @@ void process_memory_addressing(instruction *pc, int *index, instruction raw_inst
 
     } else {
         // None of the above.
-        strcpy((*tokenArr)[4], "N");
+        strcpy((*tokenArr)[last_index], "N");
     }
 
 
@@ -180,7 +188,7 @@ void process_memory_addressing(instruction *pc, int *index, instruction raw_inst
 
 }
 
-    token_arr *tokenise(char *raw_instr) {
+token_arr *tokenise(char *raw_instr) {
 
         token_arr *tokenised;
         tokenised = initialise_token_arr();
@@ -190,7 +198,7 @@ void process_memory_addressing(instruction *pc, int *index, instruction raw_inst
         int i = 0;
         char *c = raw_instr;
         // Loop through the string and store until hit whitespace.
-        while (*c != ' ') {
+        while (!isspace(*c)) {
             // Calculate index.
             i++;
             // Increment pointer.
@@ -211,6 +219,7 @@ void process_memory_addressing(instruction *pc, int *index, instruction raw_inst
         // classify and set mand_args.
         // Assume no whitespace at beginning
         int mand_args;
+        bool optional_args;
         if (strcmp(buffer, "cmp") == 0 ||
             strcmp(buffer, "cmn") == 0 ||
             strcmp(buffer, "neg") == 0 ||
@@ -223,7 +232,13 @@ void process_memory_addressing(instruction *pc, int *index, instruction raw_inst
             strcmp(buffer, "mvn") == 0) {
             // Mand_args 2 case.
             mand_args = 2;
-            process_args(mand_args, &c, &i,raw_instr, tokenised);
+            optional_args = process_args(mand_args, &c, &i, ',',
+                         raw_instr, tokenised, 1);
+
+            if (optional_args) {
+                // Optional Parameters exist
+                process_args(2, &c, &i, ' ', raw_instr, tokenised, 3);
+            }
 
 
         } else if (
@@ -231,32 +246,45 @@ void process_memory_addressing(instruction *pc, int *index, instruction raw_inst
                 strcmp(buffer, "msub") == 0
                 ) {
             mand_args = 4;
-            process_args(mand_args, &c, &i,raw_instr, tokenised);
+            process_args(mand_args, &c, &i, ',',
+                         raw_instr, tokenised, 1);
 
         } else if (
-                strcmp(buffer, ".int") == 0
+                strcmp(buffer, ".int") == 0 ||
+                strcmp(buffer, "br") == 0
                 ) {
             mand_args = 1;
-            process_args(mand_args, &c, &i,raw_instr, tokenised);
-        } else if (strcmp(buffer, "b.cond") == 0 ||
-                   strcmp(buffer, "br") == 0) {
+            process_args(mand_args, &c, &i, ',',
+                         raw_instr, tokenised, 1);
+        } else if (strcmp(buffer, "b") == 0 ||
+                   strcmp(buffer, "b.cond") == 0) {
             mand_args = 1;
-        } else if (strcmp(buffer, "ldr") == 0 ||
+
+        }
+        else if (strcmp(buffer, "ldr") == 0 ||
         strcmp(buffer, "str")==0){
             // str, ldr case
             mand_args = 1;
             // Take the first argument.
-            process_args(mand_args, &c, &i, raw_instr, tokenised);
+            process_args(mand_args, &c, &i, ',',
+                         raw_instr, tokenised, 1);
             if (*c != '[') {
                 // ldr <Rt> <literal>
-                process_args(mand_args, &c, &i, raw_instr, tokenised);
+                process_args(mand_args, &c, &i, ',',
+                             raw_instr, tokenised, 2);
             } else {
                 process_memory_addressing(&c, &i, raw_instr, tokenised);
             }
         } else {
             // 3 arg case.
             mand_args = 3;
-            process_args(mand_args, &c, &i,raw_instr, tokenised);
+            optional_args = process_args(mand_args, &c, &i, ',',
+                                         raw_instr, tokenised, 1);
+
+            if (optional_args) {
+                // Optional Parameters exist
+                process_args(2, &c, &i, ' ', raw_instr, tokenised, 4);
+            }
 
         }
 

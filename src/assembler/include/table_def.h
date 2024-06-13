@@ -15,7 +15,7 @@ extern char *instruction_table[50];
 //typedef char* tokenised_string[5][30];
 ////extern char tokenised[50][5][30];
 
-#define MAX_ARGS 5
+#define MAX_ARGS 6
 #define MAX_ARG_LENGTH 30
 typedef char token_arr[MAX_ARGS][MAX_ARG_LENGTH];
 typedef char* instruction;
