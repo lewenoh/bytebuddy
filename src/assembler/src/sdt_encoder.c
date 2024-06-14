@@ -44,7 +44,7 @@ uint32_t sdt_encoder(uint32_t address, char instruction[6][30]){
 	}
 	hexi = hexi + getreg(instruction[1]);
 	
-	if (strcmp(instruction[5], "LL") == 0){
+	if (instruction[2][0] == '#'){
 		//load literal
 		hexi = hexi + LLBASE;
 		hexi = hexi + (((readimm(instruction[2]) - address) / 4) << 5); //simm19
@@ -53,24 +53,26 @@ uint32_t sdt_encoder(uint32_t address, char instruction[6][30]){
 		//sdt
 		//xn = i[2] 
 		hexi = hexi + SDTBASE + (getreg(instruction[2]) << 5);
-		if (strcmp(instruction[5], "ZEROUO") == 0) {
-			hexi = hexi + UNSIGNEDU;	
-		}
-		else if (strcmp(instruction[5], "UO") == 0){
-			uint32_t imm12 = readimm(instruction[3]) / 4;
-			if (regsize > 0){
-				imm12 = imm12/2;
+		if (strcmp(instruction[5], "U")==0){//unsigned offset
+			hexi = hexi + UNSIGNEDU;
+			if (instruction[3][0] != '\0'){
+				//not zero unsigned offset
+				uint32_t imm12 = readimm(instruction[3])/4;
+				if (regsize>0){
+					imm12 = imm12/2;	
+				}
+				hexi = hexi + (imm12 << 10);
 			}
-			hexi = hexi + UNSIGNEDU + (imm12 << 10);
-		}
-		else if (strcmp(instruction[5], "RO") == 0){
-			hexi = hexi + ROBASE + (getreg(instruction[3]) << 16);
+		
 		}
 		else if (strcmp(instruction[5], "PRE")==0){
 			hexi = hexi + PREBASE + ((readimm(instruction[3])&SIMMMASK) <<12);
 		}
-		else { // POST
+		else  if (strcmp(instruction[5], "POST")==0){ 
 			hexi = hexi + POSTBASE + ((readimm(instruction[3])&SIMMMASK) <<12);
+		}
+		else {	//N, register offset
+			hexi = hexi + ROBASE + (getreg(instruction[3]) << 16);
 		}
 
 		//L bit
