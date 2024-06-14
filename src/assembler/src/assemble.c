@@ -14,7 +14,7 @@ int main(int argc, char **argv) {
   // Write binary to .bin file.
 
 	FILE *inputFile = fopen(argv[1], "r");
-	FILE *outputFile = fopen(argv[2], "w");
+	FILE *outputFile = fopen(argv[2], "wb");
 	char *lineBuffer;
 
 	if (inputFile == NULL || ferror(inputFile)) {
@@ -26,6 +26,19 @@ int main(int argc, char **argv) {
 	} else { // once input and output file validated
         	char **instructionLines = split_lines(inputFile, lineBuffer); // splits instructions line by line into line buffer.
         }
+	
+	//first and second pass
+	int noinstrs;
+	uint32_t instrs[noinstrs];
+	//decode each instruction, and put into instrs
+	
+	int instrwrite = fwrite(instrs, 4, noinstrs, outputFile);
+	if (instrwrite<noinstrs){
+		fclose (outputfile);
+		fprintf(stderr, "Error writing to the file.\n");
+	}
+	fclose(outputFile);
+
 
 	return EXIT_SUCCESS;
 }
