@@ -44,10 +44,10 @@ void slice_string(int start, int end, int string_no, instruction raw_instr, toke
 }
 
 
-// Gets num_args number of args into c.
-// Skips white space at the end.
 bool process_args(int num_args, instruction *pc, int *index, char delim,
                   instruction raw_instr, token_arr *tokenArr, int arg_index) {
+    // Gets num_args number of args into c.
+    // Skips white space at the end.
     bool optional_args = false;
     int i = arg_index;
     int init_index;
@@ -192,7 +192,6 @@ token_arr *tokenise(char *raw_instr) {
             mand_args = 4;
             process_args(mand_args, &c, &i, ',',
                          raw_instr, tokenised, 1);
-
         } else if (
                 strcmp(buffer, ".int") == 0 ||
                 strcmp(buffer, "br") == 0
@@ -203,6 +202,8 @@ token_arr *tokenise(char *raw_instr) {
         } else if (strcmp(buffer, "b") == 0 ||
                    strcmp(buffer, "b.cond") == 0) {
             mand_args = 1;
+            process_args(mand_args, &c, &i, '\0',
+                         raw_instr, tokenised, 1);
 
         }
         else if (strcmp(buffer, "ldr") == 0 ||
@@ -234,8 +235,6 @@ token_arr *tokenise(char *raw_instr) {
 
         free(buffer);
         return tokenised;
-
-
     }
 
 

@@ -4,8 +4,7 @@
 #include "../include/tokenise.h"
 #include "../include/table_def.h"
 #include "../include/testcond.h"
-
-#define test1 "and x0, x0, x0";
+#include "../include/symbol_table.h"
 
 void printarr(token_arr *arr) {
     for (int s = 0; s < MAX_ARGS; s++) {
@@ -17,8 +16,8 @@ void printarr(token_arr *arr) {
 
 }
 
-int main(int argc, char **argv) {
-    int size = 17;
+void test_tokeniser() {
+    int size = 11;
     /*
     "and x0, x0, x0",
     "add x0, x0, #0x18",
@@ -44,12 +43,6 @@ int main(int argc, char **argv) {
             "str x2, [x9, #129]",
             "ldr w17, [x15, x4]",
             "ldr x1, 0x10",
-            "and x0, x0, x0",
-            "add x0, x0, #0x18",
-            "add x0, x0, #0x1, lsl #12",
-            "movk x2, #0xdead, lsl #16",
-            ".int -62",
-            "br x0"
     };
     token_arr *tokenArr;
 
@@ -58,10 +51,15 @@ int main(int argc, char **argv) {
         printf("Test %d\n", i);
         printarr(tokenArr);
     }
-
-
     free(tokenArr);
 
+}
 
-  return EXIT_SUCCESS;
+int main(int argc, char **argv) {
+    //test_tokeniser();
+
+    // test_create_symbol();
+    test_symbol();
+
+    return EXIT_SUCCESS;
 }

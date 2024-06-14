@@ -6,10 +6,7 @@
 
 extern char *instruction_table[50];
 
-//struct label_entry {
-//    char *label;
-//    int address;
-//};
+
 // This will have to change. Should be an array of symbol_table.
 //extern struct label_entry symbol_table[1];
 //typedef char* tokenised_string[5][30];
@@ -17,7 +14,7 @@ extern char *instruction_table[50];
 
 #define MAX_ARGS 6
 #define MAX_ARG_LENGTH 30
-#define NULL_CHAR '!'
+#define NULL_CHAR '\0'
 typedef char token_arr[MAX_ARGS][MAX_ARG_LENGTH];
 typedef char* instruction;
 typedef int index;
