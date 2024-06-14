@@ -2,9 +2,11 @@
 #include <stdint.h>
 #include <string.h>
 
-uint32_t getreg(char reg[30]){
+uint32_t readimm(char imm[30]){
 	//takes a register and returns the hex value encoding for it
-	memmove (reg, reg+1, 3);
+	if (imm[0] == '#'){	
+		memmove (imm, imm+1, 3);
+	}
 	uint32_t result;
 	if (imm[1] == 'x'){
 		//hex
@@ -13,7 +15,7 @@ uint32_t getreg(char reg[30]){
 	}
 	else {
 		//decimal
-		result = atoi(imm)
+		result = atoi(imm);
 	}
 	return result;
 }
