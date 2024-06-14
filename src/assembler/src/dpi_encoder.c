@@ -3,6 +3,7 @@
 #include <string.h>
 #include <stdbool.h>
 #include "table_def.h"
+#include "helperfuncs.h"
 #include "dpi_encoder.h"
 
 #define MULBASE 0x1b000000 //base for muliply instructions
@@ -46,26 +47,6 @@ static uint32_t getsf(char reg[30]){
 	return 0x0;
 }
 
-static uint32_t getreg(char reg[30]){
-	//takes a register and returns the hex encoding for it
-	memmove(reg, reg+1, 3);
-	return atoi(reg);
-}
-
-static uint32_t readimm(char imm[30]){
-	memmove(imm, imm+1, 29);
-	uint32_t result;
-	if (imm[1] == 'x'){
-		//hex
-		memmove(imm, imm+2, 27);
-		result = strtol(imm, NULL, 16);
-	}
-	else {
-		//decimal
-		result = atoi(imm);
-	}
-	return result;
-}
 
 uint32_t dpi_encoder(char instruction[6][30]){
 	uint32_t hexi;

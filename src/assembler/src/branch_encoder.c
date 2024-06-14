@@ -2,7 +2,7 @@
 #include <stdint.h>
 #include <string.h>
 #include <stdbool.h>
-#include "table_def.h"
+#include "helperfuncs.h"
 #include "branch_encoder.h"
 
 #define UNCONDBASE 0x14000000 //base for unconditional branches
@@ -16,23 +16,6 @@
 #define AL 0xe //encoding for al
 #define SIMM26MASK 0x3ffffff //mask for simm26
 #define SIMM19MASK 0x7ffff //mask for simm19
-
-static uint32_t getreg(char reg[30]){
-	memmove(reg, reg+1, 29);
-	return atoi(reg);
-}
-static uint32_t readimm(char imm[30]){
-	memmove(imm, imm+1, 29);
-	uint32_t result;
-	if (imm[1]=='x'){
-		memmove(imm, imm+2, 27);
-		result = strtol(imm, NULL, 16);
-	}
-	else{
-		result = atoi(imm);
-	}
-	return result;
-}
 
 uint32_t branch_encoder(uint32_t address, char instruction[6][30]){
 	uint32_t hexi;
