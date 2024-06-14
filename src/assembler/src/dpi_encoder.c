@@ -2,7 +2,6 @@
 #include <stdint.h>
 #include <string.h>
 #include <stdbool.h>
-#include "table_def.h"
 #include "helperfuncs.h"
 #include "dpi_encoder.h"
 

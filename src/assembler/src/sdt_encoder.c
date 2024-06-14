@@ -2,9 +2,8 @@
 #include <stdint.h>
 #include <string.h>
 #include <stdbool.h>
-#include "table_def.h"
+#include "helperfuncs.h"
 #include "sdt_encoder.h"
-#include <stdio.h>
 
 #define SF64SET 0x40000000 //sf bit set to 1 when 64 bit regs (x)
 #define LLBASE 0x18000000 //base for load literal instructions
@@ -16,24 +15,6 @@
 #define POSTBASE 0x400 //base for post index
 #define SIMMMASK 0x1ff //mask for simm9 
 
-static uint32_t getreg(char reg[30]){
-	memmove(reg, reg+1, 29);
-	return atoi(reg);
-}
-static uint32_t readimm(char imm[30]){
-	memmove(imm, imm+1, 29);
-	uint32_t result;
-	if (imm[1] == 'x'){
-		//hex
-		memmove(imm, imm+2, 27);
-		result = strtol(imm, NULL, 16);
-	}
-	else{
-		//decimal
-		result = atoi(imm);
-	}
-	return result;
-}
 uint32_t sdt_encoder(uint32_t address, char instruction[6][30]){
 	//opcode = i[0], rt = i[1], xn/literal = i[2], type = i[5]
 	uint32_t hexi = 0;
