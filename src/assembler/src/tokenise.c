@@ -5,9 +5,9 @@
 #include "../include/tokenise.h"
 #include <string.h>
 #include <stdlib.h>
-#include <stdio.h>
 #include <ctype.h>
 #include <stdbool.h>
+#include <assert.h>
 
 token_arr *initialise_token_arr() {
 
@@ -36,6 +36,7 @@ void skip_space(instruction *p_instr, int *index) {
 }
 
 void slice_string(int start, int end, int string_no, instruction raw_instr, token_arr *tokenArr) {
+    // Slices the string from the start by (end-start) times
     int i = 0;
     for (; start < end; start ++) {
         (*tokenArr)[string_no][i] = raw_instr[start];
@@ -137,7 +138,48 @@ void process_memory_addressing(instruction *pc, int *index, instruction raw_inst
     }
 }
 
-token_arr *tokenise(char *raw_instr) {
+void process_branch_args(instruction *pc, int *index, instruction raw_instr, token_arr *tokenArr,
+                         symbol_table symbolTable) {
+    int init_index;
+    init_index = *index;
+    // Read word
+    while (**pc != '\0') {
+        // Calculate index.
+        (*index)++;
+        // Increment pointer.
+        (*pc)++;
+    }
+    // i points to the first white space character.
+    int buffer_length = *index-init_index+1;
+    char * buffer = (char *)malloc(sizeof(char)*buffer_length);
+    int i = 0;
+    int start = init_index;
+    bool first_char = false;
+    bool second_char = false;
+    for (; start < *index; start ++) {
+        buffer[i] = raw_instr[start];
+        if (i == 0 && buffer[i] == '0') {
+            first_char = true;
+        }
+        if (i==1 && buffer[i] == 'x') {
+            second_char = true;
+        }
+        i++;
+    }
+
+    if (first_char && second_char) {
+        // Normal address
+        slice_string(init_index, *index, 1, raw_instr, tokenArr);
+    } else {
+        address a;
+        a = get_address(symbolTable, buffer);
+        assert(a!=NULL);
+        strcpy((*tokenArr)[1], a);
+    }
+    free(buffer);
+}
+
+token_arr *tokenise(char *raw_instr, symbol_table *symbolTable) {
 
         token_arr *tokenised;
         tokenised = initialise_token_arr();
@@ -183,8 +225,6 @@ token_arr *tokenise(char *raw_instr) {
                 // Optional Parameters exist
                 process_args(2, &c, &i, ' ', raw_instr, tokenised, 3);
             }
-
-
         } else if (
                 strcmp(buffer, "madd") == 0 ||
                 strcmp(buffer, "msub") == 0
@@ -200,10 +240,14 @@ token_arr *tokenise(char *raw_instr) {
             process_args(mand_args, &c, &i, ',',
                          raw_instr, tokenised, 1);
         } else if (strcmp(buffer, "b") == 0 ||
-                   strcmp(buffer, "b.cond") == 0) {
-            mand_args = 1;
-            process_args(mand_args, &c, &i, '\0',
-                         raw_instr, tokenised, 1);
+                   strcmp(buffer, "b.eq") == 0 ||
+                strcmp(buffer, "b.ne") == 0 ||
+                strcmp(buffer, "b.ge") == 0 ||
+                strcmp(buffer, "b.lt") == 0 ||
+                strcmp(buffer, "b.gt") == 0 ||
+                strcmp(buffer, "b.le") == 0 ||
+                strcmp(buffer, "b.al") == 0){
+            process_branch_args(&c, &i, raw_instr, tokenised, *symbolTable);
 
         }
         else if (strcmp(buffer, "ldr") == 0 ||
