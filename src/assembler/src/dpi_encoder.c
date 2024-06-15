@@ -2,8 +2,8 @@
 #include <stdint.h>
 #include <string.h>
 #include <stdbool.h>
-#include "helperfuncs.h"
-#include "dpi_encoder.h"
+#include "../include/helperfuncs.h"
+#include "../include/dpi_encoder.h"
 
 #define MULBASE 0x1b000000 //base for muliply instructions
 #define MSUBX 0x8000 //x bit for msub

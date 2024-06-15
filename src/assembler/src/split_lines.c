@@ -3,46 +3,10 @@
 #include <assert.h>
 #include <string.h>
 #include "../include/split_lines.h"
+#include "../include/instruction_arr.h"
 #define LINE_CAPACITY 10
 
-instruction_array *create_empty_instructionArr() {
-    instruction_array *s = (instruction_array *) malloc(sizeof(instruction_array));
-    if (s == NULL) {
-        abort();
-    }
-    s->size = 0;
-    s->instructions = NULL;
-    return s;
-}
 
-
-instruction create_instruction(char * instr) {
-    instruction i = (instruction) malloc(sizeof(char) * (strlen(instr)+1));
-    assert(i != NULL);
-    strcpy(i, instr);
-    i[strlen(instr)] = '\0';
-    return i;
-}
-
-void add_instruction(instruction_array *instructionArray, instruction *instr) {
-    instruction *instruction_arr = (instruction *)realloc(instructionArray->instructions,
-                                                          sizeof(instruction) * (instructionArray->size+1));
-    if (instruction_arr == NULL) {
-        abort();
-    }
-    instructionArray->instructions = instruction_arr;
-    instruction_arr[instructionArray->size] = *instr;
-    instructionArray->size ++;
-}
-
-
-void free_instruction_arr(instruction_array *instructionArray) {
-    for (int i = 0; i < instructionArray->size; i++) {
-        free((instructionArray->instructions[i]));
-    }
-    free(instructionArray->instructions);
-    free(instructionArray);
-}
 
 void test_ilines() {
     instruction_array *ia = create_empty_instructionArr();
@@ -78,9 +42,10 @@ void read_whole_file(char * lineBuffer, int numChar, FILE *inputFile) {
     lineBuffer[charsRead] = '\0'; // null terminating the buffer
 }
 
-
-
 void split_lines(FILE *inputFile, instruction_array *ia, char *lineBuffer) {
+    // LineBuffer contains the entire .s file.
+    // Each instruction is separated by \n
+    // Write each line to instruction array.
 
     long fileSize;
     int numChar;
@@ -92,9 +57,10 @@ void split_lines(FILE *inputFile, instruction_array *ia, char *lineBuffer) {
     char *line = strtok(lineBuffer, "\n"); // split the buffer into lines
 
 	while (line != NULL) {
+        // Symbol Table logic goes here.
         instruction curr_instruction = create_instruction(line);
         add_instruction(ia, &curr_instruction);
-        	line = strtok(NULL, "\n"); // get the next line
+        line = strtok(NULL, "\n"); // get the next line
     	}
 
 	if (ferror(inputFile)) {
@@ -104,4 +70,8 @@ void split_lines(FILE *inputFile, instruction_array *ia, char *lineBuffer) {
 	free(lineBuffer);
     fclose(inputFile);
 }
+
+
+
+
 

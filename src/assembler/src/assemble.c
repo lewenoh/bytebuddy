@@ -5,6 +5,12 @@
 #include "../include/first_pass.h"
 #include <stdint.h>
 #include "../include/split_lines.h"
+#include "../include/instruction_arr.h"
+#include "../include/pass_one.h"
+#include "../include/helperfuncs.h"
+#include "../include/dpi_encoder.h"
+#include "../include/branch_encoder.h"
+#include "../include/sdt_encoder.h"
 
 
 void printarr(token_arr *arr) {
@@ -140,12 +146,8 @@ int main(int argc, char **argv) {
     //     Encode each instruction into binary.
     //     Write binary to .bin file.
     FILE *inputFile = fopen(argv[1], "r");
-    FILE *outputFile = fopen(argv[2], "w");
+    FILE *outputFile = fopen(argv[2], "wb");
     char *lineBuffer = NULL;
-
-//    instructionLinesType * instructionlines;
-    instruction_array *ia = create_empty_instructionArr();
-
     if (inputFile == NULL || ferror(inputFile)) {
         fprintf(stderr, "Error opening input file.\n");
         exit(1);
@@ -153,29 +155,40 @@ int main(int argc, char **argv) {
         fprintf(stderr, "Error opening output file.\n");
         exit(1);
     } else { // once input and output file validated
-        split_lines(inputFile, ia, lineBuffer); // splits instructions line by line into line buffer.
-    }
 
-    // test for split_lines
-    fprintf(outputFile, "%d", ia->size);
+        instruction_array *ia = create_empty_instructionArr();
+        symbol_table *sym = create_empty_table();
+        first_pass(inputFile, ia, sym, lineBuffer);
 
-    for (int i = 0; i < ia->size; i++) {
-        printf("BOO\n");
-        fprintf(outputFile, "%s\n", (ia->instructions)[i]);
+        encoded_instr instrs[ia->size];
+        for (int i = 0; i < ia->size; i++) {
+            token_arr *tokenArr;
+            tokenArr = tokenise(ia->instructions[i], sym);
+            //Depending on type do something different.
+            if (is_dpi((*tokenArr)[0])) {
+                (*instrs)[i] = dpi_encoder(tokenArr);
+                //tokenised instruction is the char instruction[6][30]
+            } else if (is_branch((*tokenArr)[0])) {
+                (*instrs)[i] = branch_encoder(readimm(tokenArr)[1], tokenArr);
+            } else if (is_sdt((*tokenArr)[0])) {
+                (*instrs)[i] = sdt_encoder(address, tokenArr);
+            } else if (is_special((*tokenArr)[0])) {
+                (*instrs)[i] = readimm(tokenArr[1]);
+            }
+        }
+
+
+        //decode each instruction, and put into instrs
+        int instrWrite = fwrite(instrs, 4, ia->size, outputFile);
+        if (instrWrite < ia->size){
+            fclose(outputFile);
+            fprintf(stderr, "Error writing to the file.\n");
+        }
+        fclose(outputFile);
+        free_instruction_arr(ia);
+        return EXIT_SUCCESS;
     }
 
 //    first and second pass
-    uint32_t instrs[ia->size];
-
-    //decode each instruction, and put into instrs
-    int instrWrite = fwrite(instrs, 4, ia->size, outputFile);
-    if (instrWrite < ia->size){
-        fclose(outputFile);
-        fprintf(stderr, "Error writing to the file.\n");
-    }
-    fclose(outputFile);
-    free_instruction_arr(ia);
-
-	return EXIT_SUCCESS;
 }
 

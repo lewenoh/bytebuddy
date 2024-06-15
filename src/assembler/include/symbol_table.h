@@ -11,7 +11,6 @@ typedef struct {
     char label[MAX_ENTRY_ARG_LEN];
     char address[MAX_ENTRY_ARG_LEN];
 } label_entry;
-
 typedef struct {
     int size;
     label_entry **entriesArr;

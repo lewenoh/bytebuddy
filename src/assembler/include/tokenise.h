@@ -7,7 +7,10 @@
 #include "../include/table_def.h"
 #include "../include/symbol_table.h"
 #include <stdbool.h>
-
+#include "../include/instruction_arr.h"
+#define MAX_ARGS 6
+#define MAX_ARG_LENGTH 30
+typedef char token_arr[MAX_ARGS][MAX_ARG_LENGTH];
 token_arr *initialise_token_arr();
 token_arr *tokenise(char* raw_instr, symbol_table *symbolTable);
 void skip_space(instruction *raw_instr, int *index);
