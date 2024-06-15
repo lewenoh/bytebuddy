@@ -3,6 +3,7 @@
 #ignore individual vs_code settings
 *.vscode
 
+.idea
 #ignore temp files
 *~
 
