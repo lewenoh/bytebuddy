@@ -5,6 +5,13 @@
 // #define NUMBER_OF_INSTRUCIONS 1
 
 extern char *instruction_table[50];
+typedef char * instruction;
+typedef struct {
+    int size;
+    instruction * instructions;
+} instruction_array;
+typedef instruction * instructionLinesType;
+
 
 struct label_entry {
     char *label;

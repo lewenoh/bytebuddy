@@ -2,66 +2,98 @@
 #include <stdio.h>
 #include <assert.h>
 #include <string.h>
-#include "split_lines.h"
-#include "table_def.h"
+#include "../include/split_lines.h"
 #define LINE_CAPACITY 10
 
-char **split_lines(FILE *inputFile, char *lineBuffer, int *instrCount) {
-	if (fseek(inputFile, 0, SEEK_END) == -1) {
-                fclose(inputFile);
-                fprintf(stderr, "Error seeking to end of file.\n");
-                abort(); // seek failure
-        }
+instruction_array *create_empty_instructionArr() {
+    instruction_array *s = (instruction_array *) malloc(sizeof(instruction_array));
+    if (s == NULL) {
+        abort();
+    }
+    s->size = 0;
+    s->instructions = NULL;
+    return s;
+}
 
-        // now at end of file
-        long fileSize = ftell(inputFile); // in bytes
-        int numChar = fileSize / sizeof(char);
-        rewind(inputFile); // return to start
 
-	lineBuffer = malloc(fileSize + 1); // allocating suitable amount of space in lineBuffer.
+instruction create_instruction(char * instr) {
+    instruction i = (instruction) malloc(sizeof(char) * (strlen(instr)+1));
+    assert(i != NULL);
+    strcpy(i, instr);
+    i[strlen(instr)] = '\0';
+    return i;
+}
 
-        assert(lineBuffer != NULL);
+void add_instruction(instruction_array *instructionArray, instruction *instr) {
+    instruction *instruction_arr = (instruction *)realloc(instructionArray->instructions,
+                                                          sizeof(instruction) * (instructionArray->size+1));
+    if (instruction_arr == NULL) {
+        abort();
+    }
+    instructionArray->instructions = instruction_arr;
+    instruction_arr[instructionArray->size] = *instr;
+    instructionArray->size ++;
+}
 
-	int charsRead = fread(lineBuffer, sizeof(char), numChar, inputFile); // reading from inputFile to lineBuffer
 
-        if (charsRead < numChar) { // verifying that read was successful
-                fclose(inputFile);
-		free(lineBuffer);
-                fprintf(stderr, "Error reading from file.\n");
-		exit(1);
-	}
+void free_instruction_arr(instruction_array *instructionArray) {
+    for (int i = 0; i < instructionArray->size; i++) {
+        free((instructionArray->instructions[i]));
+    }
+    free(instructionArray->instructions);
+    free(instructionArray);
+}
 
-	lineBuffer[charsRead] = '\0'; // null terminating the buffer
+void test_ilines() {
+    instruction_array *ia = create_empty_instructionArr();
+    instruction i;
+    i = create_instruction("and x0, x0, x0");
+    add_instruction(ia, &i);
+    free_instruction_arr(ia);
+}
 
-	// processing chars in lineBuffer to split line by line.
+void initial_processing(FILE *inputFile, long *fileSize, int * numChar) {
+    if (fseek(inputFile, 0, SEEK_END) == -1) {
+        fclose(inputFile);
+        fprintf(stderr, "Error seeking to end of file.\n");
+        abort(); // seek failure
+    }
 
-	char **instrLines = malloc(LINE_CAPACITY * sizeof(char *)); // allocating a suitable amount of space in 2D array instrLines.
+    // now at end of file
+    *fileSize = ftell(inputFile); // in bytes
+    *numChar = *fileSize / sizeof(char);
+    rewind(inputFile); // return to start
+}
 
-	assert(instrLines != NULL);
+void read_whole_file(char * lineBuffer, int numChar, FILE *inputFile) {
 
-	size_t instrLineIndex = 0;
+    // reading from inputFile to lineBuffer
+    int charsRead = fread(lineBuffer, sizeof(char), numChar, inputFile);
+    if (charsRead < numChar) { // verifying that read was successful
+        fclose(inputFile);
+        free(lineBuffer);
+        fprintf(stderr, "Error reading from file.\n");
+        exit(1);
+    }
+    lineBuffer[charsRead] = '\0'; // null terminating the buffer
+}
 
-    	char *line = strtok(lineBuffer, "\n"); // split the buffer into lines
+
+
+void split_lines(FILE *inputFile, instruction_array *ia, char *lineBuffer) {
+
+    long fileSize;
+    int numChar;
+    initial_processing(inputFile, &fileSize, &numChar);
+    // allocating suitable amount of space in lineBuffer.
+    lineBuffer = (char *) malloc(fileSize + 1);
+    assert(lineBuffer != NULL);
+    read_whole_file(lineBuffer, numChar, inputFile);
+    char *line = strtok(lineBuffer, "\n"); // split the buffer into lines
 
 	while (line != NULL) {
-		//instrLines[instrLineIndex] = malloc(sizeof(char *)); // Allocate memory for each line
-        	instrLines[instrLineIndex] = (char *) malloc(strlen(line) + 1);
-		if (instrLines[instrLineIndex] == NULL) {
-            		perror("Error allocating memory");
-
-			for (int i = 0; i < instrLineIndex; i++) {
-                		free(instrLines[i]);
-            		}
-            		free(lineBuffer);
-            		free(instrLines);
-            		fclose(inputFile);
-			exit(1);
-
-        	}
-		//instrLines[instrLineIndex] = realloc(instrLines[instrLineIndex], sizeof(*instrLines[instrLineIndex]) + strlen(line));
-        	strcpy(instrLines[instrLineIndex], line); // Copy the line into the array
-		*instrCount = *instrCount + 1;
-        	instrLineIndex++;
+        instruction curr_instruction = create_instruction(line);
+        add_instruction(ia, &curr_instruction);
         	line = strtok(NULL, "\n"); // get the next line
     	}
 
@@ -69,35 +101,7 @@ char **split_lines(FILE *inputFile, char *lineBuffer, int *instrCount) {
  	       perror("Error reading file");
     	}
 
-    	// Free the allocated memory
 	free(lineBuffer);
-
-    	fclose(inputFile);
-    	return instrLines;
+    fclose(inputFile);
 }
-
-//	while (count < numChar) {
-//		char *currLine; // do i need to malloc here or can i realloc with no data
-//		size_t currLength;
-//
-//		while (lineBuffer[count] != '\n') { // new line reached
-//			currLength = (currLine == NULL) ? 0 : strlen(currLine); // check that currString has enough of space
-//			currLine = (char *)(realloc(currLine, currLength + 1)); // reallocate to include new char
-//			currLine[currLength] = lineBuffer[count];
-//			count++;
-//		}
-//
-//		instrLines = (char **)realloc(instrLines, (instrLineIndex + 1) * sizeof(char *));
-//
-//		currLength = (currLine == NULL) ? 0 : strlen(currLine);
-//		currLine = (char *)(realloc(currLine, currLength + 1));
-//		currLine[currLength] = '\0'; // terminating character for the last element of each line.
-//
-//		instrLines[instrLineIndex] = currLine;
-//
-//		free(currLine);
-//
-//		count++;
-//
-//		instrLineIndex++;
 
