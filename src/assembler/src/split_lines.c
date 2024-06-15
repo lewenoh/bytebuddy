@@ -1,14 +1,16 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <assert.h>
+#include <string.h>
 #include "split_lines.h"
 #include "table_def.h"
 #define LINE_CAPACITY 10
 
-char **split_lines(FILE *inputFile, char *lineBuffer) {
+char **split_lines(FILE *inputFile, char *lineBuffer, int *instrCount) {
 	if (fseek(inputFile, 0, SEEK_END) == -1) {
                 fclose(inputFile);
                 fprintf(stderr, "Error seeking to end of file.\n");
-                return 1; // seek failure
+                abort(); // seek failure
         }
 
         // now at end of file
@@ -38,12 +40,13 @@ char **split_lines(FILE *inputFile, char *lineBuffer) {
 	assert(instrLines != NULL);
 
 	size_t instrLineIndex = 0;
-    	int count = 0;
 
     	char *line = strtok(lineBuffer, "\n"); // split the buffer into lines
-    	while (line != NULL) {
-        	instrLines[instrLineIndex] = malloc(strlen(line) + 1); // Allocate memory for each line
-        	if (instrLines[instrLineIndex] == NULL) {
+
+	while (line != NULL) {
+		//instrLines[instrLineIndex] = malloc(sizeof(char *)); // Allocate memory for each line
+        	instrLines[instrLineIndex] = (char *) malloc(strlen(line) + 1);
+		if (instrLines[instrLineIndex] == NULL) {
             		perror("Error allocating memory");
 
 			for (int i = 0; i < instrLineIndex; i++) {
@@ -55,7 +58,9 @@ char **split_lines(FILE *inputFile, char *lineBuffer) {
 			exit(1);
 
         	}
+		//instrLines[instrLineIndex] = realloc(instrLines[instrLineIndex], sizeof(*instrLines[instrLineIndex]) + strlen(line));
         	strcpy(instrLines[instrLineIndex], line); // Copy the line into the array
+		*instrCount = *instrCount + 1;
         	instrLineIndex++;
         	line = strtok(NULL, "\n"); // get the next line
     	}
@@ -66,14 +71,11 @@ char **split_lines(FILE *inputFile, char *lineBuffer) {
 
     	// Free the allocated memory
 	free(lineBuffer);
-    	for (int i = 0; i < instrLineIndex; i++) {
-        	free(instrLines[i]);
-    	}
-    	free(instrLines);
 
     	fclose(inputFile);
     	return instrLines;
 }
+
 //	while (count < numChar) {
 //		char *currLine; // do i need to malloc here or can i realloc with no data
 //		size_t currLength;
@@ -98,4 +100,4 @@ char **split_lines(FILE *inputFile, char *lineBuffer) {
 //		count++;
 //
 //		instrLineIndex++;
-//	}
+
