@@ -17,8 +17,11 @@ typedef struct {
     label_entry **entriesArr;
 } symbol_table;
 symbol_table *create_example_symbol_table();
+symbol_table *create_empty_table();
 address get_address(symbol_table sym, char * label);
 void free_symbol_table(symbol_table *s);
+label_entry *create_entry(char * label, char * address);
+void add_entry(symbol_table *symbolTable, label_entry *labelEntry);
 void test_get_address();
 void test_create_symbol();
 
