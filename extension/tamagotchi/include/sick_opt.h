@@ -4,7 +4,8 @@
 
 #ifndef EXTENSION_SICK_OPT_H
 #define EXTENSION_SICK_OPT_H
+#include "stats_def.h"
 
-void sick_opt();
+void sick_opt(struct stats *s, int row, int col);
 
 #endif //EXTENSION_SICK_OPT_H

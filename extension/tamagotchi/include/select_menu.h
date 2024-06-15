@@ -5,6 +5,8 @@
 #ifndef TAMAGOTCHI_SELECT_MENU_H
 #define TAMAGOTCHI_SELECT_MENU_H
 
-void* select_menu(void* arg);
+#include "stats_def.h"
+
+void select_menu(struct stats *s, int opt);
 
 #endif //TAMAGOTCHI_SELECT_MENU_H

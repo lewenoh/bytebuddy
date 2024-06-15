@@ -11,12 +11,13 @@
 #include <time.h>
 
 struct stats {
-    unsigned int full;
-    unsigned int happy;
-    unsigned int age;
-    time_t time_last_played;
-    unsigned int no_poops;
+    int full;
+    int happy;
+    int age;
+    bool poop;
     bool sick;
+    time_t time_last_played;
+    time_t tamagotchi_birthday;
 };
 
 #endif //EXTENSION_STATS_DEF_H

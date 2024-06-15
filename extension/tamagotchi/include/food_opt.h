@@ -5,6 +5,8 @@
 #ifndef EXTENSION_FOOD_OPT_H
 #define EXTENSION_FOOD_OPT_H
 
-void food_opt(int row, int col);
+#include "stats_def.h"
+
+void food_opt(struct stats *s, int row, int col);
 
 #endif //EXTENSION_FOOD_OPT_H

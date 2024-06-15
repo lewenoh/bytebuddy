@@ -18,7 +18,7 @@
 
 extern volatile int running;
 
-const char* menu[] = {
+/*const char* menu[] = {
         "f: food        p: play  ",
         "m: med         t: toilet",
         "________________________",
@@ -33,57 +33,62 @@ void print_menu(int row, int col) {
         mvprintw((row * 0.75) + i, (col / 2 - menu_cols / 2), "%s", menu[i]);
     }
     refresh();
-}
+}*/
 
-void* select_menu(void* arg) {
+void select_menu(struct stats *s, int opt) {
     int row, col;
     getmaxyx(stdscr, row, col);
-    print_menu(row, col);
+    int centre_x = row/2;
+    int centre_y = col/2;
 
-    while (running) {
-        int opt = getch();
-        if (opt != ERR) {
-            switch(opt) {
-                case 'f':
-                    mvprintw(row - 2, 5, "%s", "food option");
+
+    if (opt != ERR) {
+        nodelay(stdscr, FALSE);
+        switch(opt) {
+            case 'f':
+                food_opt(s, row, col);
+                break;
+
+            case 'p':
+                mvprintw(row - 2, 5, "%s", "play option");
+                refresh();
+                break;
+
+            case 'm':
+                sick_opt(s, row, col);
+                refresh();
+                break;
+
+            case 't':
+                poop_opt(s, row, col);
+                refresh();
+                break;
+            case 's':
+                mvprintw(row - 2, 5, "%s", "statistics option");
+                refresh();
+                break;
+            case 'q':
+                mvprintw(row - 2, 5, "%s", "Do you want to save? (y/n)");
+                refresh();
+                int dummy_opt = getch();
+                if (dummy_opt == 'y') {
+                    mvprintw(row - 2, 5, "%s", "save stats - exit");
                     refresh();
-                    break;
-                case 'p':
-                    mvprintw(row - 2, 5, "%s", "play option");
+                    sleep(1); // Simulate saving
+                    running = 0; // Stop the loop
+                } else {
+                    mvprintw(row - 2, 5, "%s", "cancel save");
                     refresh();
-                    break;
-                case 'm':
-                    mvprintw(row - 2, 5, "%s", "sick option");
-                    refresh();
-                    break;
-                case 't':
-                    mvprintw(row - 2, 5, "%s", "poop option");
-                    refresh();
-                    break;
-                case 's':
-                    mvprintw(row - 2, 5, "%s", "statistics option");
-                    refresh();
-                    break;
-                case 'q':
-                    mvprintw(row - 2, 5, "%s", "Do you want to save? (y/n)");
-                    refresh();
-                    int dummy_opt = getch();
-                    if (dummy_opt == 'y') {
-                        mvprintw(row - 2, 5, "%s", "save stats - exit");
-                        refresh();
-                        sleep(1); // Simulate saving
-                        running = 0; // Stop the loop
-                    } else {
-                        mvprintw(row - 2, 5, "%s", "cancel save");
-                        refresh();
-                    }
-                    break;
-                default:
+                }
+                break;
+
+            default:
                     mvprintw(row - 2, 5, "%s", "Invalid option");
                     refresh();
                     break;
-            }
         }
+        sleep(1);
+        clear();
     }
-    return NULL;
+    nodelay(stdscr, TRUE);
 }

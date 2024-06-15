@@ -28,6 +28,24 @@ const char *tamagotchi[2][8] = {
         }
 };
 
+
+const char* menu[] = {
+        "f: food        p: play  ",
+        "m: med         t: toilet",
+        "________________________",
+        "s: stats   q: quit & save"
+};
+
+void print_menu(int row, int col) {
+    int menu_rows = sizeof(menu) / sizeof(menu[0]);
+    int menu_cols = strlen(menu[0]);
+
+    for (int i = 0; i < menu_rows; i++) {
+        mvprintw((row * 0.75) + i, (col / 2 - menu_cols / 2), "%s", menu[i]);
+    }
+    refresh();
+}
+
 void first_state(int row, int col, int tama_rows, int tama_cols) {
     for (int i = 0; i < tama_rows; i++) {
         mvprintw(row / 2 - tama_rows / 2 + i, col / 2 - tama_cols / 2, "%s", tamagotchi[0][i]);
@@ -50,7 +68,6 @@ void clear_frame(int row, int col, int tama_rows, int tama_cols) {
     }
     refresh();
 }
-
 void *display_tamagotchi(void *arg) {
     int tama_rows = sizeof(tamagotchi[0]) / sizeof(tamagotchi[0][0]);
     int tama_cols = strlen(tamagotchi[0][0]);
@@ -58,17 +75,35 @@ void *display_tamagotchi(void *arg) {
     int row, col;
     getmaxyx(stdscr, row, col);
 
-    while(running) {
-        clear_frame(row, col, tama_rows, tama_cols);
-        first_state(row, col, tama_rows, tama_cols);
-        refresh();
-        usleep(500000); // 500 milliseconds delay
+    print_menu(row, col);
+    clear_frame(row, col, tama_rows, tama_cols);
+    first_state(row, col, tama_rows, tama_cols);
+    refresh();
+    usleep(500000); // 500 milliseconds delay between frames
 
-        clear_frame(row, col, tama_rows, tama_cols);
-        second_state(row, col, tama_rows, tama_cols);
-        refresh();
-        usleep(500000); // 500 milliseconds delay
-    }
+    clear_frame(row, col, tama_rows, tama_cols);
+    second_state(row, col, tama_rows, tama_cols);
+    refresh();
+    usleep(500000); // 500 milliseconds delay
 
     return NULL;
 }
+/* non concurrency version
+void display_tamagotchi() {
+    int tama_rows = sizeof(tamagotchi[0]) / sizeof(tamagotchi[0][0]);
+    int tama_cols = strlen(tamagotchi[0][0]);
+
+    int row, col;
+    getmaxyx(stdscr, row, col);
+
+    print_menu(row, col);
+    clear_frame(row, col, tama_rows, tama_cols);
+    first_state(row, col, tama_rows, tama_cols);
+    refresh();
+    usleep(500000); // 500 milliseconds delay
+
+    clear_frame(row, col, tama_rows, tama_cols);
+    second_state(row, col, tama_rows, tama_cols);
+    refresh();
+    usleep(500000); // 500 milliseconds delay
+} */

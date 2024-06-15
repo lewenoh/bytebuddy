@@ -5,6 +5,8 @@
 #ifndef EXTENSION_POOP_OPT_H
 #define EXTENSION_POOP_OPT_H
 
-void poop_opt();
+#include "stats_def.h"
+
+void poop_opt(struct stats *s, int row, int col);
 
 #endif //EXTENSION_POOP_OPT_H

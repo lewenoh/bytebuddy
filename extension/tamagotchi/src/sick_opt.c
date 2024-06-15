@@ -3,8 +3,14 @@
 //
 
 #include "../include/sick_opt.h"
+#include <ncurses.h>
 
-void sick_opt() {
-    // this function will heal tamagotchi
-    // and play healing emote
+void sick_opt(struct stats *s, int row, int col) {
+    clear();
+
+    // play healing emote
+
+    s->sick = 0;
+    mvprintw(row/2 + 1, col/2, "sick %d", s->sick);
+    refresh();
 }

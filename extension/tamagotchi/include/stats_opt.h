@@ -5,6 +5,8 @@
 #ifndef EXTENSION_STATS_OPT_H
 #define EXTENSION_STATS_OPT_H
 
-void stats_opt();
+#include "stats_def.h"
+
+void stats_opt(struct stats *s, int row, int col);
 
 #endif //EXTENSION_STATS_OPT_H

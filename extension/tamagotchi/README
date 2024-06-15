@@ -1,6 +1,5 @@
 A brief explanation of all the files:
 
-centre_helper.c - helps to print whatever text we have in a char array array in the centre of the screen
 display_tamagotchi - changes between the two tamagotchi frames forever (runs concurrently with select_menu)
 select_menu - takes user input at any time during the program and will call each function as needed
 welcome screen - plays the opening animation on boot.
