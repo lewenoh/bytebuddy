@@ -1,0 +1,26 @@
+A brief explanation of all the files:
+
+centre_helper.c - helps to print whatever text we have in a char array array in the centre of the screen
+display_tamagotchi - changes between the two tamagotchi frames forever (runs concurrently with select_menu)
+select_menu - takes user input at any time during the program and will call each function as needed
+welcome screen - plays the opening animation on boot.
+main - the main file
+
+---------------------------------------------------------------------------------------------------------
+
+eat_animation - plays the frames of the eating animation
+
+---------------------------------------------------------------------------------------------------------
+load_stats - loads stats at the beginning of the run. Should take in a .txt file containing
+             stats from previous game session / blank if new game
+
+save_stats - saves stats to the same file (overwrite) and end the game. Exits to terminal
+
+---------------------------------------------------------------------------------------------------------
+_opt files - are for when the player inputs the letter at the home (menu) screen
+food_opt - will display options for player to choose to feed tamagotchi and increment stats accordingly
+poop_opt - clears screen of any poop and decreases food stat to 0
+save_opt - asks player if they want to leave the game (confirmation)
+sick_opt - heals tamagotchi and sets sick stat to false
+stats_opt - displays tamagotchi stats
+
