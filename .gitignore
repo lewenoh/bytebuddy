@@ -39,3 +39,4 @@ assemble
 *.nav
 *.toc
 
+.idea/
