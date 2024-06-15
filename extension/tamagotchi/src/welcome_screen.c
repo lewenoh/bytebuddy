@@ -1,7 +1,7 @@
 //
 // Created by Xi Ting Hoh on 13/06/2024.
 //
-#include "welcome_screen.h"
+#include "../include/welcome_screen.h"
 #include <ncurses.h>
 #include <string.h>
 
