@@ -4,6 +4,7 @@
 
 #ifndef ARMV8_51_PASS_ONE_H
 #define ARMV8_51_PASS_ONE_H
+#include <stdio.h>
 #include "instruction_arr.h"
 #include "symbol_table.h"
 

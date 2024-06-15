@@ -1,5 +1,6 @@
 #ifndef SPLIT_LINES_H
 #define SPLIT_LINES_H
+#include <stdio.h>
 #include "table_def.h"
 #include "instruction_arr.h"
 
