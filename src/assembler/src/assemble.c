@@ -173,7 +173,7 @@ int main(int argc, char **argv) {
             } else if (is_sdt((*tokenArr)[0])) {
                 instrs[i] = sdt_encoder((i*4), tokenArr);
             } else if (is_special((*tokenArr)[0])) {
-                instrs[i] = readimm(tokenArr[1]);
+		instrs[i] = readimm(tokenArr[1]);
             }
         }
 

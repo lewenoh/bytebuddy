@@ -95,7 +95,7 @@ bool not_label_int(char * buffer) {
 uint32_t readimm(char imm[30]){
 	//takes a register and returns the hex value encoding for it
 	if (imm[0] == '#'){	
-		memmove (imm, imm+1, 3);
+		memmove (imm, imm+1, 29);
 	}
 	uint32_t result;
 	if (imm[1] == 'x'){

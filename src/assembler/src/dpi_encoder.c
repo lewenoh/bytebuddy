@@ -92,7 +92,7 @@ uint32_t dpi_encoder(char instruction[6][30]){
 				//arith instruction
 				hexi = hexi + ARITHOPR;
 			}
-			if (instruction[4] != '\0'){
+			if (instruction[4][0] != '\0'){
 			
 				if (strcmp(instruction[4], "lsr") == 0){
 					//no if needed for lsl, as shift = 00
@@ -156,13 +156,10 @@ uint32_t dpi_encoder(char instruction[6][30]){
 			} // opc for movn = 00, so no need to do else
 			
 			if (instruction[3][0] != '\0'){
-				memmove(instruction[4], instruction[4] + 1, 29);
-				hexi = hexi + ((atoi(instruction[4]) / 16) << 21);	// hw
+				hexi = hexi + (((readimm(instruction[4]) / 16)) << 21);	// hw
 			}
 			
-			memmove(instruction[2], instruction[2]+3, 27);
-			uint32_t imm = strtol(instruction[2], NULL, 16);
-			hexi = hexi + (imm << 5);
+			hexi = hexi + (readimm(instruction[2]) << 5);
 		}
 		else {
 			//aliases
