@@ -156,7 +156,7 @@ void process_branch_args(instruction *pc, int *index, instruction raw_instr, tok
     int start = init_index;
     bool first_char = false;
     bool second_char = false;
-    for (; start < *index; start ++) {
+    for (; start < *index+1; start ++) {
         buffer[i] = raw_instr[start];
         if (i == 0 && buffer[i] == '0') {
             first_char = true;
