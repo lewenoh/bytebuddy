@@ -4,7 +4,8 @@
 
 #ifndef EXTENSION_SAVE_STATE_H
 #define EXTENSION_SAVE_STATE_H
+#include "stats_def.h"
 
-void save_stats();
+void save_stats(struct stats *s);
 
 #endif //EXTENSION_SAVE_STATE_H
