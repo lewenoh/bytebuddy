@@ -12,14 +12,15 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e0f4346-9261-43b9-9c47-35d071028a19" name="Changes" comment="Started on load_stats.">
-      <change afterPath="$PROJECT_DIR$/extension/tamagotchi/include/load_stats_test.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/extension/tamagotchi/src/load_stats_test.c" afterDir="false" />
+    <list default="true" id="8e0f4346-9261-43b9-9c47-35d071028a19" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/armv8_51.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/editor.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/extension/tamagotchi/savefile.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/extension/tamagotchi/savefile.txt" beforeDir="false" afterPath="$PROJECT_DIR$/extension/tamagotchi/savefile.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/extension/tamagotchi/src/load_stats.c" beforeDir="false" afterPath="$PROJECT_DIR$/extension/tamagotchi/src/load_stats.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/extension/tamagotchi/src/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/extension/tamagotchi/src/main.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,22 +38,6 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitLabMergeRequestFiltersHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPENED",
-    "assignee": {
-      "type": "org.jetbrains.plugins.gitlab.mergerequest.ui.filters.GitLabMergeRequestsFiltersValue.MergeRequestsMemberFilterValue.MergeRequestsAssigneeFilterValue",
-      "username": "lo223",
-      "fullname": "lo223"
-    }
-  }
-}]]></component>
-  <component name="GitLabMergeRequestsSettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "first": "https://gitlab.doc.ic.ac.uk/lab2324_summer/armv8_51.git",
-    "second": "b3eaa85d-abab-4f9e-ada4-d4c5b826e348"
-  }
-}]]></component>
   <component name="ProjectApplicationVersion">
     <option name="ide" value="CLion" />
     <option name="majorVersion" value="2024" />
@@ -72,20 +57,18 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "RunOnceActivity.RadMigrateCodeStyle": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.cidr.known.project.marker": "true",
     "RunOnceActivity.readMode.enableVisualFormatting": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
-    "git-widget-placeholder": "load/save__stats",
+    "git-widget-placeholder": "extension",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -125,11 +108,6 @@
       <window_info anchor="right" id="Meson" order="6" />
     </layout>
   </component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\lewen\CLionProjects\armv8_51\extension\tamagotchi\include" />
-    </key>
-  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -140,17 +118,7 @@
       <updated>1718294449064</updated>
       <workItem from="1718294450796" duration="4184000" />
       <workItem from="1718298718113" duration="638000" />
-      <workItem from="1718540056884" duration="6874000" />
     </task>
-    <task id="LOCAL-00001" summary="Started on load_stats.">
-      <option name="closed" value="true" />
-      <created>1718502184052</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1718502184052</updated>
-    </task>
-    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -166,10 +134,6 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="Started on load_stats." />
-    <option name="LAST_COMMIT_MESSAGE" value="Started on load_stats." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
