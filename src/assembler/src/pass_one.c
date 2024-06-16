@@ -7,6 +7,7 @@
 #include "../include/split_lines.h"
 #include "../include/symbol_table.h"
 #include "../include/helperfuncs.h"
+#include "../include/tokenise.h"
 #include "assert.h"
 #include "string.h"
 #include <stdlib.h>
@@ -38,18 +39,21 @@ void first_pass(FILE *inputFile, instruction_array *ia, symbol_table *s, char *l
         // Symbol Table logic goes here.
         int index = 0;
         instruction curr_instruction = create_instruction(line);
+        char * start = curr_instruction;
 
-        instruction initial_instr = (instruction) malloc(strlen(curr_instruction)+1);
-        assert(initial_instr != NULL);
-        strcpy(initial_instr, curr_instruction);
+//        instruction initial_cpy = (instruction) malloc(strlen(curr_instruction)+1);
+//        assert(initial_cpy != NULL);
+//        strcpy(initial_cpy, curr_instruction);
 
-        while (!isspace(*curr_instruction) && (*curr_instruction != ':') ) {
+        while (!isspace(*start) && (*start != ':') ) {
             index++;
-            curr_instruction++;
+            start++;
         }
         char * buffer = (char *)malloc(sizeof(char)*(index+1));
-        strncpy(buffer, initial_instr, index);
+        strncpy(buffer, curr_instruction, index);
         buffer[index] = '\0'; // Ensure null termination
+//        skip_space(&curr_instruction, &index);
+
 
         if (not_label_int(buffer)){
             add_instruction(ia, &curr_instruction);
@@ -63,8 +67,8 @@ void first_pass(FILE *inputFile, instruction_array *ia, symbol_table *s, char *l
             label_entry *labelEntry = create_entry(buffer, address);
             add_entry(s, labelEntry);
         }
+
         free(buffer);
-        free(initial_instr);
         instr_count ++;
         line = strtok(NULL, "\n"); // get the next line
     }
