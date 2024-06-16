@@ -37,13 +37,11 @@ void first_pass(FILE *inputFile, instruction_array *ia, symbol_table *s, char *l
     // Classify instruction; Add to instruction / symbol table.
     while (line != NULL) {
         // Symbol Table logic goes here.
+        int dummy = 0;
+        skip_space(&line, &dummy);
         int index = 0;
         instruction curr_instruction = create_instruction(line);
         char * start = curr_instruction;
-
-//        instruction initial_cpy = (instruction) malloc(strlen(curr_instruction)+1);
-//        assert(initial_cpy != NULL);
-//        strcpy(initial_cpy, curr_instruction);
 
         while (!isspace(*start) && (*start != ':') ) {
             index++;
@@ -52,7 +50,7 @@ void first_pass(FILE *inputFile, instruction_array *ia, symbol_table *s, char *l
         char * buffer = (char *)malloc(sizeof(char)*(index+1));
         strncpy(buffer, curr_instruction, index);
         buffer[index] = '\0'; // Ensure null termination
-//        skip_space(&curr_instruction, &index);
+        skip_space(&curr_instruction, &index);
 
 
         if (not_label_int(buffer)){
@@ -60,8 +58,8 @@ void first_pass(FILE *inputFile, instruction_array *ia, symbol_table *s, char *l
             real_instr_count ++;
         } else {
             // label
-            char address[20] = "#0x";
-            char address_num[17];
+            char address[30] = "#0x";
+            char address_num[30];
             sprintf(address_num, "%x", (instr_count)*4);
             strcat(address, address_num);
             label_entry *labelEntry = create_entry(buffer, address);

@@ -2,8 +2,8 @@
 #include <stdint.h>
 #include <string.h>
 #include <stdbool.h>
-#include "helperfuncs.h"
-#include "branch_encoder.h"
+#include "../include/helperfuncs.h"
+#include "../include/branch_encoder.h"
 
 #define UNCONDBASE 0x14000000 //base for unconditional branches
 #define REGBASE 0xd61f0000 //base for uncond reg branches

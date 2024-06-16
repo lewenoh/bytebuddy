@@ -138,7 +138,7 @@ void process_memory_addressing(instruction *pc, int *index, instruction raw_inst
     }
 }
 
-void process_branch_args(instruction *pc, int *index, instruction raw_instr, token_arr *tokenArr,
+void process_literal_args(instruction *pc, int *index, int arg_index, instruction raw_instr, token_arr *tokenArr,
                          symbol_table symbolTable) {
     int init_index;
     init_index = *index;
@@ -174,7 +174,7 @@ void process_branch_args(instruction *pc, int *index, instruction raw_instr, tok
         address a;
         a = get_address(symbolTable, buffer);
         assert(a!=NULL);
-        strcpy((*tokenArr)[1], a);
+        strcpy((*tokenArr)[arg_index], a);
     }
     free(buffer);
 }
@@ -247,7 +247,7 @@ token_arr *tokenise(char *raw_instr, symbol_table *symbolTable) {
                 strcmp(buffer, "b.gt") == 0 ||
                 strcmp(buffer, "b.le") == 0 ||
                 strcmp(buffer, "b.al") == 0){
-            process_branch_args(&c, &i, raw_instr, tokenised, *symbolTable);
+            process_literal_args(&c, &i, 1, raw_instr, tokenised, *symbolTable);
 
         }
         else if (strcmp(buffer, "ldr") == 0 ||
@@ -259,8 +259,9 @@ token_arr *tokenise(char *raw_instr, symbol_table *symbolTable) {
                          raw_instr, tokenised, 1);
             if (*c != '[') {
                 // ldr <Rt> <literal>
-                process_args(mand_args, &c, &i, ',',
-                             raw_instr, tokenised, 2);
+                process_literal_args(&c, &i, 2, raw_instr, tokenised, *symbolTable);
+//                process_args(mand_args, &c, &i, ',',
+//                             raw_instr, tokenised, 2);
             } else {
                 process_memory_addressing(&c, &i, raw_instr, tokenised);
             }
