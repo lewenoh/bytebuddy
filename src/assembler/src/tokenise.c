@@ -134,6 +134,8 @@ void process_memory_addressing(instruction *pc, int *index, instruction raw_inst
             // Increment pointer.
             (*pc)++;
         }
+        // i points to the first white space character.
+        slice_string(init_index, *index, i, raw_instr, tokenArr);
     }
 }
 
