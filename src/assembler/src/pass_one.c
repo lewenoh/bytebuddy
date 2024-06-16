@@ -60,7 +60,7 @@ void first_pass(FILE *inputFile, instruction_array *ia, symbol_table *s, char *l
             // label
             char address[30] = "#0x";
             char address_num[30];
-            sprintf(address_num, "%x", (instr_count)*4);
+            sprintf(address_num, "%x", (real_instr_count)*4);
             strcat(address, address_num);
             label_entry *labelEntry = create_entry(buffer, address);
             add_entry(s, labelEntry);
