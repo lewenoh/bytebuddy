@@ -1,4 +1,30 @@
 My dustbin:
+//    if (num_parsed == 2 && contains_hash && (**pc == '\0')) {
+//        // U
+//        strcpy((*tokenArr)[last_index], "U");
+//    } else if (num_parsed == 2 && contains_hash) {
+//        // Pre
+//        strcpy((*tokenArr)[last_index], "PRE");
+//    } else if (num_parsed == 1) {
+//        // Post
+//        strcpy((*tokenArr)[last_index], "POST");
+//        i++;
+//
+//        skip_space(pc, index);
+//        init_index = *index;
+//        // Read word
+//        while (**pc != '\0') {
+//            // Calculate index.
+//            (*index)++;
+//            // Increment pointer.
+//            (*pc)++;
+//        }
+//        // i points to the first white space character.
+//        slice_string(init_index, *index, i, raw_instr, tokenArr);
+//    } else {
+//        // None of the above.
+//        strcpy((*tokenArr)[last_index], "N");
+//    }
 
     for (int i = 0; i < ia->size; i++) {
         fprintf(outputFile, "%s\n", (ia->instructions)[i]);

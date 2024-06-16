@@ -109,15 +109,19 @@ void process_memory_addressing(instruction *pc, int *index, instruction raw_inst
     // Increment pointer.
     (*pc)++;
 
-    int last_index = MAX_ARGS -1;
-    if (num_parsed == 2 && contains_hash && (**pc == '\0')) {
+    int last_index = MAX_ARGS - 1;
+
+    if (num_parsed == 2 && **pc == '!') {
+        // PRE
+        strcpy((*tokenArr)[last_index], "PRE");
+    } else if ((num_parsed == 2 && contains_hash) || (num_parsed == 1 && **pc == '\0')) {
         // U
         strcpy((*tokenArr)[last_index], "U");
-    } else if (num_parsed == 2 && contains_hash) {
-        // Pre
-        strcpy((*tokenArr)[last_index], "PRE");
-    } else if (num_parsed == 1) {
-        // Post
+    } else if (num_parsed == 2 && **pc == '\0') {
+        // N
+        strcpy((*tokenArr)[last_index], "N");
+    } else {
+        // POST
         strcpy((*tokenArr)[last_index], "POST");
         i++;
 
@@ -130,11 +134,6 @@ void process_memory_addressing(instruction *pc, int *index, instruction raw_inst
             // Increment pointer.
             (*pc)++;
         }
-        // i points to the first white space character.
-        slice_string(init_index, *index, i, raw_instr, tokenArr);
-    } else {
-        // None of the above.
-        strcpy((*tokenArr)[last_index], "N");
     }
 }
 

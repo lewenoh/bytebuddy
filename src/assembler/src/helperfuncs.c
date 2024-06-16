@@ -90,8 +90,11 @@ bool not_label_int(char * buffer) {
             strcmp(buffer, "eor")==0 ||
             strcmp(buffer, "orr")==0 ||
             strcmp(buffer, "eon")==0 ||
-            strcmp(buffer, "orn")==0;
+            strcmp(buffer, "orn")==0 ||
+            strcmp(buffer, "mul") == 0 ||
+            strcmp(buffer, "mneg") == 0;
 }
+
 uint32_t readimm(char imm[30]){
 	//takes a register and returns the hex value encoding for it
 	if (imm[0] == '#'){	
