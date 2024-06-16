@@ -158,10 +158,10 @@ int main(int argc, char **argv) {
 
         instruction_array *ia = create_empty_instructionArr();
         symbol_table *sym = create_empty_table();
-        int num_instr = first_pass(inputFile, ia, sym, lineBuffer);
+        first_pass(inputFile, ia, sym, lineBuffer);
 
-        uint32_t instrs[num_instr];
-        for (int i = 0; i < num_instr; i++) {
+        uint32_t instrs[ia->size];
+        for (int i = 0; i < ia->size; i++) {
             token_arr *tokenArr;
             tokenArr = tokenise(ia->instructions[i], sym);
             //Depending on type do something different.
@@ -179,8 +179,8 @@ int main(int argc, char **argv) {
 
 
         //decode each instruction, and put into instrs
-        int instrWrite = fwrite(instrs, 4, num_instr, outputFile);
-        if (instrWrite < num_instr){
+        int instrWrite = fwrite(instrs, 4, ia->size, outputFile);
+        if (instrWrite < ia->size){
             fclose(outputFile);
             fprintf(stderr, "Error writing to the file.\n");
         }

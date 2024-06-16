@@ -15,7 +15,7 @@
 #include <ctype.h>
 
 
-int first_pass(FILE *inputFile, instruction_array *ia, symbol_table *s, char *lineBuffer) {
+void first_pass(FILE *inputFile, instruction_array *ia, symbol_table *s, char *lineBuffer) {
     // Populates instruction array and symbol table
 
     // LineBuffer contains the entire .s file.
