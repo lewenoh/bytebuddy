@@ -1,0 +1,4 @@
+this will contain an array separated by commas:
+
+int happy, int age, bool poop, bool sick, time_t time_last_played, time_t tamagotchi_birthday
+                                            stored as DD/MM/YYYY/hh/mm/ss

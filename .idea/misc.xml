@@ -3,4 +3,14 @@
   <component name="CMakePythonSetting">
     <option name="pythonIntegrationState" value="YES" />
   </component>
+  <component name="CidrRootsConfiguration">
+    <sourceRoots>
+      <file path="$PROJECT_DIR$/extension/tamagotchi" />
+      <file path="$PROJECT_DIR$/extension/tamagotchi/include" />
+      <file path="$PROJECT_DIR$/extension/tamagotchi/src" />
+    </sourceRoots>
+  </component>
+  <component name="MakefileWorkspace">
+    <contentRoot DIR="$PROJECT_DIR$" />
+  </component>
 </project>
