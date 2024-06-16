@@ -3,18 +3,20 @@
 #include <pthread.h> // this enables the tamagotchi idle animation
 #include <unistd.h>
 #include <string.h>
+#include <time.h>
 #include "../include/display_tamagotchi.h"
 #include "../include/welcome_screen.h"
 #include "../include/food_opt.h"
 #include "../include/select_menu.h"
 #include "../include/stats_def.h"
+#include "../include/change_stats.h"
 
 volatile int running = 1; // Define the shared variable
+volatile bool sick_today = FALSE; // So that tama does not get sick more than once per day
 
 int main(void) {
-
     time_t boot_time = time(NULL); // just a placeholder for the last two fields
-    struct stats s = { 0, 0, 0, FALSE, TRUE, boot_time, boot_time};
+    struct stats s = { 5, 5, 0, FALSE, FALSE, boot_time, boot_time};
 
     // load_stats(&s)
 
@@ -24,11 +26,37 @@ int main(void) {
     curs_set(FALSE); // disables use of cursor
     nodelay(stdscr, TRUE);
 
+    // keeping track of time to change stats - snapshot of current time
+    time_t previous_time = time(NULL);
+    struct tm previous_tm = *localtime(&previous_time);
+
+
     while(running){
         pthread_t tama_thread;
         pthread_create(&tama_thread, NULL, display_tamagotchi, NULL);
         pthread_join(tama_thread, NULL);
         //display_tamagotchi();
+
+        ThreadArgs args = {&s, previous_tm};
+
+        pthread_t change_stats_thread;
+        pthread_create(&change_stats_thread, NULL, change_stats, &args);
+        pthread_join(change_stats_thread, NULL);
+        previous_tm = *localtime(&previous_time);
+/*
+        // update snapshot of current time
+        current_time = time(NULL);
+        current_tm = localtime(&current_time);
+
+        mvprintw(2, 2, "second: %d", current_tm->tm_sec);
+        mvprintw(3, 3, "happy %d", s.happy);
+
+        // later change to minute
+        if(initial_second != current_tm->tm_sec) {
+            change_stats(&s, initial_minute, initial_second);
+            initial_second = current_tm->tm_sec; // keeps track of when last changed
+
+        }*/
 
         int opt = getch();
         select_menu(&s, opt);
