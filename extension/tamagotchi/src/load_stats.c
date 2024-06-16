@@ -5,9 +5,12 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include <math.h>
 #include "../include/stats_def.h"
 #include "../include/load_stats.h"
 #define BUFFER_CAPACITY 100
+#define AGING_FACTOR 10
+#define DAYS_IN_A_YEAR 365
 
 void load_stats(struct stats *s){
     // this function will edit the stats based on the txt savefile
@@ -39,30 +42,59 @@ void load_stats(struct stats *s){
 
     int currIndex = 0;
     char *currStat = strtok(charBuffer, ",");
+    struct tm last_played;
+    struct tm bday;
+    int prevAge;
     while (currStat != NULL) {
         switch (currIndex) {
             case 0:
-                s->happy = atoi(currStat);
+                s->full = atoi(currStat);
                 break;
             case 1:
-                // TODO calculate age by age = number of days from birth until now
-                // TODO use a aging factor to vary rate of aging
+                s->happy = atoi(currStat);
                 break;
             case 2:
+                prevAge = atoi(currStat);
+                break;
+            case 3:
                 if (strcmp(currStat,"TRUE")) {s->poop = true;}
                 else {s->poop = false;}
                 break;
-            case 3:
+            case 4:
                 if (strcmp(currStat,"TRUE")) {s->sick = true;}
                 else {s->sick = false;}
                 break;
-            case 4:
-                // TODO figure out how to convert string to tm
-                // struct tm time = mktime(s->time_last_played);
             case 5:
+                memset(&last_played, 0, sizeof(struct tm)); // initialise fields of bday to zero
+                // Example format: "YYYY-MM-DD HH:MM:SS"
+                if (sscanf(currStat, "%d-%d-%d %d:%d:%d",
+                    &last_played.tm_year, &last_played.tm_mon, &last_played.tm_mday,
+                    &last_played.tm_hour, &last_played.tm_min, &last_played.tm_sec) != 6) {
+                    fprintf(stderr, "Failed to parse time string: %s\n", currStat);
+                    exit(1);
+                }
 
+                s->time_last_played = mktime(&last_played);
+                break;
+            case 6:
+                memset(&bday, 0, sizeof(struct tm)); // initialise fields of bday to zero
+                // Example format: "YYYY-MM-DD HH:MM:SS"
+                if (sscanf(currStat, "%d-%d-%d %d:%d:%d",
+                       &bday.tm_year, &bday.tm_mon, &bday.tm_mday,
+                       &bday.tm_hour, &bday.tm_min, &bday.tm_sec) != 6) {
+                    fprintf(stderr, "Failed to parse time string: %s\n", currStat);
+                    exit(1);
+                }
+
+                s->tamagotchi_birthday = mktime(&bday);
+                break;
         }
         currIndex++;
         currStat = strtok(NULL, ",");
-    // calculate age by age = number of days from birth until now
+    }
+    // calculate age by age = number of days from birth until now * aging factor
+    time_t currTime = time(NULL);
+    int age = (int) (difftime(currTime, s->tamagotchi_birthday) * AGING_FACTOR / DAYS_IN_A_YEAR);
+    s->age = age;
+
 }
