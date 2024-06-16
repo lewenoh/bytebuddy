@@ -1,4 +1,1 @@
-this will contain an array separated by commas:
-
-int happy, int age, bool poop, bool sick, time_t time_last_played, time_t tamagotchi_birthday
-                                            stored as DD/MM/YYYY/hh/mm/ss
+1,2,5,FALSE,TRUE,124-4-23 12:23:5,124-5-14 23:0:0,
