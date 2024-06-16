@@ -70,7 +70,6 @@ void first_pass(FILE *inputFile, instruction_array *ia, symbol_table *s, char *l
 
         free(buffer);
         instr_count ++;
-        free(curr_instruction);
         line = strtok(NULL, "\n"); // get the next line
     }
     if (ferror(inputFile)) {
