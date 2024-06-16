@@ -25,7 +25,7 @@ uint32_t sdt_encoder(uint32_t address, char instruction[6][30]){
 	}
 	hexi = hexi + getreg(instruction[1]);
 	
-	if (instruction[2][0] == '#'){
+	if ((instruction[2][0] != 'w') || (instruction[2][0] != 'x')){
 		//load literal
 		hexi = hexi + LLBASE;
 		hexi = hexi + (((readimm(instruction[2]) - address) / 4) << 5); //simm19
