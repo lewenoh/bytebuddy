@@ -15,7 +15,7 @@
 #include <ctype.h>
 
 
-void first_pass(FILE *inputFile, instruction_array *ia, symbol_table *s, char *lineBuffer) {
+int first_pass(FILE *inputFile, instruction_array *ia, symbol_table *s, char *lineBuffer) {
     // Populates instruction array and symbol table
 
     // LineBuffer contains the entire .s file.
@@ -70,6 +70,7 @@ void first_pass(FILE *inputFile, instruction_array *ia, symbol_table *s, char *l
 
         free(buffer);
         instr_count ++;
+        free(curr_instruction);
         line = strtok(NULL, "\n"); // get the next line
     }
     if (ferror(inputFile)) {

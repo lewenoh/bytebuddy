@@ -8,6 +8,6 @@
 #include "instruction_arr.h"
 #include "symbol_table.h"
 
-void first_pass(FILE *inputFile, instruction_array *ia, symbol_table *s, char *lineBuffer);
+int first_pass(FILE *inputFile, instruction_array *ia, symbol_table *s, char *lineBuffer);
 
 #endif //ARMV8_51_PASS_ONE_H
