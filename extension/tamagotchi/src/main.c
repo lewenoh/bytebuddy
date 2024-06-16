@@ -8,21 +8,24 @@
 #include "../include/food_opt.h"
 #include "../include/select_menu.h"
 #include "../include/stats_def.h"
+#include "../include/load_stats.h"
 
 volatile int running = 1; // Define the shared variable
 
 int main(void) {
 
     time_t boot_time = time(NULL); // just a placeholder for the last two fields
-    struct stats s = { 0, 0, 0, FALSE, TRUE, boot_time, boot_time};
+    struct stats s = { 0, 0, 0, false, true, boot_time, boot_time};
 
-    // load_stats(&s)
+    //load_stats(&s);
+
+
 
     initscr();
     cbreak();
     noecho();
-    curs_set(FALSE); // disables use of cursor
-    nodelay(stdscr, TRUE);
+    curs_set(false); // disables use of cursor
+    nodelay(stdscr, true);
 
     while(running){
         pthread_t tama_thread;
