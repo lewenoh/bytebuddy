@@ -21,12 +21,12 @@
 #define SUB 0x40000000  //opc = 10
 #define SUBS 0x60000000 //opc = 11
 #define BIC 0x200000 //opc = 00, N = 1
-#define ORR 0x400000 //01, 0
-#define ORN 0x600000 //01, 1
-#define EOR 0x800000 //10, 0
-#define EON 0xa00000 //10, 1
-#define ANDS 0xc00000 //11, 0
-#define BICS 0xe00000 //11, 1
+#define ORR 0x20000000 //01, 0
+#define ORN 0x20200000 //01, 1
+#define EOR 0x40000000 //10, 0
+#define EON 0x40200000 //10, 1
+#define ANDS 0x60000000 //11, 0
+#define BICS 0x60200000 //11, 1
 
 static bool codeingroup(char opcode[30], char group[12][5], int size){
 	//returns true if the opcode is in the given group
@@ -128,6 +128,7 @@ uint32_t dpi_encoder(char instruction[6][30]){
 			hexi = hexi + ORN;
 		}
 		else if (strcmp(opcode, "eor") == 0) {
+			printf("EOR\n");
 			hexi = hexi + EOR;
 		}
 		else if (strcmp(opcode, "eon") == 0) {

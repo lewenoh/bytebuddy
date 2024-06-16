@@ -14,6 +14,7 @@
 #define PREBASE 0xc00 //base for pre index
 #define POSTBASE 0x400 //base for post index
 #define SIMMMASK 0x1ff //mask for simm9 
+#define SIMM19MASK 0x7ffff //mask for simm19
 
 uint32_t sdt_encoder(uint32_t address, char instruction[6][30]){
 	//opcode = i[0], rt = i[1], xn/literal = i[2], type = i[5]
@@ -28,7 +29,7 @@ uint32_t sdt_encoder(uint32_t address, char instruction[6][30]){
 	if ((instruction[2][0] != 'w') || (instruction[2][0] != 'x')){
 		//load literal
 		hexi = hexi + LLBASE;
-		hexi = hexi + (((readimm(instruction[2]) - address) / 4) << 5); //simm19
+		hexi = hexi + ((((readimm(instruction[2]) - address) / 4) & SIMM19MASK) << 5); //simm19
 	}
 	else {
 		//sdt
