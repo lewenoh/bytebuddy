@@ -15,6 +15,7 @@
 #define POSTBASE 0x400 //base for post index
 #define SIMMMASK 0x1ff //mask for simm9 
 #define SIMM19MASK 0x7ffff //mask for simm19
+#define IMM12MASK 0xfff //mask for imm12
 
 uint32_t sdt_encoder(uint32_t address, char instruction[6][30]){
 	//opcode = i[0], rt = i[1], xn/literal = i[2], type = i[5]
@@ -26,14 +27,14 @@ uint32_t sdt_encoder(uint32_t address, char instruction[6][30]){
 	}
 	hexi = hexi + getreg(instruction[1]);
 	
-	if ((instruction[2][0] != 'w') || (instruction[2][0] != 'x')){
+	if ((instruction[2][0] != 'w') && (instruction[2][0] != 'x')){
 		//load literal
 		hexi = hexi + LLBASE;
 		hexi = hexi + ((((readimm(instruction[2]) - address) / 4) & SIMM19MASK) << 5); //simm19
 	}
 	else {
 		//sdt
-		//xn = i[2] 
+		//xn = i[2]
 		hexi = hexi + SDTBASE + (getreg(instruction[2]) << 5);
 		if (strcmp(instruction[5], "U")==0){//unsigned offset
 			hexi = hexi + UNSIGNEDU;
@@ -43,7 +44,7 @@ uint32_t sdt_encoder(uint32_t address, char instruction[6][30]){
 				if (regsize>0){
 					imm12 = imm12/2;	
 				}
-				hexi = hexi + (imm12 << 10);
+				hexi = hexi + ((imm12 & IMM12MASK) << 10);
 			}
 		
 		}

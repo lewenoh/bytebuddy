@@ -115,5 +115,8 @@ uint32_t readimm(char imm[30]){
 
 uint32_t getreg(char reg[30]){
 	memmove (reg, reg+1, 29);
+	if (strcmp(reg, "zr")==0){
+		return 31;
+	}
 	return atoi(reg);
 }

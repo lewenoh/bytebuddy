@@ -22,7 +22,7 @@ uint32_t branch_encoder(uint32_t address, char instruction[6][30]){
 	//opcode =i[0], literal/xn = i[1]
 	if (strcmp(instruction[0], "b")==0){
 		//uncond branch to literal
-//		printf("literal: %s\n", instruction[1]);
+		printf("address: %x, literal: %s\n", address, instruction[1]);
 		hexi = UNCONDBASE + (((readimm(instruction[1])-address) /4) & SIMM26MASK);
 	}
 	else if (strcmp(instruction[0], "br")==0){
