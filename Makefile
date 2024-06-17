@@ -8,4 +8,5 @@ all:
 	+$(MAKE) -C $(SRC_DIR)/emulator
 
 clean:
-	/bin/rm -f $(BUILD) *.o core
+	/bin/rm -f $(BUILD)/(SRC_DIR)/emulator/src/ *.o core
+	/bin/rm -f $(BUILD)/(SRC_DIR)/assembler/src/ *.o core
