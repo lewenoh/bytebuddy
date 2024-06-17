@@ -39,7 +39,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "tamagotchi::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-tamagotchi-Debug-2cf58ed3149048e0e6b0.json",
+					"jsonFile" : "target-tamagotchi-Debug-248bd721baeba6494a58.json",
 					"name" : "tamagotchi",
 					"projectIndex" : 0
 				}
@@ -49,12 +49,12 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/Users/xiting/tamagotchi/cmake-build-debug",
-		"source" : "/Users/xiting/tamagotchi"
+		"build" : "/homes/xth23/armv8_51/extension/tamagotchi/cmake-build-debug",
+		"source" : "/homes/xth23/armv8_51/extension/tamagotchi"
 	},
 	"version" : 
 	{
 		"major" : 2,
-		"minor" : 6
+		"minor" : 7
 	}
 }
