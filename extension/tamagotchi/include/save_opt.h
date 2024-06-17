@@ -5,6 +5,8 @@
 #ifndef EXTENSION_SAVE_OPT_H
 #define EXTENSION_SAVE_OPT_H
 
-void save_opt();
+#include <stdbool.h>
+
+bool save_opt(int row, int col);
 
 #endif //EXTENSION_SAVE_OPT_H

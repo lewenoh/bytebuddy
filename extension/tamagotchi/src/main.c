@@ -32,12 +32,13 @@ int main(void) {
 
 
     while(running){
+        ThreadArgs args = {&s, previous_tm};
+
         pthread_t tama_thread;
-        pthread_create(&tama_thread, NULL, display_tamagotchi, NULL);
+        pthread_create(&tama_thread, NULL, display_tamagotchi, &args);
         pthread_join(tama_thread, NULL);
         //display_tamagotchi();
 
-        ThreadArgs args = {&s, previous_tm};
 
         pthread_t change_stats_thread;
         pthread_create(&change_stats_thread, NULL, change_stats, &args);

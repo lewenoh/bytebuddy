@@ -14,7 +14,7 @@ add_executable(tamagotchi src/main.c
         src/load_stats.c
         include/load_stats.h
         src/eat_animation.c
-        include/eat_animation.h
+        animation/eat_animation.h
         src/food_opt.c
         include/food_opt.h
         src/load_stats.c
@@ -40,5 +40,8 @@ add_executable(tamagotchi src/main.c
         include/change_stats.h
         include/character_profile.h
         src/pass_away.c
-        include/pass_away.h)
+        include/pass_away.h
+        animation/tamagotchi_frames.h
+        animation/menu_frames.h
+        animation/status_frames.h)
 target_link_libraries(tamagotchi ncurses)

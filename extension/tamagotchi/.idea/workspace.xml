@@ -24,32 +24,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0a642a61-447b-4515-b874-65952f02a76d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../../.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/cache-v2-967748cac6d0bcb2f42b.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/cmakeFiles-v1-c3421e5260bc1d0376c2.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-78d2cd5d79a49a91c154.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/index-2024-06-13T02-08-23-0905.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/target-tamagotchi-Debug-2cf58ed3149048e0e6b0.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/toolchains-v1-966a071b80f8f873b1a2.json" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/animation/menu_frames.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/animation/status_frames.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/animation/tamagotchi_frames.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TODO" beforeDir="false" afterPath="$PROJECT_DIR$/TODO" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-1f14a536c54dfaecfb96.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/index-2024-06-16T21-49-45-0557.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/target-tamagotchi-Debug-248bd721baeba6494a58.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.28.1/CMakeCCompiler.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.28.1/CMakeDetermineCompilerABI_C.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.28.1/CMakeSystem.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.28.1/CompilerIdC/CMakeCCompilerId.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeConfigureLog.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeConfigureLog.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-environment.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-environment.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/rules.ninja" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/rules.ninja" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/build.ninja" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/build.ninja" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/tamagotchi" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/tamagotchi" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/tamagotchi" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/eat_animation.h" beforeDir="false" afterPath="$PROJECT_DIR$/animation/eat_animation.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/save_opt.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/save_opt.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/change_stats.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/change_stats.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../tamagotchi2/.idea/tamagotchi.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/display_tamagotchi.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/display_tamagotchi.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/eat_animation.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/eat_animation.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/save_opt.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/save_opt.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/select_menu.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/select_menu.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,7 +80,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
-    "git-widget-placeholder": "tama__options",
+    "git-widget-placeholder": "tama__opts",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/homes/xth23/armv8_51/extension/tamagotchi/include/change_stats.h",
     "node.js.detected.package.eslint": "true",
@@ -108,7 +102,7 @@
       <window_info id="Pull Requests" show_stripe_button="false" />
       <window_info id="Learn" show_stripe_button="false" />
       <window_info id="DFA" show_stripe_button="false" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14637002" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17603435" />
       <window_info id="Commit" order="1" weight="0.25" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.21909595" />
       <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
@@ -125,10 +119,10 @@
       <window_info anchor="bottom" id="Version Control" order="0" />
       <window_info anchor="bottom" id="Problems" order="1" />
       <window_info anchor="bottom" id="Problems View" order="2" weight="0.3297143" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="3" visible="true" weight="0.33771428" />
+      <window_info anchor="bottom" id="Terminal" order="3" weight="0.33771428" />
       <window_info anchor="bottom" id="Services" order="4" weight="0.3297143" />
       <window_info anchor="bottom" id="CMake" order="5" weight="0.28057143" />
-      <window_info anchor="bottom" id="Messages" order="6" weight="0.28057143" />
+      <window_info active="true" anchor="bottom" id="Messages" order="6" visible="true" weight="0.33771428" />
       <window_info anchor="right" id="Endpoints" show_stripe_button="false" />
       <window_info anchor="right" id="make" show_stripe_button="false" side_tool="true" />
       <window_info anchor="right" id="Coverage" show_stripe_button="false" side_tool="true" />
@@ -146,6 +140,7 @@
       <recent name="$PROJECT_DIR$" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/animation" />
       <recent name="$PROJECT_DIR$/include" />
     </key>
   </component>
@@ -172,7 +167,7 @@
       <workItem from="1718303856239" duration="1994000" />
       <workItem from="1718378832340" duration="84000" />
       <workItem from="1718400478567" duration="31000" />
-      <workItem from="1718459681576" duration="27013000" />
+      <workItem from="1718459681576" duration="38685000" />
     </task>
     <servers />
   </component>

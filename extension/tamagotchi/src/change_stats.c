@@ -6,6 +6,7 @@
 #include "../include/change_stats.h"
 #include "../include/character_profile.h"
 #include "../include/pass_away.h"
+#define SEC_PER_DAY 86400
 
 // can delete
 #include <ncurses.h>
@@ -40,22 +41,23 @@ void *change_stats(void *arg){
     }
 
     time_t time_since_last_played = difftime(current_time, s->time_last_played);
-    if(!sick_today & (time_since_last_played > default_profile.sick_frequency)) {
+    if(!sick_today & (time_since_last_played/ SEC_PER_DAY > default_profile.sick_frequency)) {
         s->sick = TRUE;
         sick_today = TRUE;
     }
 
     if(s->age > default_profile.lifespan) {
-        pass_away();
+        // pass_away();
     }
 
     // for testing purposes
-    mvprintw(1, 2, "min: %d", current_tm->tm_min);
-    mvprintw(2, 2, "second: %d", current_tm->tm_sec);
+    mvprintw(0, 2, "min: %d", current_tm->tm_min);
+    mvprintw(1, 2, "second: %d", current_tm->tm_sec);
     mvprintw(2, 2, "hour: %d", current_tm->tm_hour);
     mvprintw(3, 2, "happy %d", s->happy);
     mvprintw(4, 2, "full %d", s->full);
     mvprintw(5, 2, "poop %d", s->poop);
+    mvprintw(6, 2, "sick %d", s->sick);
 }
 
 // maybe make this a thread?
