@@ -49,6 +49,7 @@ void *change_stats(void *arg){
         pass_away();
     }
 
+    // for testing purposes
     mvprintw(1, 2, "min: %d", current_tm->tm_min);
     mvprintw(2, 2, "second: %d", current_tm->tm_sec);
     mvprintw(2, 2, "hour: %d", current_tm->tm_hour);
