@@ -22,7 +22,12 @@ void save_stats(struct stats *s) {
     char tempAgeBuffer[BUFFER_CAPACITY];
     char tempHappyBuffer[BUFFER_CAPACITY];
     char tempFullBuffer[BUFFER_CAPACITY];
-    time_t lastPlayed;
+    char tempLPBuffer[BUFFER_CAPACITY];
+    char tempBdayBuffer[BUFFER_CAPACITY];
+    struct tm *lastPlayed;
+    struct tm *birthday;
+
+    memset(charBuffer, 0, sizeof(charBuffer)); // clearing buffer before use
 
     int currIndex = 0;
     while (currIndex < 7) {
@@ -36,8 +41,8 @@ void save_stats(struct stats *s) {
                 strcat(charBuffer, tempHappyBuffer);
             break;
             case 2:
-                sprintf(tempAgeBuffer, "%d", s->age);
-                strcat(charBuffer, tempAgeBuffer);
+                sprintf(tempAgeBuffer, "%d", s->age); // age doesn't have to be saved correctly as it is
+                strcat(charBuffer, tempAgeBuffer);    // recalculated whenever load_stats is called.
             break;
             case 3:
                 if (s->poop) {strcat(charBuffer, "TRUE");}
@@ -48,12 +53,20 @@ void save_stats(struct stats *s) {
                 else {strcat(charBuffer, "FALSE");}
             break;
             case 5:
-                lastPlayed = time(NULL);
-                strcat(charBuffer, ctime(&lastPlayed));
+                time_t currTime = time(NULL);
+                lastPlayed = localtime(&currTime);
+                lastPlayed->tm_year = lastPlayed->tm_year - 1900; // to ensure compatability with load_stats.
+                lastPlayed->tm_mon = lastPlayed->tm_mon - 1; // to ensure compatability with load_stats.
+                strftime(tempLPBuffer, sizeof(charBuffer), "%Y-%m-%d %H:%M:%S", lastPlayed);
+                strcat(charBuffer, tempLPBuffer);
             break;
             case 6:
-                strcat(charBuffer, ctime(&s->tamagotchi_birthday));
-            break;
+                birthday = localtime(&s->tamagotchi_birthday);
+                birthday->tm_year = birthday->tm_year - 1900; // to ensure compatability with load_stats.
+                birthday->tm_mon = birthday->tm_mon - 1; // to ensure compatability with load_stats.
+                strftime(tempBdayBuffer, sizeof(charBuffer), "%Y-%m-%d %H:%M:%S", birthday);
+                strcat(charBuffer, tempBdayBuffer);
+			break;
         }
         currIndex++;
         strcat(charBuffer, ",");
