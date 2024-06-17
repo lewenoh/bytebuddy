@@ -28,7 +28,7 @@
 #define ANDS 0x60000000 //11, 0
 #define BICS 0x60200000 //11, 1
 
-static bool codeingroup(char opcode[30], char group[12][5], int size){
+static bool codeingroup(char opcode[30], char (*group)[5], int size){
 	//returns true if the opcode is in the given group
 	for (int x = 0;x < size;x++){
 		if (strcmp(opcode, group[x]) == 0){
@@ -57,7 +57,7 @@ uint32_t dpi_encoder(char instruction[6][30]){
 	char oneop[9][5] = {"mov", "mul", "mneg", "neg", "negs", "mvn", "movn", "movk", "movz"}; 
 	char wmoves[3][5] = {"movn", "movk", "movz"};
 	char nodest[3][5] = {"cmp", "cmn", "tst"};
-	char alias[5][30];
+	char alias[6][30];
 	if (codeingroup(opcode, mul, 2)){
 		//multiply instruction
 		//rd = i[1], rn = i[2], rm = i[3], ra = i[4]
@@ -128,7 +128,6 @@ uint32_t dpi_encoder(char instruction[6][30]){
 			hexi = hexi + ORN;
 		}
 		else if (strcmp(opcode, "eor") == 0) {
-			printf("EOR\n");
 			hexi = hexi + EOR;
 		}
 		else if (strcmp(opcode, "eon") == 0) {

@@ -166,12 +166,12 @@ int main(int argc, char **argv) {
             tokenArr = tokenise(ia->instructions[i], sym);
             //Depending on type do something different.
             if (is_dpi((*tokenArr)[0])) {
-                instrs[i] = dpi_encoder(tokenArr);
+                instrs[i] = dpi_encoder(*tokenArr);
                 //tokenised instruction is the char instruction[6][30]
             } else if (is_branch((*tokenArr)[0])) {
-                instrs[i] = branch_encoder((i*4), tokenArr);
+                instrs[i] = branch_encoder((i*4), *tokenArr);
             } else if (is_sdt((*tokenArr)[0])) {
-                instrs[i] = sdt_encoder((i*4), tokenArr);
+                instrs[i] = sdt_encoder((i*4), *tokenArr);
             } else if (is_special((*tokenArr)[0])) {
 		instrs[i] = readimm((*tokenArr)[1]);
             }
