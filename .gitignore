@@ -4,6 +4,7 @@
 *.vscode
 
 .idea
+.xml
 #ignore temp files
 *~
 

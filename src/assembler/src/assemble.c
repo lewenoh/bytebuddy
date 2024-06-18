@@ -175,6 +175,7 @@ int main(int argc, char **argv) {
             } else if (is_special((*tokenArr)[0])) {
 		instrs[i] = readimm((*tokenArr)[1]);
             }
+	    free_token_arr(tokenArr);
         }
 
 
@@ -186,6 +187,7 @@ int main(int argc, char **argv) {
         }
         fclose(outputFile);
         free_instruction_arr(ia);
+	free_symbol_table(sym);
         return EXIT_SUCCESS;
     }
 

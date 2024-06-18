@@ -18,4 +18,5 @@ bool process_args(int num_args, instruction *pc, int *index, char delim,
                   instruction raw_instr, token_arr *tokenArr, int arg_index);
 void process_branch_args(instruction *pc, int *index, instruction raw_instr, token_arr *tokenArr,
                          symbol_table symbolTable);
+void free_token_arr(token_arr *t);
 #endif //ARMV8_51_TOKENISE_H

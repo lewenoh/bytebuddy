@@ -26,6 +26,10 @@ token_arr *initialise_token_arr() {
     return tokenised;
 }
 
+void free_token_arr(token_arr *t) {
+	free(t);
+}
+
 void skip_space(instruction *p_instr, int *index) {
     // Makes i and c equal to the first non-delimiter character.
     while (isspace(**p_instr) || **p_instr==',') {

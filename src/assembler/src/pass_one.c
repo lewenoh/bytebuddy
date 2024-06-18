@@ -64,6 +64,7 @@ void first_pass(FILE *inputFile, instruction_array *ia, symbol_table *s, char *l
             strcat(address, address_num);
             label_entry *labelEntry = create_entry(buffer, address);
             add_entry(s, labelEntry);
+	    free(curr_instruction);
         }
 
         free(buffer);
