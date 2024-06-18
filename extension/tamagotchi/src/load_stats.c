@@ -6,8 +6,8 @@
 #include <string.h>
 #include <time.h>
 #include <math.h>
-#include "../include/stats_def.h"
-#include "../include/load_stats.h"
+#include "stats_def.h"
+#include "load_stats.h"
 #define BUFFER_CAPACITY 100
 #define AGING_FACTOR 10
 #define SECS_IN_A_DAY 86400
@@ -15,7 +15,7 @@
 extern void load_stats(struct stats *s) {
     // this function will edit the stats based on the txt savefile
     char charBuffer[BUFFER_CAPACITY];
-    FILE *saveFile = fopen("C:\\Users\\lewen\\CLionProjects\\load_save_test\\savefile.txt", "r");
+    FILE *saveFile = fopen("savefile.txt", "r");
 
     if (saveFile == NULL || ferror(saveFile)) {
         fprintf(stderr, "Error opening save file.\n");
@@ -71,6 +71,7 @@ extern void load_stats(struct stats *s) {
                     fprintf(stderr, "Failed to parse time string: %s\n", currStat);
                     exit(1);
                 }
+                last_played.tm_hour = last_played.tm_hour - 1; // accounting for DST
 
                 s->time_last_played = mktime(&last_played);
                 break;
@@ -83,7 +84,10 @@ extern void load_stats(struct stats *s) {
                     fprintf(stderr, "Failed to parse time string: %s\n", currStat);
                     exit(1);
                 }
+                bday.tm_hour = bday.tm_hour - 1; // accounting for DST
+
                 s->tamagotchi_birthday = mktime(&bday);
+
                 break;
         }
         currIndex++;
@@ -92,6 +96,7 @@ extern void load_stats(struct stats *s) {
     // calculate age by age = number of days from birth until now * aging factor
     time_t currTime = time(NULL);
     int age = (int) (difftime(currTime, s->tamagotchi_birthday) * AGING_FACTOR / SECS_IN_A_DAY);
+    // tamagotchi will age AGING_FACTOR years every day.
     s->age = age;
 
 	fclose(saveFile);

@@ -68,6 +68,8 @@ int main(void) {
 
     // pthread_join(select_menu_thread, NULL);
 
+    //save_stats(&s);
+
 
     getch(); // to close the program with any key
     endwin();
