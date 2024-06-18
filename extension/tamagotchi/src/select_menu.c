@@ -18,23 +18,6 @@
 
 extern volatile int running;
 
-/*const char* menu[] = {
-        "f: food        p: play  ",
-        "m: med         t: toilet",
-        "________________________",
-        "s: stats   q: quit & save"
-};
-
-void print_menu(int row, int col) {
-    int menu_rows = sizeof(menu) / sizeof(menu[0]);
-    int menu_cols = strlen(menu[0]);
-
-    for (int i = 0; i < menu_rows; i++) {
-        mvprintw((row * 0.75) + i, (col / 2 - menu_cols / 2), "%s", menu[i]);
-    }
-    refresh();
-}*/
-
 void select_menu(struct stats *s, int opt) {
     int row, col;
     getmaxyx(stdscr, row, col);
@@ -64,14 +47,12 @@ void select_menu(struct stats *s, int opt) {
                 refresh();
                 break;
             case 's':
-                mvprintw(row - 2, 5, "%s", "statistics option");
+                stats_opt(s, row, col);
                 refresh();
                 break;
             case 'q':
-                mvprintw(row - 2, 5, "%s", "Do you want to save? (y/n)");
-                refresh();
-                int dummy_opt = getch();
-                if (dummy_opt == 'y') {
+                bool choice = save_opt(row, col);
+                if (choice) {
                     mvprintw(row - 2, 5, "%s", "save stats - exit");
                     refresh();
                     sleep(1); // Simulate saving

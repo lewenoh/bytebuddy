@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="tamagotchi"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/homes/xth23/armv8_51/extension/tamagotchi/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j16 -f &quot;/homes/xth23/armv8_51/extension/tamagotchi/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/gmake -j16 -f &quot;/homes/xth23/armv8_51/extension/tamagotchi/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j16 -f &quot;/homes/xth23/armv8_51/extension/tamagotchi/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j16 -f &quot;/homes/xth23/armv8_51/extension/tamagotchi/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="tamagotchi">
+				<Option output="/homes/xth23/armv8_51/extension/tamagotchi/cmake-build-debug/tamagotchi" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/homes/xth23/armv8_51/extension/tamagotchi/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/homes/xth23/armv8_51/extension/tamagotchi/./opt/homebrew/Cellar/ncurses/6.5/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j16 -f &quot;/homes/xth23/armv8_51/extension/tamagotchi/cmake-build-debug/Makefile&quot;  VERBOSE=1 tamagotchi"/>
+					<CompileFile command="/usr/bin/gmake -j16 -f &quot;/homes/xth23/armv8_51/extension/tamagotchi/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j16 -f &quot;/homes/xth23/armv8_51/extension/tamagotchi/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j16 -f &quot;/homes/xth23/armv8_51/extension/tamagotchi/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="tamagotchi/fast">
+				<Option output="/homes/xth23/armv8_51/extension/tamagotchi/cmake-build-debug/tamagotchi" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/homes/xth23/armv8_51/extension/tamagotchi/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/homes/xth23/armv8_51/extension/tamagotchi/./opt/homebrew/Cellar/ncurses/6.5/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j16 -f &quot;/homes/xth23/armv8_51/extension/tamagotchi/cmake-build-debug/Makefile&quot;  VERBOSE=1 tamagotchi/fast"/>
+					<CompileFile command="/usr/bin/gmake -j16 -f &quot;/homes/xth23/armv8_51/extension/tamagotchi/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j16 -f &quot;/homes/xth23/armv8_51/extension/tamagotchi/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j16 -f &quot;/homes/xth23/armv8_51/extension/tamagotchi/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/homes/xth23/armv8_51/extension/tamagotchi/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j16 -f &quot;/homes/xth23/armv8_51/extension/tamagotchi/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/gmake -j16 -f &quot;/homes/xth23/armv8_51/extension/tamagotchi/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j16 -f &quot;/homes/xth23/armv8_51/extension/tamagotchi/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j16 -f &quot;/homes/xth23/armv8_51/extension/tamagotchi/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/homes/xth23/armv8_51/extension/tamagotchi/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j16 -f &quot;/homes/xth23/armv8_51/extension/tamagotchi/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/gmake -j16 -f &quot;/homes/xth23/armv8_51/extension/tamagotchi/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j16 -f &quot;/homes/xth23/armv8_51/extension/tamagotchi/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j16 -f &quot;/homes/xth23/armv8_51/extension/tamagotchi/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/homes/xth23/armv8_51/extension/tamagotchi/include/centre_helper.h">
+			<Option target="tamagotchi"/>
+		</Unit>
+		<Unit filename="/homes/xth23/armv8_51/extension/tamagotchi/include/display_tamagotchi.h">
+			<Option target="tamagotchi"/>
+		</Unit>
+		<Unit filename="/homes/xth23/armv8_51/extension/tamagotchi/include/eat_animation.h">
+			<Option target="tamagotchi"/>
+		</Unit>
+		<Unit filename="/homes/xth23/armv8_51/extension/tamagotchi/include/food_opt.h">
+			<Option target="tamagotchi"/>
+		</Unit>
+		<Unit filename="/homes/xth23/armv8_51/extension/tamagotchi/include/load_stats.h">
+			<Option target="tamagotchi"/>
+		</Unit>
+		<Unit filename="/homes/xth23/armv8_51/extension/tamagotchi/include/play_opt.h">
+			<Option target="tamagotchi"/>
+		</Unit>
+		<Unit filename="/homes/xth23/armv8_51/extension/tamagotchi/include/poop_opt.h">
+			<Option target="tamagotchi"/>
+		</Unit>
+		<Unit filename="/homes/xth23/armv8_51/extension/tamagotchi/include/save_opt.h">
+			<Option target="tamagotchi"/>
+		</Unit>
+		<Unit filename="/homes/xth23/armv8_51/extension/tamagotchi/include/save_stats.h">
+			<Option target="tamagotchi"/>
+		</Unit>
+		<Unit filename="/homes/xth23/armv8_51/extension/tamagotchi/include/select_menu.h">
+			<Option target="tamagotchi"/>
+		</Unit>
+		<Unit filename="/homes/xth23/armv8_51/extension/tamagotchi/include/sick_opt.h">
+			<Option target="tamagotchi"/>
+		</Unit>
+		<Unit filename="/homes/xth23/armv8_51/extension/tamagotchi/include/stats_def.h">
+			<Option target="tamagotchi"/>
+		</Unit>
+		<Unit filename="/homes/xth23/armv8_51/extension/tamagotchi/include/stats_opt.h">
+			<Option target="tamagotchi"/>
+		</Unit>
+		<Unit filename="/homes/xth23/armv8_51/extension/tamagotchi/include/welcome_screen.h">
+			<Option target="tamagotchi"/>
+		</Unit>
+		<Unit filename="/homes/xth23/armv8_51/extension/tamagotchi/src/centre_helper.c">
+			<Option target="tamagotchi"/>
+		</Unit>
+		<Unit filename="/homes/xth23/armv8_51/extension/tamagotchi/src/display_tamagotchi.c">
+			<Option target="tamagotchi"/>
+		</Unit>
+		<Unit filename="/homes/xth23/armv8_51/extension/tamagotchi/src/eat_animation.c">
+			<Option target="tamagotchi"/>
+		</Unit>
+		<Unit filename="/homes/xth23/armv8_51/extension/tamagotchi/src/food_opt.c">
+			<Option target="tamagotchi"/>
+		</Unit>
+		<Unit filename="/homes/xth23/armv8_51/extension/tamagotchi/src/home_screen.c">
+			<Option target="tamagotchi"/>
+		</Unit>
+		<Unit filename="/homes/xth23/armv8_51/extension/tamagotchi/src/home_screen.h">
+			<Option target="tamagotchi"/>
+		</Unit>
+		<Unit filename="/homes/xth23/armv8_51/extension/tamagotchi/src/load_stats.c">
+			<Option target="tamagotchi"/>
+		</Unit>
+		<Unit filename="/homes/xth23/armv8_51/extension/tamagotchi/src/main.c">
+			<Option target="tamagotchi"/>
+		</Unit>
+		<Unit filename="/homes/xth23/armv8_51/extension/tamagotchi/src/play_opt.c">
+			<Option target="tamagotchi"/>
+		</Unit>
+		<Unit filename="/homes/xth23/armv8_51/extension/tamagotchi/src/poop_opt.c">
+			<Option target="tamagotchi"/>
+		</Unit>
+		<Unit filename="/homes/xth23/armv8_51/extension/tamagotchi/src/save_opt.c">
+			<Option target="tamagotchi"/>
+		</Unit>
+		<Unit filename="/homes/xth23/armv8_51/extension/tamagotchi/src/save_stats.c">
+			<Option target="tamagotchi"/>
+		</Unit>
+		<Unit filename="/homes/xth23/armv8_51/extension/tamagotchi/src/select_menu.c">
+			<Option target="tamagotchi"/>
+		</Unit>
+		<Unit filename="/homes/xth23/armv8_51/extension/tamagotchi/src/sick_opt.c">
+			<Option target="tamagotchi"/>
+		</Unit>
+		<Unit filename="/homes/xth23/armv8_51/extension/tamagotchi/src/stats_opt.c">
+			<Option target="tamagotchi"/>
+		</Unit>
+		<Unit filename="/homes/xth23/armv8_51/extension/tamagotchi/src/welcome_screen.c">
+			<Option target="tamagotchi"/>
+		</Unit>
+		<Unit filename="/homes/xth23/armv8_51/extension/tamagotchi/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
