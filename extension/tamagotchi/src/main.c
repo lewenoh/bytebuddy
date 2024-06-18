@@ -16,7 +16,7 @@ volatile bool sick_today = FALSE; // So that tama does not get sick more than on
 
 int main(void) {
     time_t boot_time = time(NULL); // just a placeholder for the last two fields
-    struct stats s = { 5, 5, 0, FALSE, FALSE, boot_time, boot_time};
+    struct stats s = { 3, 2, 0, FALSE, FALSE, boot_time, boot_time};
 
     // load_stats(&s)
 

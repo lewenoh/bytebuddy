@@ -6,7 +6,7 @@
 #include <string.h>
 #include <ncurses.h>
 
-const char *confirmation[] = {
+static const char *confirmation[] = {
         "------------------------------",
         " Are you sure you want to go? ",
         "                              ",

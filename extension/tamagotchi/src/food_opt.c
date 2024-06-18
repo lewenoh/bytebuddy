@@ -9,7 +9,7 @@
 #include <ncurses.h>
 #include <unistd.h>
 
-int select_food_menu(int row, int col) {
+static int select_food_menu(int row, int col) {
      char *options[] = {
             "        1 - Burger        ",
             "        2 - Candy         ",

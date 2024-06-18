@@ -10,7 +10,7 @@
 
 extern volatile int running;
 
-void print_menu(int row, int col) {
+static void print_menu(int row, int col) {
     int menu_rows = sizeof(menu) / sizeof(menu[0]);
     int menu_cols = strlen(menu[0]);
 
@@ -20,21 +20,21 @@ void print_menu(int row, int col) {
     refresh();
 }
 
-void first_state(int row, int col, int tama_rows, int tama_cols) {
+static void first_state(int row, int col, int tama_rows, int tama_cols) {
     for (int i = 0; i < tama_rows; i++) {
         mvprintw(row / 2 - tama_rows / 2 + i, col / 2 - tama_cols / 2, "%s", tamagotchi[0][i]);
     }
     refresh();
 }
 
-void second_state(int row, int col, int tama_rows, int tama_cols) {
+static void second_state(int row, int col, int tama_rows, int tama_cols) {
     for (int i = 0; i < tama_rows; i++) {
         mvprintw(row / 2 - tama_rows / 2 + i, col / 2 - tama_cols / 2, "%s", tamagotchi[1][i]);
     }
     refresh();
 }
 
-void normal_state(int row, int col, int tama_rows, int tama_cols) {
+static void normal_state(int row, int col, int tama_rows, int tama_cols) {
     first_state(row, col, tama_rows, tama_cols);
     refresh();
     usleep(500000); // 500 milliseconds delay between frames
@@ -46,7 +46,7 @@ void normal_state(int row, int col, int tama_rows, int tama_cols) {
 
 }
 
-void print_poop(int row, int col, int tama_rows, int tama_cols) {
+static void print_poop(int row, int col, int tama_rows, int tama_cols) {
     int tama_end_row = (row/2) + tama_rows;
     int tama_end_col = col/2 + tama_cols;
     int poop_rows = sizeof(poop)/sizeof(poop[0]);
@@ -57,7 +57,7 @@ void print_poop(int row, int col, int tama_rows, int tama_cols) {
     }
 }
 
-void print_sick(int row, int col, int tama_rows, int tama_cols) {
+static void print_sick(int row, int col, int tama_rows, int tama_cols) {
     int start_row = row/2 - tama_rows;
     int start_col = col/2 - tama_cols;
     int cross_rows = sizeof(cross)/sizeof(cross[0]);
@@ -67,7 +67,7 @@ void print_sick(int row, int col, int tama_rows, int tama_cols) {
     refresh();
 }
 
-void clear_frame(int row, int col, int tama_rows, int tama_cols) {
+static void clear_frame(int row, int col, int tama_rows, int tama_cols) {
     int start_row = row / 2 - tama_rows / 2;
     int start_col = col / 2 - tama_cols / 2;
     for (int i = 0; i < tama_rows; i++) {
@@ -76,7 +76,7 @@ void clear_frame(int row, int col, int tama_rows, int tama_cols) {
     refresh();
 }
 
-void poop_animation(int row, int col, int tama_rows, int tama_cols) {
+static void poop_animation(int row, int col, int tama_rows, int tama_cols) {
     first_state(row, col, tama_rows, tama_cols);
     refresh();
     sleep(1);
@@ -103,7 +103,7 @@ void poop_animation(int row, int col, int tama_rows, int tama_cols) {
     refresh();
 }
 
-void sick_state(int row, int col, int tama_rows, int tama_cols) {
+static void sick_state(int row, int col, int tama_rows, int tama_cols) {
     print_sick(row, col, tama_rows, tama_cols);
     for (int i = 0; i < tama_rows; i++) {
         mvprintw(row / 2 - tama_rows / 2 + i, col / 2 - tama_cols / 2, "%s", tamagotchi[2][i]);

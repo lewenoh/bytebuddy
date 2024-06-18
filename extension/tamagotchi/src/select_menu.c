@@ -47,7 +47,7 @@ void select_menu(struct stats *s, int opt) {
                 refresh();
                 break;
             case 's':
-                mvprintw(row - 2, 5, "%s", "statistics option");
+                stats_opt(s, row, col);
                 refresh();
                 break;
             case 'q':
