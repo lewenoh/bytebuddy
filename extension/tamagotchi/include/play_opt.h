@@ -1,10 +1,6 @@
-//
-// Created by xth23 on 14/06/24.
-//
+#ifndef PLAY_OPT_H
+#define PLAY_OPT_H
 
-#ifndef EXTENSION_PLAY_OPT_H
-#define EXTENSION_PLAY_OPT_H
+void play_opt(struct stats *s, int row, int col);
 
-void play_opt();
-
-#endif //EXTENSION_PLAY_OPT_H
+#endif 
