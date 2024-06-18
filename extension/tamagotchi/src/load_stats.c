@@ -44,7 +44,7 @@ extern void load_stats(struct stats *s) {
     char *currStat = strtok(charBuffer, ",");
     struct tm last_played;
     struct tm bday;
-    int prevAge;
+
     while (currIndex < 7) {
         printf("index: %d, currstat: %s\n", currIndex, currStat);
         switch (currIndex) {
