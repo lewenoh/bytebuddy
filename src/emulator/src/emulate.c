@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <stdio.h>
+#include <custom_tests.h>
 #include "processor_def.h"
 #include "binary_load.h"
 #include "binary_output.h"
@@ -11,14 +12,17 @@
 #include "branch.h"
 #include "decoder.h"
 #define ZEROREG 0x0
-#define HALTINSTRUCTION 2315255808
-#include <custom_tests.h>
+#define HALTINSTRUCTION 0x8a000000
+#define CELL_SIZE 4
+#define BYTE 0xff
+#define BYTE_SIZE 8
+#define BYTES 8
 
 int main(int argc, char **argv) {
 	//run_custom_tests();
 	//populating the processor, p
 	struct processor p = {{0x0}, 0x0, {false, true, false, false}, {0x0}};
-	uint32_t ir = p.memory[p.pc/4];
+	uint32_t ir = p.memory[p.pc/CELL_SIZE];
 
 	//get instruction lines from bin file
 	FILE *inputFile = fopen(argv[1], "rb");
@@ -33,17 +37,16 @@ int main(int argc, char **argv) {
 	fclose(inputFile);
 	
 	unsigned int remainder;
-	uint64_t byte = 0xff;
 	//emulator loop:
 	while (ir != HALTINSTRUCTION){
 	//fetch:
-	p.pc += 7;
-	for (int x = 0; x < 8; x++){
-		remainder = p.pc % 4;
-		ir = (ir << 8) + ((p.memory[p.pc/4] >> (remainder * 8)) & byte);
-		p.pc -= 1;
+	p.pc += BYTES-1;
+	for (int x = 0; x < BYTES; x++){
+		remainder = p.pc % CELL_SIZE;
+		ir = (ir << BYTE_SIZE) + ((p.memory[p.pc/CELL_SIZE] >> (remainder * BYTE_SIZE)) & BYTE);
+		p.pc --;
 	}
-	p.pc += 1;
+	p.pc ++;
 	
 	
 	//decode and execute:
@@ -75,10 +78,10 @@ int main(int argc, char **argv) {
 			fprintf(stderr, "No matching instruction type.\n");
 
 		}
-		p.pc += 4;
+		p.pc += CELL_SIZE;
 
 	}
-	p.pc -= 4;
+	p.pc -= CELL_SIZE;
 	//format output
 
 	FILE *outputFile = stdout;

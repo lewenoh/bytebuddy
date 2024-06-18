@@ -1,8 +1,28 @@
-#include <stdio.h>
 #include <stdint.h>
 #include "dpiImm.h"
 #include "processor_def.h"
 #define checkBits(value, bits, mask) ((value & mask) == bits)
+#define REG_MASK 0x1f
+#define OPERAND_MASK 0x3FFFF
+#define OPERAND_SHIFT 5
+#define OPI_MASK 0x7
+#define OPI_SHIFT 23
+#define OPC_MASK 0x3
+#define OPC_SHIFT 29
+#define SF_SHIFT 31
+#define X_REGSIZE 64
+#define W_REGSIZE 32
+#define X_REGMASK 0xFFFFFFFFFFFFFFFF
+#define W_REGMASK 0xFFFFFFFF
+#define ARITH 0x2
+#define IMM12_MASK 0xfff
+#define IMM12_SHIFT 5
+#define SH_SHIFT 17
+#define WMOVE 0x5
+#define IMM16_MASK 0xFFFF
+#define HW_MASK 0x3
+#define HW_SHIFT 16
+#define HW_MUL 16
 
 void setFlags_arithmetic(uint64_t result, int regsize, struct processor *p) {
 	// set N flag
@@ -13,24 +33,21 @@ void setFlags_arithmetic(uint64_t result, int regsize, struct processor *p) {
 }
 
 void dpiImm( struct processor *p, uint32_t ir ) {
-	uint64_t rd = ir & 0x1f; // bits [4:0]
-	uint64_t operand = (ir >> 5) & 0x3FFFF; // bits [22:5]
-	uint64_t opi = (ir >> 23) & 0x7; // bits [25:23]
-	uint64_t opc = (ir >> 29) & 0x3; // bits [30:29]
-	uint64_t sf = ir >> 31; // bit 31
+	uint64_t rd = ir & REG_MASK; // bits [4:0]
+	uint64_t operand = (ir >> OPERAND_SHIFT) & OPERAND_MASK; // bits [22:5]
+	uint64_t opi = (ir >> OPI_SHIFT) & OPI_MASK; // bits [25:23]
+	uint64_t opc = (ir >> OPC_SHIFT) & OPC_MASK; // bits [30:29]
+	uint64_t sf = ir >> SF_SHIFT; // bit 31
 
-	int regsize = (sf == 1) ? 64 : 32;
-	uint64_t regmask = (sf == 1) ? 0xFFFFFFFFFFFFFFFF : 0xFFFFFFFF;
+	int regsize = (sf == 1) ? X_REGSIZE : W_REGSIZE;
+	uint64_t regmask = (sf == 1) ? X_REGMASK : W_REGMASK;
 	uint64_t result;
 	uint64_t mask;
 
-
-	uint64_t opimask = 0x7;
-
-	if (checkBits(opi, 0x2, opimask)) {
-		uint64_t rn = operand & 0x1f; // bits [5:0] of operand
-                uint64_t imm12 = (operand >> 5) & 0xfff; // bits [16:5] of operand
-                uint64_t sh = (operand >> 17); // bit 17 of operand
+	if (checkBits(opi, ARITH, OPI_MASK)) {
+		uint64_t rn = operand & REG_MASK; // bits [5:0] of operand
+                uint64_t imm12 = (operand >> IMM12_SHIFT) & IMM12_MASK; // bits [16:5] of operand
+                uint64_t sh = (operand >> SH_SHIFT); // bit 17 of operand
 		uint64_t imm_size = 12 * (sh + 1);
 		
 		if (sh == 1) {
@@ -82,23 +99,23 @@ void dpiImm( struct processor *p, uint32_t ir ) {
 		return;
 	}
 
-	if (checkBits(opi, 0x5, opimask)) {
-		uint64_t imm16 = operand & 0xffff;
-		uint64_t hw = (operand >> 16) & 0x3;
-		uint64_t opvalue = imm16 << (hw * 16);
+	if (checkBits(opi, WMOVE, OPI_MASK)) {
+		uint64_t imm16 = operand & IMM16_MASK;
+		uint64_t hw = (operand >> HW_SHIFT) & HW_MASK;
+		uint64_t opvalue = imm16 << (hw * HW_MUL);
 		uint64_t result = 0;
 
 	switch (opc) {
-			case 0x0:
+			case 0x0: //movn
 				result = opvalue & regmask;
 				p->genregs[rd] = (~result) & regmask;
 				break;
-			case 0x2:
+			case 0x2: //movz
 				p->genregs[rd] = opvalue;
 				break;
-			case 0x3:
-				mask = 0xffff;
-				mask = ~(mask<<(hw*16));
+			case 0x3: //movk
+				mask = IMM16_MASK;
+				mask = ~(mask<<(hw*HW_MUL));
 				p->genregs[rd] = (p->genregs[rd] & mask) | opvalue;
 				p->genregs[rd] &= regmask;
 				break;

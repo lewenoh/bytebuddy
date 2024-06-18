@@ -10,8 +10,6 @@ void binary_load_test() {
 
 	uint32_t data[] = {0x12345678, 0xabcdef00, 0xdeadbeef} ;
 
-	// {0x12345678, 0xabcdef00, 0xdeadbeef}
-
     	// Open a binary file for writing
     	FILE *writeFile = fopen("test.bin", "wb");
 

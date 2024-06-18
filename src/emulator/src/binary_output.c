@@ -30,7 +30,7 @@ int binary_output(struct processor *p, FILE *outputFile) {
 
 	for (int i = 0; i < TOTAL_GEN_REGS - 1; i++) {
 		int charsWritten = snprintf(printBuffer, sizeof(printBuffer), "X%02d    = %016lx\n", i, (*p).genregs[i]);
-		if (charsWritten < 0 || charsWritten > 27) { // 27 chars including null terminator and \n
+		if (charsWritten < 0 || charsWritten > REG_CHARS) { // 27 chars including null terminator and \n
 			fprintf(stderr, "Error formatting string for register X%02d\n", i);
 			continue;
 		}
@@ -44,7 +44,7 @@ int binary_output(struct processor *p, FILE *outputFile) {
 	// writing PC value
 
 	int charsWrittenPC = snprintf(printBuffer, sizeof(printBuffer), "PC     = %016lx\n", (*p).pc);
-                if (charsWrittenPC < 0 || charsWrittenPC > 27) { // 27 chars including null terminator and \n
+                if (charsWrittenPC < 0 || charsWrittenPC > REG_CHARS) { // 27 chars including null terminator and \n
                         fprintf(stderr, "Error formatting string for PC\n");
 		}
 
