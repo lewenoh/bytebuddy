@@ -5,6 +5,7 @@
 
 .idea
 .xml
+.sh
 #ignore temp files
 *~
 
