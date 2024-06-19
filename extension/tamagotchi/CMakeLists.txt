@@ -43,5 +43,7 @@ add_executable(tamagotchi src/main.c
         include/pass_away.h
         animation/tamagotchi_frames.h
         animation/menu_frames.h
-        animation/status_frames.h)
+        animation/status_frames.h
+        src/intialise_tamagotchi.c
+        include/initialise_tamagotchi.h)
 target_link_libraries(tamagotchi ncurses)

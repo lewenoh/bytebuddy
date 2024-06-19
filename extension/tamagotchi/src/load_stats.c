@@ -6,8 +6,8 @@
 #include <string.h>
 #include <time.h>
 #include <math.h>
-#include "stats_def.h"
-#include "load_stats.h"
+#include "../include/stats_def.h"
+#include "../include/load_stats.h"
 #define BUFFER_CAPACITY 100
 #define AGING_FACTOR 10
 #define SECS_IN_A_DAY 86400

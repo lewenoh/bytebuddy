@@ -33,7 +33,7 @@ void select_menu(struct stats *s, int opt) {
                 break;
 
             case 'p':
-                mvprintw(row - 2, 5, "%s", "play option");
+                play_opt(s, row, col);
                 refresh();
                 break;
 

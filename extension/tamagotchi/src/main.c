@@ -44,20 +44,6 @@ int main(void) {
         pthread_create(&change_stats_thread, NULL, change_stats, &args);
         pthread_join(change_stats_thread, NULL);
         previous_tm = *localtime(&previous_time);
-/*
-        // update snapshot of current time
-        current_time = time(NULL);
-        current_tm = localtime(&current_time);
-
-        mvprintw(2, 2, "second: %d", current_tm->tm_sec);
-        mvprintw(3, 3, "happy %d", s.happy);
-
-        // later change to minute
-        if(initial_second != current_tm->tm_sec) {
-            change_stats(&s, initial_minute, initial_second);
-            initial_second = current_tm->tm_sec; // keeps track of when last changed
-
-        }*/
 
         int opt = getch();
         select_menu(&s, opt);

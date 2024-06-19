@@ -32,7 +32,7 @@
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 47,
+				"line" : 49,
 				"parent" : 0
 			},
 			{
@@ -84,7 +84,8 @@
 				22,
 				24,
 				26,
-				29
+				29,
+				34
 			]
 		}
 	],
@@ -136,7 +137,8 @@
 				22,
 				24,
 				26,
-				29
+				29,
+				34
 			]
 		},
 		{
@@ -161,7 +163,8 @@
 				30,
 				31,
 				32,
-				33
+				33,
+				35
 			]
 		}
 	],
@@ -350,6 +353,17 @@
 		{
 			"backtrace" : 1,
 			"path" : "animation/status_frames.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/intialise_tamagotchi.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "include/initialise_tamagotchi.h",
 			"sourceGroupIndex" : 1
 		}
 	],
