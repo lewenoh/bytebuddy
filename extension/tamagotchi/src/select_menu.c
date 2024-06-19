@@ -53,13 +53,12 @@ void select_menu(struct stats *s, int opt) {
             case 'q':
                 bool choice = save_opt(row, col);
                 if (choice) {
-                    mvprintw(row - 2, 5, "%s", "save stats - exit");
+                    save_stats(s);
                     refresh();
                     sleep(1); // Simulate saving
                     running = 0; // Stop the loop
                 } else {
-                    mvprintw(row - 2, 5, "%s", "cancel save");
-                    refresh();
+                    break;
                 }
                 break;
 

@@ -10,15 +10,16 @@
 #include "../include/select_menu.h"
 #include "../include/stats_def.h"
 #include "../include/change_stats.h"
+#include "../include/load_stats.h"
 
 volatile int running = 1; // Define the shared variable
 volatile bool sick_today = FALSE; // So that tama does not get sick more than once per day
 
 int main(void) {
     time_t boot_time = time(NULL); // just a placeholder for the last two fields
-    struct stats s = { 3, 2, 0, FALSE, FALSE, boot_time, boot_time};
+    struct stats s = { 5, 5, 3, TRUE, TRUE, boot_time, boot_time};
 
-    // load_stats(&s)
+    load_stats(&s);
 
     initscr();
     cbreak();

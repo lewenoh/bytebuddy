@@ -24,23 +24,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0a642a61-447b-4515-b874-65952f02a76d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/include/initialise_tamagotchi.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/animation/tamagotchi_frames.h" beforeDir="false" afterPath="$PROJECT_DIR$/animation/tamagotchi_frames.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-61cd3a7da5b28fdc3af0.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/index-2024-06-17T23-28-42-0268.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/target-tamagotchi-Debug-ee462d929d89572d0746.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/build.ninja" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/build.ninja" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/tamagotchi" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/tamagotchi" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/play_opt.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/play_opt.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/food_opt.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/food_opt.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/load_stats.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/load_stats.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/play_opt.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/play_opt.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/select_menu.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/select_menu.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -117,10 +102,10 @@
       <window_info anchor="bottom" id="Version Control" order="0" />
       <window_info anchor="bottom" id="Problems" order="1" />
       <window_info anchor="bottom" id="Problems View" order="2" weight="0.3297143" />
-      <window_info anchor="bottom" id="Terminal" order="3" weight="0.38685715" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="3" visible="true" weight="0.38685715" />
       <window_info anchor="bottom" id="Services" order="4" weight="0.3297143" />
       <window_info anchor="bottom" id="CMake" order="5" weight="0.38685715" />
-      <window_info active="true" anchor="bottom" id="Messages" order="6" visible="true" weight="0.38685715" />
+      <window_info anchor="bottom" id="Messages" order="6" weight="0.38685715" />
       <window_info anchor="right" id="Endpoints" show_stripe_button="false" />
       <window_info anchor="right" id="make" show_stripe_button="false" side_tool="true" />
       <window_info anchor="right" id="Coverage" show_stripe_button="false" side_tool="true" />
