@@ -1,0 +1,7 @@
+cmake_minimum_required(VERSION 3.17)
+project(../tamagotchi)
+set(CMAKE_CXX_STANDARD 14)
+find_package(Curses REQUIRED)
+include_directories(${CURSES_INCLUDE_DIR})
+add_executable(../tamagotchi main.cpp)
+target_link_libraries(../tamagotchi ${CURSES_LIBRARIES})

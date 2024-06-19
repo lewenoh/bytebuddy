@@ -15,7 +15,7 @@
 extern void load_stats(struct stats *s) {
     // this function will edit the stats based on the txt savefile
     char charBuffer[BUFFER_CAPACITY];
-    FILE *saveFile = fopen("savefile.txt", "r");
+    FILE *saveFile = fopen("../savefile.txt", "r");
 
     if (saveFile == NULL || ferror(saveFile)) {
         fprintf(stderr, "Error opening save file.\n");
