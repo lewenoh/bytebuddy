@@ -6,6 +6,7 @@ set(CMAKE_C_STANDARD 99)
 set(CMAKE_CXX_FLAGS "-lncurses")
 find_package(Curses REQUIRED)
 include_directories(./opt/homebrew/Cellar/ncurses/6.5/include)
+add_executable(server src/server.c)
 add_executable(tamagotchi src/main.c
         src/display_tamagotchi.c
         include/display_tamagotchi.h
