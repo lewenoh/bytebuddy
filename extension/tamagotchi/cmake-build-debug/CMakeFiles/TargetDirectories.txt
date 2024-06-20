@@ -1,3 +1,4 @@
+/homes/xth23/armv8_51/extension/tamagotchi/cmake-build-debug/CMakeFiles/server.dir
 /homes/xth23/armv8_51/extension/tamagotchi/cmake-build-debug/CMakeFiles/tamagotchi.dir
 /homes/xth23/armv8_51/extension/tamagotchi/cmake-build-debug/CMakeFiles/edit_cache.dir
 /homes/xth23/armv8_51/extension/tamagotchi/cmake-build-debug/CMakeFiles/rebuild_cache.dir

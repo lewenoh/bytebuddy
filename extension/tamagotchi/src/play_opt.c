@@ -21,7 +21,7 @@ void print_instructions(int row, int col) {
 }
 
 static int display_firstnum(int row, int col, int num1, int score){
-    int all_start_row = (row/2) - 4;
+    int all_start_row = (row/2) - 10;
     int num1_start_col = (col/2) - 13;
 	// y = (row/2) - 4 //for num1
     // x = (col/2) - 13

@@ -15,7 +15,8 @@
 					"source" : ".",
 					"targetIndexes" : 
 					[
-						0
+						0,
+						1
 					]
 				}
 			],
@@ -30,7 +31,8 @@
 					"name" : "tamagotchi",
 					"targetIndexes" : 
 					[
-						0
+						0,
+						1
 					]
 				}
 			],
@@ -38,8 +40,15 @@
 			[
 				{
 					"directoryIndex" : 0,
+					"id" : "server::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-server-Debug-d1dc8b28e0e54a88b1f0.json",
+					"name" : "server",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
 					"id" : "tamagotchi::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-tamagotchi-Debug-2328debf3053632ff563.json",
+					"jsonFile" : "target-tamagotchi-Debug-e80fde0171a1c6dcb98c.json",
 					"name" : "tamagotchi",
 					"projectIndex" : 0
 				}

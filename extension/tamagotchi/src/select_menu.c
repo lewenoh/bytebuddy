@@ -13,6 +13,7 @@
 #include "../include/stats_opt.h"
 #include "../include/save_opt.h"
 #include "../include/save_stats.h"
+#include "../include/send_chat.h"
 
 #include <unistd.h>
 
@@ -50,6 +51,10 @@ void select_menu(struct stats *s, int opt) {
                 stats_opt(s, row, col);
                 refresh();
                 break;
+            case 'c':
+                send_chat(row, col);
+                clear();
+                break;
             case 'q':
                 bool choice = save_opt(row, col);
                 if (choice) {
@@ -63,11 +68,9 @@ void select_menu(struct stats *s, int opt) {
                 break;
 
             default:
-                    mvprintw(row - 2, 5, "%s", "Invalid option");
-                    refresh();
                     break;
         }
-        sleep(1);
+        // sleep(1);
         clear();
     }
     nodelay(stdscr, TRUE);

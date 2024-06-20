@@ -132,7 +132,6 @@ void *display_tamagotchi(void *arg) {
 
     if((!previous_poop) && (s->poop == 1)) {
         poop_animation(row, col, tama_rows, tama_cols);
-        mvprintw(0, col - 1, "%s", "pooped");
         previous_poop = true;
     }
 

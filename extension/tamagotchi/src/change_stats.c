@@ -51,13 +51,14 @@ void *change_stats(void *arg){
     }
 
     // for testing purposes
-    mvprintw(0, 2, "min: %d", current_tm->tm_min);
+/*    mvprintw(0, 2, "min: %d", current_tm->tm_min);
     mvprintw(1, 2, "second: %d", current_tm->tm_sec);
     mvprintw(2, 2, "hour: %d", current_tm->tm_hour);
     mvprintw(3, 2, "happy %d", s->happy);
     mvprintw(4, 2, "full %d", s->full);
     mvprintw(5, 2, "poop %d", s->poop);
-    mvprintw(6, 2, "sick %d", s->sick);
+    mvprintw(6, 2, "sick %d", s->sick);*/
+    return NULL;
 }
 
 // maybe make this a thread?

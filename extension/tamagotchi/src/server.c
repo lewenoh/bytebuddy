@@ -12,6 +12,7 @@
 #define BUFFER_SIZE 1024
 #define MAX_CLIENTS 10
 
+extern volatile int running;
 int clients[MAX_CLIENTS];
 pthread_mutex_t clients_mutex = PTHREAD_MUTEX_INITIALIZER;
 

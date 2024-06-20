@@ -16,61 +16,14 @@
 #include "../include/stats_def.h"
 #include "../include/change_stats.h"
 #include "../include/load_stats.h"
+#include "../include/send_chat.h"
 
 #define PORT 8080
 #define BUFFER_SIZE 1024
 
 int sock;
-char name[50];
 volatile int running = 1; // Define the shared variable
 volatile bool sick_today = FALSE; // So that tama does not get sick more than once per day
-
-void *receive_messages(void *arg) {
-    char buffer[BUFFER_SIZE];
-    while (1) {
-        int bytes_read = recv(sock, buffer, BUFFER_SIZE, 0);
-        if (bytes_read <= 0) {
-            perror("recv");
-            exit(EXIT_FAILURE);
-        }
-        buffer[bytes_read] = '\0';
-        printf("%s\n", buffer);
-    }
-    return NULL;
-}
-
-void send_message(char *message) {
-    if (send(sock, message, strlen(message), 0) < 0) {
-        perror("send");
-        exit(EXIT_FAILURE);
-    }
-}
-
-void initialize_network() {
-    struct sockaddr_in serv_addr;
-
-    printf("Enter your tamagotchi name: ");
-    fgets(name, 50, stdin);
-    name[strcspn(name, "\n")] = 0;
-
-    if ((sock = socket(AF_INET, SOCK_STREAM, 0)) == -1) {
-        perror("Socket creation error");
-        exit(EXIT_FAILURE);
-    }
-
-    serv_addr.sin_family = AF_INET;
-    serv_addr.sin_port = htons(PORT);
-    serv_addr.sin_addr.s_addr = inet_addr("146.169.53.134"); // configured to work host on oak14
-
-    if (connect(sock, (struct sockaddr *)&serv_addr, sizeof(serv_addr)) == -1) {
-        perror("Connection Failed");
-        close(sock);
-        exit(EXIT_FAILURE);
-    }
-
-    pthread_t tid;
-    pthread_create(&tid, NULL, receive_messages, NULL);
-}
 
 int main(void) {
     initialize_network();
@@ -91,20 +44,31 @@ int main(void) {
     struct tm previous_tm = *localtime(&previous_time);
 
     while (running) {
-        ThreadArgs args = {&s, previous_tm};
 
-        pthread_t tama_thread;
-        pthread_create(&tama_thread, NULL, display_tamagotchi, &args);
-        pthread_join(tama_thread, NULL);
+        ThreadArgs args = {&s, previous_tm};
+        display_tamagotchi(&args);
+
+        //pthread_t tama_thread;
+        //pthread_create(&tama_thread, NULL, display_tamagotchi, &args);
+        //pthread_join(tama_thread, NULL);
 
         pthread_t change_stats_thread;
         pthread_create(&change_stats_thread, NULL, change_stats, &args);
         pthread_join(change_stats_thread, NULL);
         previous_tm = *localtime(&previous_time);
-
-        int opt = getch();
-        select_menu(&s, opt);
-
+        
+//        char optBuffer[10];
+//        printf(optBuffer, opt);
+//        if (strcmp(optBuffer, "f") < 0) {break;}
+        int opt = getch();  // Non-blocking getch
+        if (opt != ERR) {
+            select_menu(&s, opt);
+            // Clear input buffer to prevent backlog
+            while ((opt = getch()) != ERR) {
+                // Consume all characters in the input buffer
+            }
+        }
+        refresh();
         // TODO handle message sending in case statement in select_menu.c
         // if (opt == 'm') { // Assuming 'm' key is used to send a message
             // char message[BUFFER_SIZE];
@@ -117,10 +81,8 @@ int main(void) {
             // send_message(full_message);
             // mvprintw(LINES - 1, 0, ""); // Clear the message prompt
         }
-    }
-
-    getch(); // to close the program with any key
     endwin();
     close(sock);
     return 0;
 }
+

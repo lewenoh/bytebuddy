@@ -8,6 +8,7 @@
 char* menu[] = {
         "f: food        p: play  ",
         "m: med         t: toilet",
+        "c: chat                 ",
         "________________________",
         "s: stats   q: quit & save"
 };
