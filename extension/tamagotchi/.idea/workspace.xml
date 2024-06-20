@@ -25,28 +25,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0a642a61-447b-4515-b874-65952f02a76d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/include/happy_emote.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/happy_emote.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/animation/tamagotchi_frames.h" beforeDir="false" afterPath="$PROJECT_DIR$/animation/tamagotchi_frames.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-3d31000d4909a3c4a3a7.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/index-2024-06-20T14-01-36-0092.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/target-tamagotchi-Debug-e80fde0171a1c6dcb98c.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.nfs00000003c37700470000010a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/build.ninja" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/build.ninja" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/tamagotchi" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/tamagotchi" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/character_profile.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/character_profile.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/savefile.txt" beforeDir="false" afterPath="$PROJECT_DIR$/savefile.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/food_opt.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/food_opt.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/intialise_tamagotchi.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/intialise_tamagotchi.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/load_stats.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/load_stats.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/play_opt.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/play_opt.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/poop_opt.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/poop_opt.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sick_opt.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/sick_opt.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,8 +85,8 @@
       <window_info id="Pull Requests" show_stripe_button="false" />
       <window_info id="Learn" show_stripe_button="false" />
       <window_info id="DFA" show_stripe_button="false" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16691339" />
-      <window_info id="Commit" order="1" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.16691339" />
+      <window_info active="true" id="Commit" order="1" visible="true" weight="0.16691339" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.21909595" />
       <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
       <window_info anchor="bottom" id="TypeScript" show_stripe_button="false" />
@@ -121,10 +101,10 @@
       <window_info anchor="bottom" id="Version Control" order="0" />
       <window_info anchor="bottom" id="Problems" order="1" />
       <window_info anchor="bottom" id="Problems View" order="2" weight="0.3297143" />
-      <window_info anchor="bottom" id="Terminal" order="3" weight="0.38685715" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="3" visible="true" weight="0.38685715" />
       <window_info anchor="bottom" id="Services" order="4" weight="0.3297143" />
       <window_info anchor="bottom" id="CMake" order="5" weight="0.38685715" />
-      <window_info active="true" anchor="bottom" id="Messages" order="6" visible="true" weight="0.38685715" />
+      <window_info anchor="bottom" id="Messages" order="6" weight="0.38685715" />
       <window_info anchor="bottom" id="Run" order="6" weight="0.38685715" />
       <window_info anchor="right" id="Endpoints" show_stripe_button="false" />
       <window_info anchor="right" id="make" show_stripe_button="false" side_tool="true" />
