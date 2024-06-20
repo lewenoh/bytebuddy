@@ -28,11 +28,11 @@ void refresh_chat_window() {
     clear();  // Clear the screen
     int start = message_count - LINES + 2;  // Calculate starting message index
     if (start < 0) start = 0;  // Ensure start index is not negative
-    int line = LINES - 2;  // Start printing from the second last line
+    int line = LINES - 3;  // Start printing from the second last line
     for (int i = message_count - 1; i >= start; i--) {
         mvprintw(line--, 0, "%s", message_buffer[i]);  // Print message
     }
-    mvprintw(LINES - 1, 0, "Enter message: ");  // Prompt for new message
+    mvprintw(LINES - 2, 0, "Enter message: ");  // Prompt for new message
     refresh();  // Refresh the screen
 }
 
@@ -98,7 +98,8 @@ void send_chat(int row, int col) {
     clear();
     char message[BUFFER_SIZE];
     echo(); // Enable echo to get user input
-    mvprintw(LINES - 1, 0, "Enter message: ");
+    mvprintw(LINES - 1, 0, "Press 'enter' key to exit. ");
+    mvprintw(LINES - 2, 0, "Enter message: ");
     getstr(message);
     while (strcmp(message, "") != 0) {
         noecho(); // Disable echo after getting input
@@ -107,7 +108,8 @@ void send_chat(int row, int col) {
         send_message(full_message);
         mvprintw(LINES - 1, 0, ""); // Clear the message prompt
         echo(); // Enable echo to get user input
-        mvprintw(LINES - 1, 0, "Enter message: ");
+        mvprintw(LINES - 2, 0, "Enter message: ");
+        mvprintw(LINES - 1, 0, "Press 'enter' key to exit. ");
         getstr(message);
     }
     noecho();
