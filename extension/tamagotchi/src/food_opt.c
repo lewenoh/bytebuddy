@@ -48,7 +48,7 @@ void food_opt(struct stats *s, int row, int col) {
     switch(food_opt) {
         case '1':
             clear();
-            s->full > 5 ? 5 : s->full++;
+            s->full >= 5 ? 5 : s->full++;
             mvprintw(row/2, col/2, "%s", "burger");
             mvprintw(row/2 + 1, col/2, "full %u happy %u", s-> full, s->happy);
             refresh();
@@ -58,7 +58,7 @@ void food_opt(struct stats *s, int row, int col) {
 
         case '2':
             clear();
-            s->happy > 5 ? 5 : s->happy++;
+            s->happy >= 5 ? 5 : s->happy++;
             mvprintw(row/2, col/2, "%s", "candy");
             mvprintw(row/2 + 1, col/2, "full %u happy %u", s-> full, s->happy);
             refresh();

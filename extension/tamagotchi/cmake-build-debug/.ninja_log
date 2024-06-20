@@ -92,3 +92,8 @@
 63	109	1718819545149187113	CMakeFiles/tamagotchi.dir/src/main.c.o	be71dae3d07b17b7
 65	114	1718819545153187159	CMakeFiles/tamagotchi.dir/src/select_menu.c.o	dd8e13aa6e0af30c
 114	211	1718819545201187703	tamagotchi	1336716742f9bc03
+32	70	1718890614660927650	CMakeFiles/tamagotchi.dir/src/save_stats.c.o	9af7f104f1e33264
+26	74	1718890614652927559	CMakeFiles/tamagotchi.dir/src/main.c.o	be71dae3d07b17b7
+27	77	1718890614656927605	CMakeFiles/tamagotchi.dir/src/load_stats.c.o	f2796fd361a5b565
+30	80	1718890614656927605	CMakeFiles/tamagotchi.dir/src/food_opt.c.o	f0bd157161ac2b6a
+80	150	1718890614708928195	tamagotchi	1336716742f9bc03
