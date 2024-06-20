@@ -29,7 +29,7 @@ int main(void) {
     initialize_network();
 
     time_t boot_time = time(NULL); // just a placeholder for the last two fields
-    struct stats s = {5, 5, 3, TRUE, TRUE, boot_time, boot_time};
+    struct stats s = {0, 0, 0, FALSE, FALSE, boot_time, boot_time};
 
     load_stats(&s);
 
@@ -56,7 +56,7 @@ int main(void) {
         pthread_create(&change_stats_thread, NULL, change_stats, &args);
         pthread_join(change_stats_thread, NULL);
         previous_tm = *localtime(&previous_time);
-        
+
 //        char optBuffer[10];
 //        printf(optBuffer, opt);
 //        if (strcmp(optBuffer, "f") < 0) {break;}

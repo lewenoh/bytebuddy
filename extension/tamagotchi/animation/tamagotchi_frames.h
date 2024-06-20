@@ -5,11 +5,11 @@
 #ifndef TAMAGOTCHI_FRAMES_H
 #define TAMAGOTCHI_FRAMES_H
 
-extern char *tamagotchi[5][8];
+extern char *tamagotchi[7][9];
 extern int tama_rows;
 extern int tama_cols;
 
-extern char *reversed_tamagotchi[2][8];
+extern char *reversed_tamagotchi[2][9];
 extern char *question_bubble[3];
 extern char *correct_emote[4];
 extern char *wrong_emote[4];

@@ -48,5 +48,7 @@ add_executable(tamagotchi src/main.c
         src/intialise_tamagotchi.c
         include/initialise_tamagotchi.h
         "src/send_chat.c"
-        "include/send_chat.h")
+        "include/send_chat.h"
+        src/happy_emote.c
+        include/happy_emote.h)
 target_link_libraries(tamagotchi ncurses)

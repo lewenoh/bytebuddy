@@ -200,6 +200,13 @@ build CMakeFiles/tamagotchi.dir/src/send_chat.c.o: C_COMPILER__tamagotchi_unscan
   OBJECT_DIR = CMakeFiles/tamagotchi.dir
   OBJECT_FILE_DIR = CMakeFiles/tamagotchi.dir/src
 
+build CMakeFiles/tamagotchi.dir/src/happy_emote.c.o: C_COMPILER__tamagotchi_unscanned_Debug /homes/xth23/armv8_51/extension/tamagotchi/src/happy_emote.c || cmake_object_order_depends_target_tamagotchi
+  DEP_FILE = CMakeFiles/tamagotchi.dir/src/happy_emote.c.o.d
+  FLAGS = -g -std=gnu99 -fdiagnostics-color=always
+  INCLUDES = -I/homes/xth23/armv8_51/extension/tamagotchi/./opt/homebrew/Cellar/ncurses/6.5/include
+  OBJECT_DIR = CMakeFiles/tamagotchi.dir
+  OBJECT_FILE_DIR = CMakeFiles/tamagotchi.dir/src
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target tamagotchi
@@ -208,7 +215,7 @@ build CMakeFiles/tamagotchi.dir/src/send_chat.c.o: C_COMPILER__tamagotchi_unscan
 #############################################
 # Link the executable tamagotchi
 
-build tamagotchi: C_EXECUTABLE_LINKER__tamagotchi_Debug CMakeFiles/tamagotchi.dir/src/main.c.o CMakeFiles/tamagotchi.dir/src/display_tamagotchi.c.o CMakeFiles/tamagotchi.dir/src/welcome_screen.c.o CMakeFiles/tamagotchi.dir/src/load_stats.c.o CMakeFiles/tamagotchi.dir/src/eat_animation.c.o CMakeFiles/tamagotchi.dir/src/food_opt.c.o CMakeFiles/tamagotchi.dir/src/play_opt.c.o CMakeFiles/tamagotchi.dir/src/poop_opt.c.o CMakeFiles/tamagotchi.dir/src/save_opt.c.o CMakeFiles/tamagotchi.dir/src/save_stats.c.o CMakeFiles/tamagotchi.dir/src/sick_opt.c.o CMakeFiles/tamagotchi.dir/src/stats_opt.c.o CMakeFiles/tamagotchi.dir/src/select_menu.c.o CMakeFiles/tamagotchi.dir/src/change_stats.c.o CMakeFiles/tamagotchi.dir/src/pass_away.c.o CMakeFiles/tamagotchi.dir/src/intialise_tamagotchi.c.o CMakeFiles/tamagotchi.dir/src/send_chat.c.o
+build tamagotchi: C_EXECUTABLE_LINKER__tamagotchi_Debug CMakeFiles/tamagotchi.dir/src/main.c.o CMakeFiles/tamagotchi.dir/src/display_tamagotchi.c.o CMakeFiles/tamagotchi.dir/src/welcome_screen.c.o CMakeFiles/tamagotchi.dir/src/load_stats.c.o CMakeFiles/tamagotchi.dir/src/eat_animation.c.o CMakeFiles/tamagotchi.dir/src/food_opt.c.o CMakeFiles/tamagotchi.dir/src/play_opt.c.o CMakeFiles/tamagotchi.dir/src/poop_opt.c.o CMakeFiles/tamagotchi.dir/src/save_opt.c.o CMakeFiles/tamagotchi.dir/src/save_stats.c.o CMakeFiles/tamagotchi.dir/src/sick_opt.c.o CMakeFiles/tamagotchi.dir/src/stats_opt.c.o CMakeFiles/tamagotchi.dir/src/select_menu.c.o CMakeFiles/tamagotchi.dir/src/change_stats.c.o CMakeFiles/tamagotchi.dir/src/pass_away.c.o CMakeFiles/tamagotchi.dir/src/intialise_tamagotchi.c.o CMakeFiles/tamagotchi.dir/src/send_chat.c.o CMakeFiles/tamagotchi.dir/src/happy_emote.c.o
   FLAGS = -g
   LINK_LIBRARIES = -lncurses
   OBJECT_DIR = CMakeFiles/tamagotchi.dir

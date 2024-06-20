@@ -46,7 +46,7 @@ extern void load_stats(struct stats *s) {
     struct tm bday;
 
     while (currIndex < 7) {
-        printf("index: %d, currstat: %s\n", currIndex, currStat);
+        //printf("index: %d, currstat: %s\n", currIndex, currStat);
         switch (currIndex) {
             case 0:
                 s->full = atoi(currStat);

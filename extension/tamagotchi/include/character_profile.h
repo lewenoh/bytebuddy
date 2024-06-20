@@ -10,7 +10,7 @@ typedef struct profile {
         int happy_dec; // minutes between decrements to happy
         int poop_frequency; // hours between poops
         int sick_frequency; // days between sickness
-        int lifespan; // maximum lifespan
+        int lifespan; // maximum lifespan (days)
 } profile;
 
 struct profile default_profile = {

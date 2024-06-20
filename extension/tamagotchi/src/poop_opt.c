@@ -5,7 +5,7 @@
 #include "../include/poop_opt.h"
 #include "../include/stats_def.h"
 #include <ncurses.h>
-
+#include "../include/happy_emote.h"
 
 void poop_opt(struct stats *s, int row, int col) {
         clear();
@@ -13,6 +13,6 @@ void poop_opt(struct stats *s, int row, int col) {
         // play cleaning emote
 
         s->poop = 0;
-        mvprintw(row/2 + 1, col/2, "poop %d", s->poop);
+        happy_emote(row, col);
         refresh();
 }

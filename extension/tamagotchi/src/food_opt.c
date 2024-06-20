@@ -5,6 +5,7 @@
 #include "../include/food_opt.h"
 #include "../include/stats_def.h"
 #include "../animation/tamagotchi_frames.h"
+#include "../include/happy_emote.h"
 #include <string.h>
 #include <stdlib.h>
 #include <ncurses.h>
@@ -48,28 +49,22 @@ void food_opt(struct stats *s, int row, int col) {
     switch(food_opt) {
         case '1':
             clear();
-            s->full > 5 ? 5 : s->full++;
-            mvprintw(row/2, col/2, "%s", "burger");
-            mvprintw(row/2 + 1, col/2, "full %u happy %u", s-> full, s->happy);
+            s->full >= 5 ? 5 : s->full++;
+            happy_emote(row, col);
             refresh();
-            sleep(1);
             nodelay(stdscr, TRUE);
             return;
 
         case '2':
             clear();
-            s->happy > 5 ? 5 : s->happy++;
-            mvprintw(row/2, col/2, "%s", "candy");
-            mvprintw(row/2 + 1, col/2, "full %u happy %u", s-> full, s->happy);
+            s->happy >= 5 ? 5 : s->happy++;
+            happy_emote(row, col);
             refresh();
-            sleep(1);
             nodelay(stdscr, TRUE);
             return;
 
         default:
-            mvprintw(row/2, col/2, "%s", "other");
             refresh();
-            sleep(1);
             nodelay(stdscr, TRUE);
             return;
     }

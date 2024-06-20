@@ -1,5 +1,6 @@
 #include "../include/play_opt.h"
 #include "../include/stats_def.h"
+#include "../include/happy_emote.h"
 #include "../animation/tamagotchi_frames.h"
 #include <ncurses.h>
 #include <stdlib.h>
@@ -153,6 +154,7 @@ void play_opt(struct stats *s, int row, int col) {
         for( int i = 0; i < tama_rows; i++) {
             mvprintw(tama_start_row + i, (col - tama_cols)/2, "%s", tamagotchi[4][i]);
         }
+        happy_emote(row, col);
 		//display happy
 	}
 	else{
