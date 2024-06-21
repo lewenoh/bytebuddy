@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="CMakePresetLoader">{
+  &quot;useNewFormat&quot;: true
+}</component>
+  <component name="CMakeProjectFlavorService">
+    <option name="flavorId" value="CMakePlainProjectFlavor" />
+  </component>
+  <component name="CMakeReloadState">
+    <option name="reloaded" value="true" />
+  </component>
+  <component name="CMakeRunConfigurationManager">
+    <generated>
+      <config projectName="tamagotchi" targetName="server" />
+      <config projectName="tamagotchi" targetName="tamagotchi" />
+    </generated>
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" ENABLED="true" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="0a642a61-447b-4515-b874-65952f02a76d" name="Changes" comment="Changed happy and full incrementor to try and merge">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-007f97b1d287c7a79433.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/index-2024-06-20T23-54-23-0585.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/target-tamagotchi-Debug-6821fa84cd90763ae3f3.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/build.ninja" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/build.ninja" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/server" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/server" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/tamagotchi" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/tamagotchi" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/change_stats.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/change_stats.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/display_tamagotchi.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/display_tamagotchi.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/eat_animation.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/food_opt.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/food_opt.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/happy_emote.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/happy_emote.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/intialise_tamagotchi.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/intialise_tamagotchi.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/load_stats.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/load_stats.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pass_away.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/play_opt.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/play_opt.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/poop_opt.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/poop_opt.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/save_opt.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/save_opt.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/save_stats.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/save_stats.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/select_menu.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/select_menu.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/send_chat.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/send_chat.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/server.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sick_opt.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/sick_opt.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/stats_opt.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/stats_opt.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/welcome_screen.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/welcome_screen.c" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectApplicationVersion">
+    <option name="ide" value="CLion" />
+    <option name="majorVersion" value="2024" />
+    <option name="minorVersion" value="2" />
+    <option name="productBranch" value="Classic" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="2hpvVJZWolzQsaGs7cJk1o4k93O" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;CMake Application.tamagotchi.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;tamagotchi__server&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/homes/xth23/armv8_51/extension/tamagotchi/include/change_stats.h&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;structure.view.defaults.are.configured&quot;: &quot;true&quot;,
+    &quot;two.files.diff.last.used.file&quot;: &quot;/homes/xth23/armv8_51/extension/tamagotchi/include/change_stats.h&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RdControllerToolWindowsLayoutState" isNewUi="true">
+    <layout>
+      <window_info id="Space Code Reviews" show_stripe_button="false" />
+      <window_info id="Bookmarks" show_stripe_button="false" side_tool="true" />
+      <window_info id="Merge Requests" show_stripe_button="false" />
+      <window_info id="Commit_Guest" show_stripe_button="false" />
+      <window_info id="Pull Requests" show_stripe_button="false" />
+      <window_info id="Learn" show_stripe_button="false" />
+      <window_info id="DFA" show_stripe_button="false" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16188084" />
+      <window_info id="Commit" order="1" weight="0.16691339" />
+      <window_info id="Structure" order="2" side_tool="true" weight="0.21909595" />
+      <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
+      <window_info anchor="bottom" id="TypeScript" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Profiler" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Build" />
+      <window_info anchor="bottom" id="Python Packages" show_stripe_button="false" />
+      <window_info anchor="bottom" id="TODO" show_stripe_button="false" />
+      <window_info anchor="bottom" id="File Transfer" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Vcpkg" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Find" />
+      <window_info anchor="bottom" id="clangd" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="0" />
+      <window_info anchor="bottom" id="Problems" order="1" />
+      <window_info anchor="bottom" id="Problems View" order="2" weight="0.3297143" />
+      <window_info anchor="bottom" id="Terminal" order="3" weight="0.21771428" />
+      <window_info anchor="bottom" id="Services" order="4" weight="0.3297143" />
+      <window_info anchor="bottom" id="CMake" order="5" weight="0.38685715" />
+      <window_info active="true" anchor="bottom" id="Messages" order="6" visible="true" weight="0.35257143" />
+      <window_info anchor="bottom" id="Run" order="6" weight="0.38685715" />
+      <window_info anchor="right" id="Endpoints" show_stripe_button="false" />
+      <window_info anchor="right" id="make" show_stripe_button="false" side_tool="true" />
+      <window_info anchor="right" id="Coverage" show_stripe_button="false" side_tool="true" />
+      <window_info anchor="right" id="Python Console" show_stripe_button="false" />
+      <window_info anchor="right" content_ui="combo" id="Notifications" order="0" weight="0.25" />
+      <window_info anchor="right" id="AIAssistant" order="1" weight="0.25" />
+      <window_info anchor="right" id="Database" order="2" weight="0.25" />
+      <window_info anchor="right" id="Gradle" order="3" weight="0.25" />
+      <window_info anchor="right" id="Maven" order="4" weight="0.25" />
+      <window_info anchor="right" id="Meson" order="5" />
+    </layout>
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/include" />
+      <recent name="$PROJECT_DIR$/\" />
+      <recent name="$PROJECT_DIR$/src" />
+      <recent name="$PROJECT_DIR$/animation" />
+    </key>
+  </component>
+  <component name="RunManager" selected="CMake Application.tamagotchi">
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="server" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="tamagotchi" TARGET_NAME="server" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="tamagotchi" RUN_TARGET_NAME="server">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="tamagotchi" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="tamagotchi" TARGET_NAME="tamagotchi" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="tamagotchi" RUN_TARGET_NAME="tamagotchi">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="CMake Application.server" />
+      <item itemvalue="CMake Application.tamagotchi" />
+    </list>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0a642a61-447b-4515-b874-65952f02a76d" name="Changes" comment="" />
+      <created>1718303855236</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1718303855236</updated>
+      <workItem from="1718303856239" duration="1994000" />
+      <workItem from="1718378832340" duration="84000" />
+      <workItem from="1718400478567" duration="31000" />
+      <workItem from="1718459681576" duration="39013000" />
+      <workItem from="1718666921665" duration="4062000" />
+    </task>
+    <task id="LOCAL-00001" summary="Changed happy and full incrementor to try and merge">
+      <option name="closed" value="true" />
+      <created>1718923739326</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1718923739326</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VCPKGProject">
+    <isAutomaticCheckingOnLaunch value="false" />
+    <isAutomaticFoundErrors value="true" />
+    <isAutomaticReloadCMake value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Changed happy and full incrementor to try and merge" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed happy and full incrementor to try and merge" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
