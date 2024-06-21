@@ -3,7 +3,7 @@
 
 
 
-extern char *instruction_table[50];
+//extern char *instruction_table[50];
 #define NULL_CHAR '\0'
 
 typedef int index;

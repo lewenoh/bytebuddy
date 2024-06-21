@@ -3,7 +3,6 @@
 #include <assert.h>
 #include <string.h>
 #include "../include/split_lines.h"
-#include "../include/instruction_arr.h"
 #define LINE_CAPACITY 10
 
 

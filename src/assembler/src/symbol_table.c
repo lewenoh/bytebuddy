@@ -7,12 +7,7 @@
 #include <stdio.h>
 #include <string.h>
 
-//     label_entry *empty_arr = (label_entry *)malloc(sizeof(label_entry) * 0);
-//     s->entriesArr = empty_arr;
-
 label_entry *create_entry(char * label, char * address) {
-//    strcpy(p_label, label);
-//    strcpy(p_address, address);
     label_entry *p_le = (label_entry*) malloc(sizeof(label_entry));
     strcpy(p_le->label, label);
     strcpy(p_le->address, address);

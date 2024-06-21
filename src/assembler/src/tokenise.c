@@ -9,7 +9,7 @@
 #include <stdbool.h>
 #include <assert.h>
 
-token_arr *initialise_token_arr() {
+token_arr *initialise_token_arr(void) {
 
     // Initialise tokenised array. Default is '\0' char.
     token_arr *tokenised = malloc(sizeof(token_arr));
@@ -265,8 +265,6 @@ token_arr *tokenise(char *raw_instr, symbol_table *symbolTable) {
             if (*c != '[') {
                 // ldr <Rt> <literal>
                 process_literal_args(&c, &i, 2, raw_instr, tokenised, *symbolTable);
-//                process_args(mand_args, &c, &i, ',',
-//                             raw_instr, tokenised, 2);
             } else {
                 process_memory_addressing(&c, &i, raw_instr, tokenised);
             }

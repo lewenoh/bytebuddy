@@ -5,7 +5,6 @@
 #include "table_def.h"
 #include "tokenise.h"
 
-uint32_t dpi_encoder(char instruction[6][30]);
-//uint32_t dpi_encoder(token_arr instruction);
+uint32_t dpi_encoder(char instruction[MAX_ARGS][MAX_ARG_LENGTH]);
 
 #endif
