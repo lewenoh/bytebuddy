@@ -22,56 +22,50 @@ extern volatile int running;
 void select_menu(struct stats *s, int opt) {
     int row, col;
     getmaxyx(stdscr, row, col);
-    int centre_x = row/2;
-    int centre_y = col/2;
 
+    nodelay(stdscr, FALSE);
+    switch(opt) {
+        case 'f':
+            food_opt(s, row, col);
+            break;
 
-    if (opt != ERR) {
-        nodelay(stdscr, FALSE);
-        switch(opt) {
-            case 'f':
-                food_opt(s, row, col);
-                break;
+        case 'p':
+            play_opt(s, row, col);
+            refresh();
+            break;
 
-            case 'p':
-                play_opt(s, row, col);
+        case 'm':
+            sick_opt(s, row, col);
+            refresh();
+            break;
+
+        case 't':
+            poop_opt(s, row, col);
+            refresh();
+            break;
+        case 's':
+            stats_opt(s, row, col);
+            refresh();
+            break;
+        case 'c':
+            send_chat(row, col);
+            clear();
+            break;
+        case 'q':
+            bool choice = save_opt(row, col);
+            if (choice) {
+                save_stats(s);
                 refresh();
+                sleep(1); // Simulate saving
+                running = 0; // Stop the loop
+            } else {
                 break;
+            }
+            break;
 
-            case 'm':
-                sick_opt(s, row, col);
-                refresh();
+        default:
                 break;
-
-            case 't':
-                poop_opt(s, row, col);
-                refresh();
-                break;
-            case 's':
-                stats_opt(s, row, col);
-                refresh();
-                break;
-            case 'c':
-                send_chat(row, col);
-                clear();
-                break;
-            case 'q':
-                bool choice = save_opt(row, col);
-                if (choice) {
-                    save_stats(s);
-                    refresh();
-                    sleep(1); // Simulate saving
-                    running = 0; // Stop the loop
-                } else {
-                    break;
-                }
-                break;
-
-            default:
-                    break;
-        }
-        // sleep(1);
-        clear();
     }
+    clear();
     nodelay(stdscr, TRUE);
 }

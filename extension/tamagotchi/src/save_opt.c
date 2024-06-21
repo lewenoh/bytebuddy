@@ -20,6 +20,7 @@ static const char *confirmation[] = {
 };
 
 bool save_opt(int row, int col){
+    clear();
     int confirmation_cols = strlen(confirmation[0]);
     int confirmation_rows = sizeof(confirmation)/sizeof(confirmation[0]);
 

@@ -59,7 +59,7 @@ static int display_firstnum(int row, int col, int num1, int score){
 }
 
 static void display_both_numbers(int row, int col, int num1, int num2) {
-    int all_start_row = (row/2) - 4;
+    int all_start_row = (row/2) - 10;
     int num1_start_col = (col/2) - 13;
     int num2_start_col = col/2 + 13;
 

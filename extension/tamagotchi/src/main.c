@@ -46,20 +46,17 @@ int main(void) {
     while (running) {
 
         ThreadArgs args = {&s, previous_tm};
-        display_tamagotchi(&args);
+        // display_tamagotchi(&args);
 
-        //pthread_t tama_thread;
-        //pthread_create(&tama_thread, NULL, display_tamagotchi, &args);
-        //pthread_join(tama_thread, NULL);
+        pthread_t tama_thread;
+        pthread_create(&tama_thread, NULL, display_tamagotchi, &args);
+        pthread_join(tama_thread, NULL);
 
         pthread_t change_stats_thread;
         pthread_create(&change_stats_thread, NULL, change_stats, &args);
         pthread_join(change_stats_thread, NULL);
         previous_tm = *localtime(&previous_time);
 
-//        char optBuffer[10];
-//        printf(optBuffer, opt);
-//        if (strcmp(optBuffer, "f") < 0) {break;}
         int opt = getch();  // Non-blocking getch
         if (opt != ERR) {
             select_menu(&s, opt);

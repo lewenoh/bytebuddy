@@ -98,7 +98,7 @@ void send_chat(int row, int col) {
     clear();
     char message[BUFFER_SIZE];
     echo(); // Enable echo to get user input
-    mvprintw(LINES - 1, 0, "Press 'enter' key to exit. ");
+    mvprintw(LINES - 1, 0, "Press 'enter' key with no message to exit.");
     mvprintw(LINES - 2, 0, "Enter message: ");
     getstr(message);
     while (strcmp(message, "") != 0) {
@@ -109,7 +109,7 @@ void send_chat(int row, int col) {
         mvprintw(LINES - 1, 0, ""); // Clear the message prompt
         echo(); // Enable echo to get user input
         mvprintw(LINES - 2, 0, "Enter message: ");
-        mvprintw(LINES - 1, 0, "Press 'enter' key to exit. ");
+        mvprintw(LINES - 1, 0, "Press 'enter' key with no message to exit.");
         getstr(message);
     }
     noecho();
