@@ -3,6 +3,7 @@
 CHECKPONT=Checkpoint
 REPORT=Report
 LATEXMK=latexmk
+TEST=Test
 OUTDIR=out
 
 LATEXMKRC=.latexmkrc
@@ -20,9 +21,7 @@ LATEXMKCLEANFLAGS=\
 	-c
 
 .PHONY: all clean pvc cleanall report checkpoint cleanpdf
-
 all: report checkpoint
-
 report: $(REPORT).pdf
 checkpoint: $(CHECKPONT).pdf
 
@@ -35,7 +34,8 @@ pvc:
 	mv $(OUTDIR)/$@ .
 
 # filters out pdf from the clean (in case you want them there ☺ )
-TO_CLEAN = $(filter-out %.pdf, $(wildcard $(OUTDIR)/*))
+#TO_CLEAN = $(filter-out %.pdf, $(wildcard $(OUTDIR)/*))
+TO_CLEAN = $(wildcard $(OUTDIR)/*)
 clean:
 	$(RM) -rf $(TO_CLEAN)
 
