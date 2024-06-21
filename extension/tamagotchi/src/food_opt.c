@@ -1,15 +1,8 @@
-//
-// Created by xth23 on 14/06/24.
-//
-
 #include "../include/food_opt.h"
-#include "../include/stats_def.h"
 #include "../animation/tamagotchi_frames.h"
 #include "../include/happy_emote.h"
 #include <string.h>
-#include <stdlib.h>
 #include <ncurses.h>
-#include <unistd.h>
 
 static int select_food_menu(int row, int col) {
      char *options[] = {
@@ -49,7 +42,7 @@ void food_opt(struct stats *s, int row, int col) {
     switch(food_opt) {
         case '1':
             clear();
-            s->full > 5 ? 5 : s->full++;
+            s->full >= 5 ? 5 : s->full++;
             happy_emote(row, col);
             refresh();
             nodelay(stdscr, TRUE);
@@ -57,7 +50,7 @@ void food_opt(struct stats *s, int row, int col) {
 
         case '2':
             clear();
-            s->happy > 5 ? 5 : s->happy++;
+            s->happy >= 5 ? 5 : s->happy++;
             happy_emote(row, col);
             refresh();
             nodelay(stdscr, TRUE);

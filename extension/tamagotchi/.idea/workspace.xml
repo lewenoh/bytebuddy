@@ -26,17 +26,34 @@
   <component name="ChangeListManager">
     <list default="true" id="0a642a61-447b-4515-b874-65952f02a76d" name="Changes" comment="Changed happy and full incrementor to try and merge">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/index-2024-06-20T22-27-35-0722.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-007f97b1d287c7a79433.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/index-2024-06-20T23-54-23-0585.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/target-tamagotchi-Debug-6821fa84cd90763ae3f3.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/build.ninja" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/build.ninja" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/server" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/server" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/tamagotchi" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/tamagotchi" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/savefile.txt" beforeDir="false" afterPath="$PROJECT_DIR$/savefile.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/change_stats.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/change_stats.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/display_tamagotchi.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/display_tamagotchi.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/eat_animation.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/food_opt.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/food_opt.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/happy_emote.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/happy_emote.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/intialise_tamagotchi.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/intialise_tamagotchi.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/load_stats.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/load_stats.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pass_away.c" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/play_opt.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/play_opt.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/poop_opt.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/poop_opt.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/save_opt.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/save_opt.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/save_stats.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/save_stats.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/select_menu.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/select_menu.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/send_chat.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/send_chat.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/server.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sick_opt.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/sick_opt.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/stats_opt.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/stats_opt.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/welcome_screen.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/welcome_screen.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,7 +112,7 @@
       <window_info id="Pull Requests" show_stripe_button="false" />
       <window_info id="Learn" show_stripe_button="false" />
       <window_info id="DFA" show_stripe_button="false" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16691339" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16188084" />
       <window_info id="Commit" order="1" weight="0.16691339" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.21909595" />
       <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
@@ -111,10 +128,10 @@
       <window_info anchor="bottom" id="Version Control" order="0" />
       <window_info anchor="bottom" id="Problems" order="1" />
       <window_info anchor="bottom" id="Problems View" order="2" weight="0.3297143" />
-      <window_info anchor="bottom" id="Terminal" order="3" weight="0.38685715" />
+      <window_info anchor="bottom" id="Terminal" order="3" weight="0.21771428" />
       <window_info anchor="bottom" id="Services" order="4" weight="0.3297143" />
       <window_info anchor="bottom" id="CMake" order="5" weight="0.38685715" />
-      <window_info active="true" anchor="bottom" id="Messages" order="6" visible="true" weight="0.12857142" />
+      <window_info active="true" anchor="bottom" id="Messages" order="6" visible="true" weight="0.35257143" />
       <window_info anchor="bottom" id="Run" order="6" weight="0.38685715" />
       <window_info anchor="right" id="Endpoints" show_stripe_button="false" />
       <window_info anchor="right" id="make" show_stripe_button="false" side_tool="true" />

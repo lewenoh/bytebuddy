@@ -1,9 +1,6 @@
-//
-// Created by xth23 on 19/06/24.
-//
-#include "../animation/tamagotchi_frames.h"
-#include <string.h>
-#include <ncurses.h>
+//#include "../animation/tamagotchi_frames.h"
+//#include <string.h>
+//#include <ncurses.h>
 
 char *tamagotchi[7][9] = {
         {
@@ -152,18 +149,3 @@ char *food_options[2][6] = {
             "   \\________/    "
         }
 };
-
-/*int tama_rows;
-int tama_cols;
-
-void initialise_tamagotchi() {
-    tama_rows = sizeof(tamagotchi) / sizeof(tamagotchi[0]);
-    tama_cols = strlen(tamagotchi[0][0]);
-}
-
-int row; // no. rows
-int col; // no. cols
-
-void initialise_centre() {
-    getmaxyx(stdscr, row, col);
-}*/

@@ -39,7 +39,6 @@ static void normal_state(int row, int col, int tama_rows, int tama_cols) {
     refresh();
     usleep(500000); // 500 milliseconds delay between frames
 
-    //clear_frame(row, col, tama_rows, tama_cols);
     second_state(row, col, tama_rows, tama_cols);
     refresh();
     usleep(500000); // 500 milliseconds delay
@@ -142,9 +141,7 @@ void *display_tamagotchi(void *arg) {
     }
 
     print_menu(row, col);
-    //clear_frame(row, col, tama_rows, tama_cols);
     if(s->sick) {
-        //print_sick(row, col, tama_rows, tama_cols);
         sick_state(row, col, tama_rows, tama_cols);
     } else {
         normal_state(row, col, tama_rows, tama_cols);

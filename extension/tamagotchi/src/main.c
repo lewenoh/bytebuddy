@@ -1,19 +1,12 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
 #include <pthread.h>
 #include <time.h>
 #include <ncurses.h>
 #include <unistd.h>
 #include <sys/types.h>
-#include <sys/socket.h>
-#include <arpa/inet.h>
-#include <netinet/in.h>
 #include "../include/display_tamagotchi.h"
-#include "../include/welcome_screen.h"
 #include "../include/food_opt.h"
 #include "../include/select_menu.h"
-#include "../include/stats_def.h"
 #include "../include/change_stats.h"
 #include "../include/load_stats.h"
 #include "../include/send_chat.h"
@@ -66,17 +59,6 @@ int main(void) {
             }
         }
         refresh();
-        // TODO handle message sending in case statement in select_menu.c
-        // if (opt == 'm') { // Assuming 'm' key is used to send a message
-            // char message[BUFFER_SIZE];
-            // echo(); // Enable echo to get user input
-            // mvprintw(LINES - 1, 0, "Enter message: ");
-            // getstr(message);
-            // noecho(); // Disable echo after getting input
-            // char full_message[BUFFER_SIZE];
-            // snprintf(full_message, BUFFER_SIZE, "%s: %s", name, message);
-            // send_message(full_message);
-            // mvprintw(LINES - 1, 0, ""); // Clear the message prompt
         }
     endwin();
     close(sock);

@@ -1,7 +1,3 @@
-//
-// Created by xth23 on 14/06/24.
-//
-
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -10,8 +6,6 @@
 #define BUFFER_CAPACITY 100
 
 void save_stats(struct stats *s) {
-    // this function will save the stats of the tamagotchi
-    // in the save file
     FILE *outputFile = fopen("../savefile.txt", "w");
     if (outputFile == NULL) {
         perror("Error opening savefile.");
@@ -78,6 +72,5 @@ void save_stats(struct stats *s) {
         perror("Error writing to savefile.\n");
         exit(1);
     }
-
     fclose(outputFile);
 }

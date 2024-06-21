@@ -1,11 +1,5 @@
-//
-// Created by xth23 on 15/06/24.
-//
-
 #include "../include/select_menu.h"
-#include <string.h>
 #include <ncurses.h>
-
 #include "../include/food_opt.h"
 #include "../include/play_opt.h"
 #include "../include/sick_opt.h"

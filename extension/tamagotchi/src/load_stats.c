@@ -1,11 +1,7 @@
-//
-// Created by xth23 on 14/06/24.
-//
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-#include <math.h>
 #include "../include/stats_def.h"
 #include "../include/load_stats.h"
 #define BUFFER_CAPACITY 100

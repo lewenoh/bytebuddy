@@ -1,5 +1,4 @@
 #include "../include/play_opt.h"
-#include "../include/stats_def.h"
 #include "../include/happy_emote.h"
 #include "../animation/tamagotchi_frames.h"
 #include <ncurses.h>
@@ -24,11 +23,6 @@ void print_instructions(int row, int col) {
 static int display_firstnum(int row, int col, int num1, int score){
     int all_start_row = (row/2) - 10;
     int num1_start_col = (col/2) - 13;
-	// y = (row/2) - 4 //for num1
-    // x = (col/2) - 13
-	//put number num1 at y, x^^
-	//put ? at y = row/2 + 4 and x=col/2 + 13
-	//also print score to screen
 
     int question_start_col = col/2 + 13;
 
@@ -101,9 +95,6 @@ void play_opt(struct stats *s, int row, int col) {
     print_instructions(row, col);
     int tama_rows = sizeof(tamagotchi[0]) / sizeof(tamagotchi[0][0]);
     int tama_cols = strlen(tamagotchi[0][0]);
-    // this function starts the game
-    // increases happy by 1 if player wins
-    // plays happy or sad emote
 
 	int score = 0;
 	int num1;
@@ -123,8 +114,6 @@ void play_opt(struct stats *s, int row, int col) {
 			}
 		}
 		guess = display_firstnum(row, col, num1, score);
-		//display tamagotchi with random number on left, ? on right
-		//get return val
 		if (guess == 0){
 			return;
 		}
@@ -135,7 +124,6 @@ void play_opt(struct stats *s, int row, int col) {
             refresh();
             sleep(2);
             clear();
-			//display correct, num1, num2
 		}
 		else {
             display_both_numbers(row, col, num1, num2);
@@ -143,24 +131,15 @@ void play_opt(struct stats *s, int row, int col) {
             refresh();
             sleep(2);
             clear();
-			//display wrong, num1, num2
 		}
 	
 	}
 	if (score > 2){
-		//won game
 		s->happy > 5? 5 : s->full++;
         int tama_start_row = (row - tama_rows)/2;
         for( int i = 0; i < tama_rows; i++) {
             mvprintw(tama_start_row + i, (col - tama_cols)/2, "%s", tamagotchi[4][i]);
         }
         happy_emote(row, col);
-		//display happy
 	}
-	else{
-		//display sad
-	}
-
-
-	return;
 }

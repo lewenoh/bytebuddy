@@ -1,7 +1,3 @@
-//
-// Created by xth23 on 20/06/24.
-//
-
 #include "../include/happy_emote.h"
 #include "../animation/tamagotchi_frames.h"
 #include <string.h>
@@ -31,5 +27,4 @@ void happy_emote(int row, int col) {
         usleep(500000);
         clear();
     }
-
 }

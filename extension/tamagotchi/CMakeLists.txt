@@ -14,7 +14,6 @@ add_executable(tamagotchi src/main.c
         src/welcome_screen.c
         src/load_stats.c
         include/load_stats.h
-        src/eat_animation.c
         animation/eat_animation.h
         src/food_opt.c
         include/food_opt.h
@@ -40,7 +39,6 @@ add_executable(tamagotchi src/main.c
         src/change_stats.c
         include/change_stats.h
         include/character_profile.h
-        src/pass_away.c
         include/pass_away.h
         animation/tamagotchi_frames.h
         animation/menu_frames.h

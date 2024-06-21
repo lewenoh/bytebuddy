@@ -1,7 +1,3 @@
-//
-// Created by xth23 on 14/06/24.
-//
-
 #include "../include/stats_opt.h"
 #include "../include/stats_def.h"
 #include <unistd.h>
@@ -12,21 +8,6 @@
 #define STAT_NO_LEVEL ". "
 #define STAT_DISPLAY_LENGTH 21
 #define STAT_BAR_END_CHAR "|"
-/*
-
-"Full  | # # # . . |"
-
-"Happy | # # # . . |"
-
-"Age   10           "
-*/
-
-// helper function to append to end of char
-static void append(char* s, char c) {
-    int len = strlen(s);
-    s[len] = c;
-    s[len+1] = '\0';
-}
 
 static void display_stat(int stat_level, char init_buffer[STAT_DISPLAY_LENGTH]) {
     // appends '#'
@@ -63,13 +44,6 @@ void stats_opt(struct stats *s, int row, int col) {
     mvprintw(start_row + 1, start_col, "%s", happybuff);
     mvprintw(start_row + 2, start_col, "%s", agebuf);
     mvprintw(start_row + 4, start_col, "%s", STAT_BORDER);
-
     refresh();
-
-    sleep(2);
-
-/*    time_t age = p->birthday - time(null);
-    char *fullbuf[20] = "Full  |";
-    mvprintw(row, col, fullbuf);*/
-
+    sleep(2); // allows player to view stats before automatically closing in 2 seconds
 }

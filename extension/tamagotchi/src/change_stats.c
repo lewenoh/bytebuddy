@@ -1,7 +1,3 @@
-//
-// Created by xth23 on 16/06/24.
-//
-
 #include "../include/stats_def.h"
 #include "../include/change_stats.h"
 #include "../include/character_profile.h"
@@ -49,17 +45,5 @@ void *change_stats(void *arg){
     if(s->age > default_profile.lifespan) {
         // pass_away();
     }
-
-    // for testing purposes
-/*    mvprintw(0, 2, "min: %d", current_tm->tm_min);
-    mvprintw(1, 2, "second: %d", current_tm->tm_sec);
-    mvprintw(2, 2, "hour: %d", current_tm->tm_hour);
-    mvprintw(3, 2, "happy %d", s->happy);
-    mvprintw(4, 2, "full %d", s->full);
-    mvprintw(5, 2, "poop %d", s->poop);
-    mvprintw(6, 2, "sick %d", s->sick);*/
     return NULL;
 }
-
-// maybe make this a thread?
-// delete initial_second later - for testing only

@@ -1,7 +1,3 @@
-//
-// Created by xth23 on 14/06/24.
-//
-
 #include "../include/save_opt.h"
 #include <string.h>
 #include <ncurses.h>
