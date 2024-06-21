@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1718981196 "Checkpoint.tex" "out/Checkpoint.pdf" "Checkpoint" 1718981198
+["pdflatex"] 1718989913 "Checkpoint.tex" "out/Checkpoint.pdf" "Checkpoint" 1718989915
   "/etc/texmf/web2c/texmf.cnf" 1664531424 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/homes/js5422/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1095.600pk" 1718981196 12644 90d3ff439540e03d97e988b7d899e813 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -46,9 +46,9 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1644012257 39432 7155514e09a3d69036fac785183a21c2 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1664531861 4078076 dfd917b731fa0a2f1d31d806eb393949 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1711372928 2012522 1336dbbfee333cd83ddd5d185c9f611d ""
-  "Checkpoint.tex" 1718981167 4656 e4f4807d864492066c1ea26b0266d6f3 ""
-  "out/Checkpoint.aux" 1718981198 720 6fcb40324f840429278c9b29cc8acb78 "pdflatex"
-  "struct.png" 1718981167 745406 7c32b5840f143f92cce5e477f61607c1 ""
+  "Checkpoint.tex" 1718989863 4656 e4f4807d864492066c1ea26b0266d6f3 ""
+  "out/Checkpoint.aux" 1718989914 720 6fcb40324f840429278c9b29cc8acb78 "pdflatex"
+  "struct.png" 1718983506 745406 7c32b5840f143f92cce5e477f61607c1 ""
   (generated)
   "out/Checkpoint.aux"
   "out/Checkpoint.log"

@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1718959399 "Report.tex" "out/Report.pdf" "Report" 1718959402
+["pdflatex"] 1718989910 "Report.tex" "out/Report.pdf" "Report" 1718989913
   "/etc/texmf/web2c/texmf.cnf" 1664531424 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm" 1136768653 1328 c834bbb027764024c09d3d2bf908b5f0 ""
@@ -113,9 +113,10 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1644012257 39432 7155514e09a3d69036fac785183a21c2 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1664531861 4078076 dfd917b731fa0a2f1d31d806eb393949 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1711372928 2012522 1336dbbfee333cd83ddd5d185c9f611d ""
-  "Report.tex" 1718959337 14914 b6ffa7db7f2864ab87723e9c569ec436 ""
-  "out/Report.aux" 1718959402 1238 f0780a3cbfe8db11d08b3c6732dbe3cb "pdflatex"
-  "tamagotchi.png" 1718958449 41137 bbd3b1e4e092e710b0830357073e685d ""
+  "Report.tex" 1718989883 16597 281a7b2c784e327ba1f7b88db19a3d9e ""
+  "out/Report.aux" 1718989913 1421 18d968f7c77cffbf5d0316c87433f571 "pdflatex"
+  "tama_flow.png" 1718989647 593416 aaeeb24df58fc254b635d5b1c6f45bb4 ""
+  "tamagotchi.png" 1718983506 41137 bbd3b1e4e092e710b0830357073e685d ""
   (generated)
   "out/Report.aux"
   "out/Report.log"

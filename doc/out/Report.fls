@@ -407,6 +407,11 @@ INPUT ./tamagotchi.png
 INPUT tamagotchi.png
 INPUT ./tamagotchi.png
 INPUT ./tamagotchi.png
+INPUT ./tama_flow.png
+INPUT ./tama_flow.png
+INPUT tama_flow.png
+INPUT ./tama_flow.png
+INPUT ./tama_flow.png
 INPUT out/Report.aux
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
