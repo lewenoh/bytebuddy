@@ -4,6 +4,8 @@
 \usetikzlibrary{shapes.geometric, arrows}
 \usepackage{wrapfig}
 \usepackage{caption}
+\usepackage{graphicx}
+
 
 % Define styles
 \tikzstyle{startstop} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=red!30]
@@ -13,15 +15,20 @@
 \tikzstyle{dottedline} = [thick, dotted]
 \captionsetup{justification=centering}
 
+
 \begin{document}
+
 \title{Group 51 Final Report}
 \author{Lewen Oh, Xi Ting Hoh, Yuhan Wu, Jamin Son}
 \maketitle
+
 \section{Assembler}
-\begin{wrapfigure}{r}{0.5\textwidth}
+
+\begin{wrapfigure}{r}{0.5\textwidth} % Adjust the width as needed
     \centering
     \begin{tikzpicture}[node distance=2cm, scale=0.7, every node/.style={transform shape}]
 
+    % Nodes
     \node (reading) [process] {Read .s file};
     \node (first_pass) [process, below of=reading] {First pass over instructions};
     \node (instruction_array) [process, left of=first_pass, yshift=1cm, xshift=-4cm] {Instruction Array};
@@ -29,6 +36,7 @@
     \node (symbol_table) [process, left of=first_pass, yshift = -1cm, xshift=-4cm] {Symbol Table};
     \node (binary_write) [process, below of=second_pass] {Write to .b file};
 
+    % Arrows
     \draw [arrow] (reading) -- (first_pass);
     \draw [arrow] (first_pass) -- (second_pass);
     \draw [arrow] (second_pass) -- (binary_write);
@@ -37,52 +45,73 @@
 
     \end{tikzpicture}
     \caption{Flowchart for reading a .s file and processing instructions.}
-    \label{fig:process-flowchart}
+    \label{fig:Assembler Process}
 \end{wrapfigure}
 
-The high-level structure of the assembler is equivalent to the emulator. Both read input files, process and write output. We implemented the assembler using two-passes over the instructions. A broad overview of the assembler is shown to the right. The symbol table and instruction arrays were implemented as classic array data structures with a size and data field.\\
-\textbf{First Pass:} During the first pass each line of assembly is: classified to what instruction it is: (and, subs, mul...); and, tokenised to an array of strings. Relevant files: first\_pass.c\\
-\textbf{Second Pass:} Each tokenised instruction is encoded to binary. The tokenised array was designed for ease of processing in the second pass. Relevant files: second\_pass.c\\
+The high-level structure of the assembler is similar to the emulator. Both read input files, process and write output. We implemented the assembler using two-passes over the instructions. A broad overview of the assembler is shown to the right.  It is noted by the team that we could have implemented these data structures as one array structure and used generics so that it could be used for both the symbol table and the instruction array; however, we did not have the time to implement this.\\\\
+\textbf{First Pass:} During the first pass each line of assembly is: classified to what instruction it is: (and, subs, mul...); and, tokenised to an array of strings. The symbol table and instruction arrays were implemented as classic array data structures with a size and data field.\\
+\textbf{Adding label to symbol table} (fig.3) In first pass, when a label is encountered it is added to the symbol table structure with its address calculated using its position within the instructions.\\
+\textit{Relevant files: pass\_one.c, symbol\_table.c, instruction\_arr.c, tokenise.c}\\
 \\
-\textbf{Tokenisation} (fig.2) Load, Store instructions posed extra complexity as there were 4 types: Post-Index, Pre-Index, Unsigned offset and other.\\
+\textbf{Second Pass:} Each tokenised instruction is encoded to binary. The tokenised array was designed for ease of processing in the second pass. The elements which were blank were filled with the null character '\textbackslash0'.
+\\
+\textbf{Tokenisation} (fig.2) Load, Store instructions posed extra complexity as there were 4 types: Post-Index, Pre-Index, Unsigned offset and other. Thus these instructions had at the tail of the token array: POST, PRE, U, or N to signal which addressing mode the instruction was in. This information was used by the various encoding functions to correctly encode the assembly.\\
+\textit{Relevant files: second\_pass.c, branch\_encoder.c, dpi\_encoder.c, sdt\_encoder.c}\\
+\\
+
 \begin{figure}[h]
     \centering
-    \begin{tikzpicture}[node distance=2cm, scale=0.6, every node/.style={transform shape}, xshift=2cm] % Shift the graph to the right by 2cm
+    \begin{tikzpicture}[node distance=2cm, scale=0.7, every node/.style={transform shape}, xshift=2cm] % Shift the graph to the right by 2cm
 
+    % Nodes
     \node (add) [nobox] {adds	x22, x10, x6, lsr \#33};
     \node (token_add) [nobox, right of=add, xshift=8cm] {["adds", "x22", "x10", "x6", "lsr" "\#33"]};
+    % Nodes
     \node (str) [nobox, below of=add] {str	x17, [x23], \#0};
     \node (token_str) [nobox, right of=str, xshift=8cm] {["str", "x17", "x23", "\#0", "POST"]};
 
+    % Arrows
     \draw[arrow] (add) -- (token_add);
     \draw[arrow] (str) -- (token_str);
 
     \end{tikzpicture}
     \caption{How assembly instructions are tokenised}
-    \label{fig:scp-flowchart}
-\end{figure}\\
-\textbf{Adding label to symbol table} (fig.3) In first pass, when a label is come across it is added to the symbol table structure with its address calculated using its position within the instructions.
+    \label{fig:tokenisation}
+\end{figure}
 \begin{figure}[t]
     \centering
-    \begin{tikzpicture}[node distance=2cm, scale=0.6, every node/.style={transform shape}, xshift=2cm] % Shift the graph to the right by 2cm
+    \begin{tikzpicture}[node distance=2cm, scale=0.7, every node/.style={transform shape}, xshift=2cm] % Shift the graph to the right by 2cm
 
+    % Nodes
     \node (label) [nobox, below of=str] {beef:};
     \node (symbol_entry) [nobox, below of=token_str] {["beef", 0x4]};
+
+    % Arrows
     \draw[arrow] (label) -- (symbol_entry);
 
     \end{tikzpicture}
     \caption{How label instructions were added to the symbol table}
     \label{fig:scp-flowchart}
 \end{figure}
-\\
+\textit{assemble.c} knitted all these functions files together to create the working assembler. \textit{helperfuncs.c} holds helper functions for the assembler.
+Debugging did not cause as many issues as it did with the emulator; memory leaks however did cause some problems. We had to use valgrind and gdb together to track these down.\\
+\textbf{Lessons Learnt: }In future, we learnt to test more often and earlier on to catch these bugs so that errors do not propagate through the code later.
 \section{Raspberry Pi}
-Circuit: We researched how to connect the LED to the Raspberry Pi - the cathode connects to a ground pin via a 220 Ohm resistor, and the anode connects to the desired pin. -> Diagram\\
-Debug process: We used our emulator with GDB, putting a breakpoint at the end of each execution loop, so that the contents of registers and memory could be checked. Through this we found 2 issues:\\
-\\\textbf{Register size:} We used x registers for all instructions, but this caused a problems loading the correct base address from the .int directives. 0x80003f200000 would be loaded instead of 0x3f200000, as 0x8000 was the .int  directive that came directly after the address .int. Thus, we changed all registers to w registers.\\
-\textbf{.int directives:} Initially these were placed at the beginning of the assembly code, meaning the processor would try to execute these first. These were moved to the end of the code.
+After reading the specification, before we wrote any code, we broke the task down into simpler terms, and thought about how to implement each part:\\
+\textbf{Circuit}: We then researched how to connect the LED to the Raspberry Pi - the cathode connects to a ground pin via a 220 Ohm resistor, and the anode connects to the desired pin.\\
+\textbf{GPIO pin:} Initially we connected the pin to GPIO 14. However, when we were testing, it made things confusing, as the LED would always flash briefly upon turning the pi on, regardless of what code was on the SD card. To rectify this, we chose to use GPIO 15 instead. \\
+\textbf{Debug process:} We used our emulator with GDB, putting a breakpoint at the end of each execution loop, so that the contents of registers and memory could be checked. Through this we found 2 issues:\\
+\textbf{Problem 1: Register size} We used x registers for all instructions, but this caused a problem in loading the correct base address from the .int directives. 0x80003f200000 would be loaded instead of 0x3f200000, as 0x8000 was the .int  directive that came directly after the address .int. Thus, we changed all registers to w registers.\\
+\textbf{Problem 2: .int directives} Initially these were placed at the beginning of the assembly code, meaning the processor would try to execute these first. We moved these to the end of the code, outside of the unconditional loop so that they would never be reached.
 
 
 \section{Extension}
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.5\textwidth]{tamagotchi.png}
+    \caption{Byte Buddy}
+    \label{fig:tamagotchi}
+\end{figure}
 Our extension, inspired by Bandai’s Tamagotchi, is a virtual pet game that is played in the terminal that requires minimal attention. Players can open the game and have the game open in a small terminal beside their work. The pet has happiness and fullness stats that will decrease as time goes on and players will have to interact with it to keep it happy and full. Occasionally, the pet will have to go to the toilet or fall sick, and players will have to clean up after it or feed it medicine.\\\\
 \textbf{Design:}
 The game is built using a supplementary C library, ncurses, that allows printing to the terminal while the game is running and refreshing the display, among other functions, which would not be possible since our program requires continuously printing to the terminal and taking inputs while the program is running.
@@ -96,11 +125,14 @@ Admittedly, this method of testing is not as thorough as it should be, though it
 
 
 \section{Reflection}
-Group:
-We had good communication and split up tasks well based on everyone's strengths. Next time I think we should spend longer talking about the overall big picture of what we need from each other, e.g. parameter data types and return types, so that we wont have to spend as long stitching our tasks together so that everyone's functions/typedefs would come together. This issue stemmed from our initial undersight with Git, and it will definitely be something we implement next time before branching separate ways.\\\\
-\textbf{Yuhan:} I think everyone in our group meshed super well, we all balance each other out. This meant we worked great together, with each part we completed being more efficient than the last, but also it made the whole experience fun! I learnt that my weaknesses lie in the aspects of C that require specific knowledge of functions/libraries. For example, I struggle with reading from and writing to files and strings, whereas I’m stronger in the more logical aspects, where knowledge of libraries and functions isn’t necessary. \\
-\textbf{Xi Ting:} I felt that I could express myself very genuinely and confidently in this team and knowing my voice was heard made me more confident to vocalise my ideas as well as my agreements and disagreements.  At first, I was worried that I would not be as productive as the other members as programming is not my strength, though I felt that I made up for it with my positivity and by generating creative ideas, especially for the extension. Through this project, I learned the valuable lesson of playing to my strengths to complement my weakness, something I will be applying to all of my future group projects.\\
-\textbf{Lewen:} Most of my programming experience lies with solving logic-based problems, however this project introduced the need to deal with file I/O and building C projects, which I had no prior experience of. I was delegated these two tasks, and although I initially was intimidated with these unexplored technical areas, in hindsight I am grateful for having done this, as I had to learn a lot from scratch. Although I still believe my strengths lie in the logical side of programming, this experience definitely gave me more courage to go out of my comfort zone to learn more technical programming skills. In future group projects, I believe that this would be a key practice to maintain consistent and efficient progress.\\
-\textbf{Jamin:} This project was incredibly enjoyable and informative. Due to my position as leader, I knew that I largely responsible for the timely execution and quality of the project. Team discussions were frequently used to coordinate tasks and interconnected components; and also to make sure everyone knew the fundamentals correctly. I enjoyed thinking about the technical skill sets and personality qualities of each team members and find the right fit between members. I found out that as leader, I was not able to just focus on my coding task, but had to consistently spend time figuring out the steps ahead so that I was always prepared to delegate tasks.
-An aspect I would change is the philosophy to build quicker and test more often. Sometimes I caught myself attempting to make things perfect the first time causing delays in production.
+\textbf{Group:} We had good communication and split up tasks well based on everyone's strengths. We talked a lot about how to implement important data structures in our code which was very useful. Next time I think we should spend longer talking about the overall big picture of what we need from each other, e.g. parameter data types and return types, so that we wont have to spend as long stitching our tasks together so that everyone's functions/typedefs would come together. This issue was exacerbated by our inexperience with Git, as we implemented a file that we all needed wrongly and without testing which meant everyone had to merge their branches to fix the issue. It will definitely be something we implement next time before branching separate ways.\\
+\\
+\textbf{Yuhan:} I think everyone in our group meshed super well, we all balance each other out. This meant we worked great together, with each part we completed being more efficient than the last, but also it made the whole experience fun! I would say my weaknesses lie in the aspects of C that require specific knowledge of functions/libraries. For example, I struggle with reading from and writing to files, as well as strings, whereas I’m stronger in the more logical aspects, where knowledge of libraries and functions isn’t very necessary. The tasks I was delegated reflected this- I mostly was set the non technical aspects (e.g. emulating the binary instructions, or encoding tokenised assembly to binary). I also spent some time doing a little part of binary file outputting. As much as I disliked it at the time, in retrospect I think it was good for me to work on one of my weaknesses, and develop my ability in that area.\\
+\\
+\textbf{Xi Ting:} I felt that I could express myself very genuinely and confidently in this team and knowing my voice was heard made me more confident to vocalise my ideas as well as my agreements and disagreements. Our team was made up of people with very different though complementary personalities, and that made it feel like everyone had their own role to play both in the practical and the social dynamic of our project. At first, I was worried that I would not be as productive as the other members as programming is not my strength, though I felt that I made up for it with my positivity and by generating creative ideas, especially for the extension. Through this project, I learned the valuable lesson of playing to my strengths to complement my weakness, something I will be applying to all of my future group projects.\\
+\\
+\textbf{Lewen:} Personally, I felt that our group was cohesive and we communicated effectively since we are all friends in the first place. This gave me the level of comfort to express my true opinions and more ambitious ideas. Most of my programming experience lies with solving logic-based problems, however this project introduced the need to deal with file I/O and building C projects, which I had no prior experience of. I was delegated these two tasks, and although I initially was intimidated with these unexplored technical areas, in hindsight I am grateful for having done this, as I had to learn a lot from scratch. I believe that these two sectors, particularly building Makefiles, are invaluable pieces of knowledge that I will find myself actively utilizing in future C endeavors. If not for this project, I know that I would have been reluctant to attempt to learn such seemingly intimidating topics. Although I still believe my strengths lie in the logical side of programming, this experience definitely gave me more courage to go out of my comfort zone to learn more technical programming skills. I enjoyed working in-person with my group, as this allowed us to constantly update each other on our achievements, as well as clarify any misconceptions immediately. In future group projects, I believe that this would be a key practice to maintain consistent and efficient progress.\\
+\\
+\textbf{Jamin:} This project was incredibly enjoyable and informative. Due to my position as leader, I knew that I largely responsible for the timely execution and quality of the project. Team discussions were frequently used to coordinate tasks and interconnected components; and also to make sure everyone knew the fundamentals correctly. I enjoyed thinking about the technical skill sets and personality qualities of each team members and find the right fit between members. I found out that as leader, I was not able to just focus on my coding task, and consistently had to spend time figuring out the steps ahead so that I was always prepared to delegate tasks. My strengths are being able to steer the group towards a cohesive end-goal and coordinating tasks. I felt that this made me fit well into the group as the coordinator for the project. I also wrote a lot of the tokenisation for the assembler which showed me I could write code well.\\
+An aspect I would change is the philosophy to build quicker and test more often. Sometimes I caught myself attempting to make things perfect the first time around causing delays in production. When planning code, I also learnt that it is critical to organize input and outputs to functions and agree on data types and structure during the planning stage before implementing.
 \end{document}
