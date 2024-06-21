@@ -3,6 +3,7 @@
 #ignore individual vs_code settings
 *.vscode
 
+#ignore individual .idea settings
 .idea
 .xml
 .sh
