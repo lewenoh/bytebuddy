@@ -56,11 +56,19 @@ int main() {
     int server_sock, client_sock;
     struct sockaddr_in server_addr, client_addr;
     socklen_t addr_len = sizeof(struct sockaddr_in);
+    int opt = 1;
 
     if ((server_sock = socket(AF_INET, SOCK_STREAM, 0)) == -1) {
         perror("Socket creation error");
         exit(EXIT_FAILURE);
     }
+
+    if (setsockopt(server_sock, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT, &opt, sizeof(opt))) {
+        perror("setsockopt");
+        close(server_sock);
+        exit(EXIT_FAILURE);
+    }
+
 
     server_addr.sin_family = AF_INET;
     server_addr.sin_port = htons(PORT);
